@@ -1,1 +1,11 @@
-site_name: My Docs
+site_name: 小黑屋
+# theme: readthedocs
+nav:
+    - 首页: index.md
+    - Android:
+      - StrictMode: strictMode.md
+      - 触摸事件分发: touchEventDispatch.md
+      - adb模拟屏幕触摸: adb_input.md
+      - Android渠道写入方式: android_flavor.md
+      - Annotation注解处理器: annotation.md
+      - 注解处理器调试: annotation_debug.md

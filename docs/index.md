@@ -1,17 +1,39 @@
-# Welcome to MkDocs
+# 一号标题
+## 二号标题
+### 三号标题
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+链接：[mkdocs.org](http://mkdocs.org)
 
-## Commands
+高亮： `hello` world
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+加粗：**hello**
 
-## Project layout
+斜体：*hello*
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+加粗又斜体：***hello***
+
+列表：
+* 1
+* 2
+* 3
+
+引用：
+> cite
+
+
+代码：
+``` java
+public void main();
+````
+
+块：
+
+    这是一段文字
+    这是一段文字
+
+
+
+
+mkdocs发布：
+
+    mkdocs gh-deploy
