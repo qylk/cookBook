@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>StrictMode - 小黑屋</title>
+        <title>lightKV - 小黑屋</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -53,8 +53,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li class="active">
-    <a href="./">StrictMode</a>
+<li >
+    <a href="../strictMode/">StrictMode</a>
 </li>
                                     
 <li >
@@ -85,8 +85,8 @@
     <a href="../java_poet/">JavaPoet</a>
 </li>
                                     
-<li >
-    <a href="../lightKV/">lightKV</a>
+<li class="active">
+    <a href="./">lightKV</a>
 </li>
                                     
 <li >
@@ -107,12 +107,12 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="..">
+                                <a rel="next" href="../java_poet/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li >
-                                <a rel="prev" href="../touchEventDispatch/">
+                                <a rel="prev" href="../mmap/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -124,118 +124,28 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#threadpolicy">ThreadPolicy线程策略检测</a></li>
-        <li class="main "><a href="#vmpolicy">VmPolicy虚拟机策略检测</a></li>
-        <li class="main "><a href="#_1">原理</a></li>
-        <li class="main "><a href="#_2">注意事项</a></li>
+        <li class="main active"><a href="#_1">概念：</a></li>
+        <li class="main "><a href="#_2">参考资料：</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p>StrictMode类是Android 2.3 （API 9）引入的一个工具类，可以用来帮助开发者发现代码中的一些不规范的问题，以达到提升应用响应能力的目的。</p>
-<p>严苛模式主要有2大检测策略，一个是线程策略，即TreadPolicy，另一个是VM策略，即VmPolicy。</p>
-<h2 id="threadpolicy">ThreadPolicy线程策略检测</h2>
+<h1 id="_1">概念：</h1>
 <ul>
-<li>自定义的耗时调用 使用detectCustomSlowCalls()开启，针对执行比较耗时的检查</li>
-<li>磁盘读取操作 使用detectDiskReads()开启，用于检查当前线程中是否有磁盘读取操作</li>
-<li>磁盘写入操作 使用detectDiskWrites()开启，用于检查当前线程中是否有磁盘写入操作</li>
-<li>网络操作 使用detectNetwork()开启，用于检查当前线程中是否有网络请求操作</li>
+<li>
+<p>LightKV是基于Java NIO实现的轻量级，高性能，高可靠的key-value存储组件。</p>
+</li>
+<li>
+<p>LightKV包含AsyncKV和SyncKV两种模式，其中AsyncKV使用mmap文件内存映射，写入速度非常快，也不必关心数据何时写入文件；SyncKV模式类似于 SharePreferences，需要在数据修改后使用commit提交(比SharePreferences的apply提交方式要慢很多)。</p>
+</li>
+<li>
+<p>LightKV使用SparseArray作为内存级缓存的数据结构，效率上比传统的HashMap要高。</p>
+</li>
 </ul>
-<p>ThreadPolicy在哪个线程设置过，就在哪个线程检测。</p>
-<pre><code class="java">boolean DEV_MODE = true;
-
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                 .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
-                 .detectDiskReads()
-                 .detectDiskWrites()
-                 .detectNetwork()
-                 .penaltyDialog() //弹出违规提示对话框
-                 .penaltyLog() //在Logcat中打印违规异常信息
-                 .penaltyFlashScreen() //屏幕闪烁
-                 .build())
-     }
-     super.onCreate()
-}
-</code></pre>
-
-<p>自定义耗时检查，调用StrictMode.noteSlowCall</p>
-<pre><code class="java">public class TaskExecutor {
-
-    private static long SLOW_CALL_THRESHOLD = 500;
-    public void executeTask(Runnable task) {
-        long startTime = SystemClock.uptimeMillis();
-        task.run();
-        long cost = SystemClock.uptimeMillis() - startTime;
-        if (cost &gt; SLOW_CALL_THRESHOLD) {
-            StrictMode.noteSlowCall(&quot;slowCall cost=&quot; + cost);
-        }
-    }
-}
-</code></pre>
-
-<ul>
-<li>penaltyDeath()，当触发违规条件时，直接Crash掉当前应用程序。</li>
-<li>penaltyDeathOnNetwork()，当触发网络违规时，Crash掉当前应用程序。</li>
-<li>penaltyDialog()，触发违规时，显示对违规信息对话框。</li>
-<li>penaltyFlashScreen()，会造成屏幕闪烁，不过一般的设备可能没有这个功能。</li>
-<li>penaltyDropBox()，将违规信息记录到 dropbox 系统日志目录中（/data/system/dropbox）。</li>
-<li>permitCustomSlowCalls()、permitDiskReads ()、permitDiskWrites()、permitNetwork 如果你想关闭某一项检测，可以使用对应的permit*方法。</li>
-</ul>
-<h2 id="vmpolicy">VmPolicy虚拟机策略检测</h2>
-<ul>
-<li>检查 Activity 的内存泄露情况 使用detectActivityLeaks()开启</li>
-<li>检查资源没有正确关闭时提醒 使用detectLeakedClosableObjects()开启</li>
-<li>泄露的Sqlite对象 使用detectLeakedSqlLiteObjects()开启</li>
-<li>注册类对象是否被正确释放，如BroadcastReceiver 或 ServiceConnection，使用detectLeakedRegistrationObjects()开启</li>
-<li>检测实例数量，可以协助检查内存泄露，使用setClassInstanceLimit()开启</li>
-</ul>
-<pre><code class="java">boolean DEV_MODE = true;
-
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                 .detectLeakedSqlLiteObjects()
-                 .detectLeakedClosableObjects() //API等级11
-                 .penaltyLog()
-                 .penaltyDeath()
-                 .build())
-     }
-     super.onCreate()
-}
-</code></pre>
-
-<h2 id="_1">原理</h2>
-<p>StrictMode实现原理比较简单，就是在相关的代码点插入检测代码，根据策略做检查。</p>
-<p>以IO操作为例，主要是通过在open，read，write，close时进行监控。libcore.io.BlockGuardOs文件就是监控的地方。</p>
-<p>以write为例，如下进行监控：</p>
-<pre><code class="java">@Override
-public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) {
-     BlockGuard.getThreadPolicy().onWriteToDisk();
-     return os.pwrite(fd, buffer, offset);
-}
-</code></pre>
-
-<p>其中onReadFromDisk()方法的实现，代码位于StrictMode.java中</p>
-<pre><code class="java">// Part of BlockGuard.Policy interface:
-public void onReadFromDisk() {
-     if ((mPolicyMask &amp; DETECT_DISK_READ) == 0) {
-        return;
-     }
-     if (tooManyViolationsThisLoop()) {
-        return;
-     }
-     startHandlingViolationException(new DiskReadViolation());
-}
-</code></pre>
-
-<h2 id="_2">注意事项</h2>
-<ul>
-<li>只在开发阶段启用StrictMode，发布应用或者release版本一定要禁用它。</li>
-<li>严格模式无法监控JNI中的磁盘IO和网络请求。</li>
-<li>应用中并非需要解决全部的违例情况，比如有些IO操作必须在主线程中进行。</li>
-</ul></div>
+<h1 id="_2">参考资料：</h1>
+<p><a href="https://juejin.im/post/5b2faa3ff265da599731d64a">https://juejin.im/post/5b2faa3ff265da599731d64a</a></p>
+<p>源码：</p>
+<p><a href="https://github.com/No89757/LightKV">https://github.com/No89757/LightKV</a></p></div>
         </div>
 
         <footer class="col-md-12">

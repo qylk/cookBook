@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>StrictMode - 小黑屋</title>
+        <title>Glide知识点 - 小黑屋</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -53,8 +53,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li class="active">
-    <a href="./">StrictMode</a>
+<li >
+    <a href="../strictMode/">StrictMode</a>
 </li>
                                     
 <li >
@@ -77,8 +77,8 @@
     <a href="../annotation_debug/">注解处理器调试</a>
 </li>
                                     
-<li >
-    <a href="../glide/">Glide知识点</a>
+<li class="active">
+    <a href="./">Glide知识点</a>
 </li>
                                     
 <li >
@@ -107,12 +107,12 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="..">
+                                <a rel="next" href="../annotation_debug/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li >
-                                <a rel="prev" href="../touchEventDispatch/">
+                                <a rel="prev" href="../java_poet/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -124,118 +124,71 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#threadpolicy">ThreadPolicy线程策略检测</a></li>
-        <li class="main "><a href="#vmpolicy">VmPolicy虚拟机策略检测</a></li>
-        <li class="main "><a href="#_1">原理</a></li>
-        <li class="main "><a href="#_2">注意事项</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p>StrictMode类是Android 2.3 （API 9）引入的一个工具类，可以用来帮助开发者发现代码中的一些不规范的问题，以达到提升应用响应能力的目的。</p>
-<p>严苛模式主要有2大检测策略，一个是线程策略，即TreadPolicy，另一个是VM策略，即VmPolicy。</p>
-<h2 id="threadpolicy">ThreadPolicy线程策略检测</h2>
-<ul>
-<li>自定义的耗时调用 使用detectCustomSlowCalls()开启，针对执行比较耗时的检查</li>
-<li>磁盘读取操作 使用detectDiskReads()开启，用于检查当前线程中是否有磁盘读取操作</li>
-<li>磁盘写入操作 使用detectDiskWrites()开启，用于检查当前线程中是否有磁盘写入操作</li>
-<li>网络操作 使用detectNetwork()开启，用于检查当前线程中是否有网络请求操作</li>
-</ul>
-<p>ThreadPolicy在哪个线程设置过，就在哪个线程检测。</p>
-<pre><code class="java">boolean DEV_MODE = true;
+<p>glide架构图
+<img alt="glide" src="../assets/6.png" />
+<a href="http://sniffer.site/2017/05/20/Glide%E8%AF%A6%E8%A7%A3%E4%B9%8B%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/">glide架构分析</a></p>
+<p>glide配置：通过GlideModule配置</p>
+<pre><code class="java">public class MyGlideModule implements GlideMGlideModuleodule {
 
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                 .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
-                 .detectDiskReads()
-                 .detectDiskWrites()
-                 .detectNetwork()
-                 .penaltyDialog() //弹出违规提示对话框
-                 .penaltyLog() //在Logcat中打印违规异常信息
-                 .penaltyFlashScreen() //屏幕闪烁
-                 .build())
-     }
-     super.onCreate()
-}
-</code></pre>
+    @Override
+    public void applyOptions(Context context, GlideBuilder builder) {
+       //设置图片格式、设置缓存目录、设置内存和硬盘缓存大小等
+        buidler.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
+    }  
 
-<p>自定义耗时检查，调用StrictMode.noteSlowCall</p>
-<pre><code class="java">public class TaskExecutor {
-
-    private static long SLOW_CALL_THRESHOLD = 500;
-    public void executeTask(Runnable task) {
-        long startTime = SystemClock.uptimeMillis();
-        task.run();
-        long cost = SystemClock.uptimeMillis() - startTime;
-        if (cost &gt; SLOW_CALL_THRESHOLD) {
-            StrictMode.noteSlowCall(&quot;slowCall cost=&quot; + cost);
-        }
+    @Override
+    public void registerComponents(Context context, Glide glide) {
+        //注册自定义组件
+        glide.register(MyDataModel.class, InputStream.class, new MyUrlLoader.Factory());
     }
 }
 </code></pre>
 
-<ul>
-<li>penaltyDeath()，当触发违规条件时，直接Crash掉当前应用程序。</li>
-<li>penaltyDeathOnNetwork()，当触发网络违规时，Crash掉当前应用程序。</li>
-<li>penaltyDialog()，触发违规时，显示对违规信息对话框。</li>
-<li>penaltyFlashScreen()，会造成屏幕闪烁，不过一般的设备可能没有这个功能。</li>
-<li>penaltyDropBox()，将违规信息记录到 dropbox 系统日志目录中（/data/system/dropbox）。</li>
-<li>permitCustomSlowCalls()、permitDiskReads ()、permitDiskWrites()、permitNetwork 如果你想关闭某一项检测，可以使用对应的permit*方法。</li>
-</ul>
-<h2 id="vmpolicy">VmPolicy虚拟机策略检测</h2>
-<ul>
-<li>检查 Activity 的内存泄露情况 使用detectActivityLeaks()开启</li>
-<li>检查资源没有正确关闭时提醒 使用detectLeakedClosableObjects()开启</li>
-<li>泄露的Sqlite对象 使用detectLeakedSqlLiteObjects()开启</li>
-<li>注册类对象是否被正确释放，如BroadcastReceiver 或 ServiceConnection，使用detectLeakedRegistrationObjects()开启</li>
-<li>检测实例数量，可以协助检查内存泄露，使用setClassInstanceLimit()开启</li>
-</ul>
-<pre><code class="java">boolean DEV_MODE = true;
+<p>注册组件的目的就是告诉Glide，当我们调用<code>load(xxxx)</code>方法时，应该用什么方式来获取这个xxxx所指向的资源。<code>register</code>的第一个参数就是我们<code>load(xxxx)</code>的类型，第二个参数是对应的输入流，而第三个参数就是定义获取资源的方式。</p>
+<pre><code class="java">Glide(Engine engine, MemoryCache memoryCache, BitmapPool bitmapPool, Context context, DecodeFormat decodeFormat) {
+        //Glide默认注册的组件.
+        register(File.class, ParcelFileDescriptor.class, new FileDescriptorFileLoader.Factory());
+        register(File.class, InputStream.class, new StreamFileLoader.Factory());
+        register(int.class, ParcelFileDescriptor.class, new FileDescriptorResourceLoader.Factory());
+        register(int.class, InputStream.class, new StreamResourceLoader.Factory());
+        register(Integer.class, ParcelFileDescriptor.class, new FileDescriptorResourceLoader.Factory());
+        register(Integer.class, InputStream.class, new StreamResourceLoader.Factory());
+        register(String.class, ParcelFileDescriptor.class, new FileDescriptorStringLoader.Factory());
+        register(String.class, InputStream.class, new StreamStringLoader.Factory());
+        register(Uri.class, ParcelFileDescriptor.class, new FileDescriptorUriLoader.Factory());
+        register(Uri.class, InputStream.class, new StreamUriLoader.Factory());
+        register(URL.class, InputStream.class, new StreamUrlLoader.Factory());
+        register(GlideUrl.class, InputStream.class, new HttpUrlGlideUrlLoader.Factory());
+        register(byte[].class, InputStream.class, new StreamByteArrayLoader.Factory());
+    }
+</code></pre>
 
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                 .detectLeakedSqlLiteObjects()
-                 .detectLeakedClosableObjects() //API等级11
-                 .penaltyLog()
-                 .penaltyDeath()
-                 .build())
-     }
-     super.onCreate()
+<p>GlideModule的初始化：<code>manifest.xml</code>配置<code>meta-data</code>节点，Glide在调用<code>get(context)</code>时读取并初始化。</p>
+<p>glide生命周期管理：使用挂载fragment的方式监听Activity生命周期。
+<img alt="glide" src="../assets/7.png" />
+对于图片请求会在onStop的时候自动暂停，然后在onStart的时候重新启动，gif的动画也会在onStop的时候停止，以免在后台消耗电量， 此外，当设备的网络状态发生改变的时候，所有失败的请求会自动重启，保证数据的正确性。</p>
+<p>glide默认的远程下载使用<code>HttpURLConnection</code>，相关类见：<code>HttpUrlGlideUrlLoader</code> 和 <code>HttpUrlFetcher</code>，如果使用okHttp，需要使用官方依赖库：<code>okhttp3-integration</code></p>
+<pre><code class="java">public class MyGlideModule implements GlideModule {
+  ...
+
+  @Override
+  public void registerComponents(Context context, Registry registry) {
+    //使用定义的OkhttpClient替换原有的请求
+    registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
+  }
 }
 </code></pre>
 
-<h2 id="_1">原理</h2>
-<p>StrictMode实现原理比较简单，就是在相关的代码点插入检测代码，根据策略做检查。</p>
-<p>以IO操作为例，主要是通过在open，read，write，close时进行监控。libcore.io.BlockGuardOs文件就是监控的地方。</p>
-<p>以write为例，如下进行监控：</p>
-<pre><code class="java">@Override
-public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) {
-     BlockGuard.getThreadPolicy().onWriteToDisk();
-     return os.pwrite(fd, buffer, offset);
-}
-</code></pre>
-
-<p>其中onReadFromDisk()方法的实现，代码位于StrictMode.java中</p>
-<pre><code class="java">// Part of BlockGuard.Policy interface:
-public void onReadFromDisk() {
-     if ((mPolicyMask &amp; DETECT_DISK_READ) == 0) {
-        return;
-     }
-     if (tooManyViolationsThisLoop()) {
-        return;
-     }
-     startHandlingViolationException(new DiskReadViolation());
-}
-</code></pre>
-
-<h2 id="_2">注意事项</h2>
-<ul>
-<li>只在开发阶段启用StrictMode，发布应用或者release版本一定要禁用它。</li>
-<li>严格模式无法监控JNI中的磁盘IO和网络请求。</li>
-<li>应用中并非需要解决全部的违例情况，比如有些IO操作必须在主线程中进行。</li>
-</ul></div>
+<p>glide图片变换：使用transform接口，第三方库<code>glide-transformations</code>包含很多常用变换</p>
+<p>glide动画: 使用<code>animate</code>接口，表现图像到图像的平滑过渡</p>
+<p>glide的缓存比Picasso复杂，Picasso只缓存了全尺寸的图片，而 Glide 不仅缓存了全尺寸的图，还会根据 ImageView 大小所生成的图也会缓存起来</p>
+<p>glide支持gif和video</p>
+<p>glide默认不支持webp，需要借助第三方库：<code>GlideWebpSupport</code>（其依赖<code>fresco-webp</code>实现库）</p>
+<p>glide最新大版本：Glide v4</p></div>
         </div>
 
         <footer class="col-md-12">

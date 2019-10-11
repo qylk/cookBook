@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>StrictMode - 小黑屋</title>
+        <title>JavaPoet - 小黑屋</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -53,8 +53,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li class="active">
-    <a href="./">StrictMode</a>
+<li >
+    <a href="../strictMode/">StrictMode</a>
 </li>
                                     
 <li >
@@ -81,8 +81,8 @@
     <a href="../glide/">Glide知识点</a>
 </li>
                                     
-<li >
-    <a href="../java_poet/">JavaPoet</a>
+<li class="active">
+    <a href="./">JavaPoet</a>
 </li>
                                     
 <li >
@@ -107,12 +107,12 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="..">
+                                <a rel="next" href="../glide/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li >
-                                <a rel="prev" href="../touchEventDispatch/">
+                                <a rel="prev" href="../lightKV/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -124,118 +124,194 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#threadpolicy">ThreadPolicy线程策略检测</a></li>
-        <li class="main "><a href="#vmpolicy">VmPolicy虚拟机策略检测</a></li>
-        <li class="main "><a href="#_1">原理</a></li>
-        <li class="main "><a href="#_2">注意事项</a></li>
+        <li class="main active"><a href="#_1">简介：</a></li>
+        <li class="main "><a href="#_2">示例：</a></li>
+        <li class="main "><a href="#_3">代码说明</a></li>
+        <li class="main "><a href="#_4">使用场景：</a></li>
+        <li class="main "><a href="#_5">更多例子：</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p>StrictMode类是Android 2.3 （API 9）引入的一个工具类，可以用来帮助开发者发现代码中的一些不规范的问题，以达到提升应用响应能力的目的。</p>
-<p>严苛模式主要有2大检测策略，一个是线程策略，即TreadPolicy，另一个是VM策略，即VmPolicy。</p>
-<h2 id="threadpolicy">ThreadPolicy线程策略检测</h2>
+<h2 id="_1">简介：</h2>
+<p>JavaPoet是square推出的开源java代码生成框架，提供Java Api生成.java源文件。</p>
+<p>项目主页及源码：<a href="https://github.com/square/javapoet">https://github.com/square/javapoet</a></p>
+<h2 id="_2">示例：</h2>
+<pre><code class="groovy">compile 'com.squareup:javapoet:1.9.0'
+</code></pre>
+
+<p>这是一段普通的java代码：</p>
+<pre><code class="java">// This codes are generated automatically. Do not modify!
+package com.example.helloworld;
+
+import java.lang.String;
+import java.lang.System;
+
+public final class HelloWorld {
+  private static final String key = &quot;hello world&quot;;
+
+  public static void main(String[] args) {
+    System.out.println(&quot;Hello, JavaPoet!&quot;);
+  }
+}
+</code></pre>
+
+<p>上方的代码是通过下方代码调用JavaPoet的API生成的：</p>
+<pre><code class="java">FieldSpec filedSpec = FieldSpec.builder(String.class, &quot;key&quot;, Modifier.STATIC, Modifier.PRIVATE, Modifier.FINAL)
+                .initializer(CodeBlock.of(&quot;\&quot;hello world\&quot;&quot;))
+                .build();
+
+MethodSpec main = MethodSpec.methodBuilder(&quot;main&quot;)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(void.class)
+                .addParameter(String[].class, &quot;args&quot;)
+                .addStatement(&quot;$T.out.println($S)&quot;, System.class, &quot;Hello, JavaPoet!&quot;)
+                .build();
+
+TypeSpec helloWorld = TypeSpec.classBuilder(&quot;HelloWorld&quot;)
+                .addField(filedSpec)
+                .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addMethod(main)
+                .build();
+
+JavaFile javaFile = JavaFile.builder(&quot;com.example.helloworld&quot;, helloWorld)
+                .addFileComment(&quot;This codes are generated automatically. Do not modify!&quot;)
+                .build();
+javaFile.writeTo(System.out);
+</code></pre>
+
+<h2 id="_3">代码说明</h2>
+<p><img alt="poet" src="../assets/8.png" /></p>
+<p>观察JavaPoet的代码主要的类可以分为以下几种：</p>
 <ul>
-<li>自定义的耗时调用 使用detectCustomSlowCalls()开启，针对执行比较耗时的检查</li>
-<li>磁盘读取操作 使用detectDiskReads()开启，用于检查当前线程中是否有磁盘读取操作</li>
-<li>磁盘写入操作 使用detectDiskWrites()开启，用于检查当前线程中是否有磁盘写入操作</li>
-<li>网络操作 使用detectNetwork()开启，用于检查当前线程中是否有网络请求操作</li>
+<li>
+<p>Spec 用来描述Java中基本的元素，包括类型，注解，字段，方法和参数等。 </p>
+<ul>
+<li>AnnotationSpec</li>
+<li>FieldSpec</li>
+<li>MethodSpec</li>
+<li>ParameterSpec</li>
+<li>TypeSpec</li>
 </ul>
-<p>ThreadPolicy在哪个线程设置过，就在哪个线程检测。</p>
-<pre><code class="java">boolean DEV_MODE = true;
-
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                 .detectCustomSlowCalls() //API等级11，使用StrictMode.noteSlowCode
-                 .detectDiskReads()
-                 .detectDiskWrites()
-                 .detectNetwork()
-                 .penaltyDialog() //弹出违规提示对话框
-                 .penaltyLog() //在Logcat中打印违规异常信息
-                 .penaltyFlashScreen() //屏幕闪烁
-                 .build())
-     }
-     super.onCreate()
-}
-</code></pre>
-
-<p>自定义耗时检查，调用StrictMode.noteSlowCall</p>
-<pre><code class="java">public class TaskExecutor {
-
-    private static long SLOW_CALL_THRESHOLD = 500;
-    public void executeTask(Runnable task) {
-        long startTime = SystemClock.uptimeMillis();
-        task.run();
-        long cost = SystemClock.uptimeMillis() - startTime;
-        if (cost &gt; SLOW_CALL_THRESHOLD) {
-            StrictMode.noteSlowCall(&quot;slowCall cost=&quot; + cost);
-        }
-    }
-}
-</code></pre>
-
+</li>
+<li>
+<p>Name 用来描述类型的引用，包括Void，原始类型（int，long等）和Java类等。 </p>
 <ul>
-<li>penaltyDeath()，当触发违规条件时，直接Crash掉当前应用程序。</li>
-<li>penaltyDeathOnNetwork()，当触发网络违规时，Crash掉当前应用程序。</li>
-<li>penaltyDialog()，触发违规时，显示对违规信息对话框。</li>
-<li>penaltyFlashScreen()，会造成屏幕闪烁，不过一般的设备可能没有这个功能。</li>
-<li>penaltyDropBox()，将违规信息记录到 dropbox 系统日志目录中（/data/system/dropbox）。</li>
-<li>permitCustomSlowCalls()、permitDiskReads ()、permitDiskWrites()、permitNetwork 如果你想关闭某一项检测，可以使用对应的permit*方法。</li>
+<li>TypeName</li>
+<li>ArrayTypeName</li>
+<li>ClassName</li>
+<li>ParameterizedTypeName</li>
+<li>TypeVariableName</li>
+<li>WildcardTypeName</li>
 </ul>
-<h2 id="vmpolicy">VmPolicy虚拟机策略检测</h2>
-<ul>
-<li>检查 Activity 的内存泄露情况 使用detectActivityLeaks()开启</li>
-<li>检查资源没有正确关闭时提醒 使用detectLeakedClosableObjects()开启</li>
-<li>泄露的Sqlite对象 使用detectLeakedSqlLiteObjects()开启</li>
-<li>注册类对象是否被正确释放，如BroadcastReceiver 或 ServiceConnection，使用detectLeakedRegistrationObjects()开启</li>
-<li>检测实例数量，可以协助检查内存泄露，使用setClassInstanceLimit()开启</li>
+</li>
+<li>
+<p>CodeBlock 用来描述代码块的内容，包括普通的赋值，if判断，循环判断等。</p>
+</li>
+<li>JavaFile 完整的Java文件，JavaPoet的主要的入口。</li>
+<li>CodeWriter 读取JavaFile并转换成可阅读可编译的Java源文件。</li>
 </ul>
-<pre><code class="java">boolean DEV_MODE = true;
-
-public void onCreate() {
-     if (DEV_MODE) {
-         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                 .detectLeakedSqlLiteObjects()
-                 .detectLeakedClosableObjects() //API等级11
-                 .penaltyLog()
-                 .penaltyDeath()
-                 .build())
-     }
-     super.onCreate()
+<table>
+<thead>
+<tr>
+<th>key class</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JavaFile</td>
+<td>A Java file containing a single top level class</td>
+</tr>
+<tr>
+<td>TypeSpec</td>
+<td>A generated class, interface, or enum declaration</td>
+</tr>
+<tr>
+<td>MethodSpec</td>
+<td>A generated constructor or method declaration</td>
+</tr>
+<tr>
+<td>FieldSpec</td>
+<td>A generated field declaration</td>
+</tr>
+<tr>
+<td>ParameterSpec</td>
+<td>A generated parameter declaration</td>
+</tr>
+<tr>
+<td>AnnotationSpec</td>
+<td>A generated annotation on a declaration</td>
+</tr>
+</tbody>
+</table>
+<p>JavaPoet提供内部Builder供外部更多更好地进行一些参数的设置以便有层次的扩展性的构造对应的内容。另外它提供$L(for Literals), $S(for Strings), $T(for Types),  $N(for Names)等标识符，用于占位替换。</p>
+<h2 id="_4">使用场景：</h2>
+<p>1、根据编译时注解生成代码，如<strong>Butterknife</strong></p>
+<p>2、根据协议文件生成对应代码，如<strong>Protobuffer</strong></p>
+<h2 id="_5">更多例子：</h2>
+<p>1、annotationSpec 添加MyAnnotation的注解，然后设置属性hello=world</p>
+<pre><code class="java">private static AnnotationSpec makeAnnotationSpec() {
+        AnnotationSpec.Builder builder = AnnotationSpec.builder(ClassName.get(&quot;org.wcong.test.poet&quot;, &quot;MyAnnotation&quot;));
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder().add(&quot;$S&quot;, &quot;world&quot;);
+        builder.addMember(&quot;hello&quot;, codeBlockBuilder.build());
+        return builder.build();
 }
 </code></pre>
 
-<h2 id="_1">原理</h2>
-<p>StrictMode实现原理比较简单，就是在相关的代码点插入检测代码，根据策略做检查。</p>
-<p>以IO操作为例，主要是通过在open，read，write，close时进行监控。libcore.io.BlockGuardOs文件就是监控的地方。</p>
-<p>以write为例，如下进行监控：</p>
-<pre><code class="java">@Override
-public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) {
-     BlockGuard.getThreadPolicy().onWriteToDisk();
-     return os.pwrite(fd, buffer, offset);
+<p>2、FieldSpec 创建hello的字段并初始化为“world”</p>
+<pre><code class="java">private static FieldSpec makeFieldSpec() {
+        FieldSpec.Builder fileSpecBuilder = FieldSpec.builder(String.class, &quot;hello&quot;, Modifier.PRIVATE);
+        fileSpecBuilder.initializer(CodeBlock.of(&quot;\&quot;world\&quot;&quot;));
+        return fileSpecBuilder.build();
 }
 </code></pre>
 
-<p>其中onReadFromDisk()方法的实现，代码位于StrictMode.java中</p>
-<pre><code class="java">// Part of BlockGuard.Policy interface:
-public void onReadFromDisk() {
-     if ((mPolicyMask &amp; DETECT_DISK_READ) == 0) {
-        return;
-     }
-     if (tooManyViolationsThisLoop()) {
-        return;
-     }
-     startHandlingViolationException(new DiskReadViolation());
+<p>3、set、get、toString方法</p>
+<pre><code class="java">private static MethodSpec makeSetMethod() {
+        MethodSpec.Builder setMethodSpecBuilder = MethodSpec.methodBuilder(&quot;setHello&quot;);
+        setMethodSpecBuilder.addModifiers(Modifier.PUBLIC);
+        setMethodSpecBuilder.returns(TypeName.VOID);
+        ParameterSpec.Builder parameterBuilder = ParameterSpec.builder(TypeName.get(String.class), &quot;hello&quot;);
+        setMethodSpecBuilder.addParameter(parameterBuilder.build());
+        setMethodSpecBuilder.addCode(CodeBlock.builder().add(&quot;this.hello = hello;\n&quot;).build());
+        return setMethodSpecBuilder.build();
+}
+
+private static MethodSpec makeGetMethod() {
+        MethodSpec.Builder getMethodSpecBuilder = MethodSpec.methodBuilder(&quot;getHello&quot;);
+        getMethodSpecBuilder.addModifiers(Modifier.PUBLIC);
+        getMethodSpecBuilder.returns(TypeName.get(String.class));
+        getMethodSpecBuilder.addCode(CodeBlock.builder().add(&quot;return hello;\n&quot;).build());
+        return getMethodSpecBuilder.build();
 }
 </code></pre>
 
-<h2 id="_2">注意事项</h2>
-<ul>
-<li>只在开发阶段启用StrictMode，发布应用或者release版本一定要禁用它。</li>
-<li>严格模式无法监控JNI中的磁盘IO和网络请求。</li>
-<li>应用中并非需要解决全部的违例情况，比如有些IO操作必须在主线程中进行。</li>
-</ul></div>
+<pre><code class="java">private static MethodSpec makeToStringMethod() {
+        MethodSpec.Builder toStringBuilder = MethodSpec.methodBuilder(&quot;toString&quot;);
+        toStringBuilder.addModifiers(Modifier.PUBLIC);
+        toStringBuilder.returns(TypeName.get(String.class));
+        CodeBlock.Builder toStringCodeBuilder = CodeBlock.builder();
+        toStringCodeBuilder.beginControlFlow(&quot;if( hello != null )&quot;);
+        toStringCodeBuilder.add(CodeBlock.of(&quot;return \&quot;hello \&quot;+hello;\n&quot;));
+        toStringCodeBuilder.nextControlFlow(&quot;else&quot;);
+        toStringCodeBuilder.add(CodeBlock.of(&quot;return \&quot;\&quot;;\n&quot;));
+        toStringCodeBuilder.endControlFlow();
+        toStringBuilder.addCode(toStringCodeBuilder.build());
+        return toStringBuilder.build();
+}
+</code></pre>
+
+<p>4、生成java类</p>
+<pre><code class="java">public static void makeJavaFile() {
+        TypeSpec.Builder typeSpecBuilder = TypeSpec.classBuilder(&quot;MyClass&quot;);
+        typeSpecBuilder.addAnnotation(makeAnnotationSpec());
+        typeSpecBuilder.addField(makeFieldSpec());
+        typeSpecBuilder.addMethods(makeMethodSpec());
+        JavaFile.Builder javaFileBuilder = JavaFile.builder(&quot;org.wcong.test.poet&quot;, typeSpecBuilder.build());
+        System.out.println(javaFileBuilder.build().toString());
+}
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
