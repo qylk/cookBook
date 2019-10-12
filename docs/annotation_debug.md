@@ -13,7 +13,7 @@
 现在我们以Android Studio中调试注解处理器为例   
 
 1、打开Edit Configurations，点击左上角+号，选择Remote，Name可以随便起名，假设这里叫Apt，port默认填写5005，点击ok。
-![android studio](../assets/3.png)
+![android studio](./assets/3.png)
 
 2、由于编译时注解是在compileDebugJavaWithJavac脚本中处理的，所以我们要为其添加JVM参数将其设置为可远程调试。
 ```bash
@@ -22,6 +22,6 @@
 这时命令行会卡主，等待debug进程连上5005端口
 
 3、然后在你需要调试的地方打上断点，这时候点击debug按钮等待几秒钟，就可以连接上远程调试器进行Annotation的调试啦。
-![android studio](../assets/4.png)
+![android studio](./assets/4.png)
 
-![android studio](../assets/5.png)
+![android studio](./assets/5.png)

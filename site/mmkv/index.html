@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>MMKV - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmap/">MMAP</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">MMKV</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../mmap/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a rel="prev" >
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">概念：</a></li>
+        <li class="main "><a href="#_2">开源地址：</a></li>
+        <li class="main "><a href="#_3">原理分析：</a></li>
+        <li class="main "><a href="#_4">源码解析：</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="_1">概念：</h1>
+<p>MMKV 是腾讯基于mmap内存映射的key-value组件，底层序列化/反序列化使用 protobuf 实现，性能高，稳定性强。功能上类似于ios上的NSUserDefaults或者android上的sharedPreference。</p>
+<p>另外MMKV还支持加密存储、多进程共享。</p>
+<h1 id="_2">开源地址：</h1>
+<p>https://github.com/tencent/mmkv</p>
+<p>基本介绍：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=2649286834&amp;idx=1&amp;sn=b58ec3323f415c36a8611079cae43d12&amp;chksm=8334cc30b443452625f103b06667ba999c4c8cb8dc9ff7a7991ff2bd00c9748796d99eddd54f&amp;scene=21#wechat_redirect">MMKV--基于 mmap 的 iOS 高性能通用 key-value 组件</a></p>
+<h1 id="_3">原理分析：</h1>
+<h1 id="_4">源码解析：</h1>
+<p>1、初始化：</p>
+<pre><code class="java">//MMKV初始化入口
+MMKV.initialize(this)
+</code></pre>
+
+<pre><code class="java">public static String initialize(Context context) {
+        rootDir = context.getFilesDir().getAbsolutePath() + &quot;/mmkv&quot;;//工作目录，用于mmap映射的文件的根目录
+        initialize(rootDir);//jni调用
+        return rootDir;
+}
+</code></pre>
+
+<pre><code class="java">Java_com_tencent_mmkv_MMKV_initialize(JNIEnv *env, jobject obj, jstring rootDir) {
+    if (!rootDir) {
+        return;
+    }
+    const char *kstr = env-&gt;GetStringUTFChars(rootDir, nullptr);
+    if (kstr) {
+        MMKV::initializeMMKV(kstr);//c++层初始化
+        env-&gt;ReleaseStringUTFChars(rootDir, kstr);
+    }
+}
+</code></pre>
+
+<pre><code class="c++">void MMKV::initializeMMKV(const std::string &amp;rootDir) {
+    static pthread_once_t once_control = PTHREAD_ONCE_INIT;
+    pthread_once(&amp;once_control, initialize);//使用pthread_once保证只初始化一次，初始化工作在指定的第二个参数initialize方法中
+
+    g_rootDir = rootDir;
+    char *path = strdup(g_rootDir.c_str());
+    mkPath(path);//生成工作目录
+    free(path);
+}
+
+//一次初始化调用
+void initialize() {
+    //堆内存上分配map数据结构，key是mmapID，value是MMKV实例指针，用于保存所有的MMKV数据。
+    //mmapID相当于一个sharedPreference的文件名，MMKV相当于一个sharedPreference实例。
+    g_instanceDic = new unordered_map&lt;std::string, MMKV *&gt;;
+    g_instanceLock = ThreadLock();//线程锁
+}
+</code></pre>
+
+<p>2、实例化MMKV:</p>
+<pre><code class="java">/**
+mmapID: 字符串型名字，随便起，只要不包含特殊字符
+mode: 模式，可组合模式：
+   SINGLE_PROCESS_MODE：单进程
+   MULTI_PROCESS_MODE：多进程共享模式
+   ASHMEM_MODE：匿名共享内存模式，默认是mmap方式的内存共享
+cryptKey: 加密key   
+*/
+MMKV kv = MMKV.mmkvWithID(mmapID, mode, cryptKey);
+</code></pre>
+
+<pre><code class="java">public static MMKV mmkvWithID(String mmapID, int mode, String cryptKey) {
+        if (rootDir == null) {
+            throw new IllegalStateException(&quot;You should Call MMKV.initialize() first.&quot;);
+        } else {
+            verifyMMID(mmapID);//检查id字符的合法性
+            //jni调用获取一个C层的MMKV对象句柄(可以理解为对象指针)，这个句柄用于java层的MMKV对象访问C层的mmkv对象。
+            long handle = getMMKVWithID(mmapID, mode, cryptKey);
+            return new MMKV(handle);
+        }
+}
+</code></pre>
+
+<pre><code class="c++">const int DEFAULT_MMAP_SIZE = getpagesize();//默认的mmap长度 = 一个页面大小（32位系统中通常是4k字节）
+
+extern &quot;C&quot; JNIEXPORT JNICALL jlong Java_com_tencent_mmkv_MMKV_getMMKVWithID(
+    JNIEnv *env, jobject obj, jstring mmapID, jint mode, jstring cryptKey) {
+
+    MMKV *kv = nullptr;
+    if (!mmapID) {
+        return (jlong) kv;
+    }
+    string str = jstring2string(env, mmapID);
+
+    if (cryptKey != nullptr) {
+        string crypt = jstring2string(env, cryptKey);
+        if (crypt.length() &gt; 0) {//使用加密模式
+            //调用mmkvWithID方法new一个MMKV对象
+            kv = MMKV::mmkvWithID(str, DEFAULT_MMAP_SIZE, (MMKVMode) mode, &amp;crypt);
+        }
+    }
+    if (!kv) {
+        kv = MMKV::mmkvWithID(str, DEFAULT_MMAP_SIZE, (MMKVMode) mode, nullptr);//无加密模式
+    }
+
+    return (jlong) kv;
+}
+</code></pre>
+
+<pre><code class="c++">MMKV *MMKV::mmkvWithID(const std::string &amp;mmapID, int size, MMKVMode mode, string *cryptKey) {
+    ...
+    auto itr = g_instanceDic-&gt;find(mmapID);//根据mmapId从map中查找
+    if (itr != g_instanceDic-&gt;end()) {//找到了
+        MMKV *kv = itr-&gt;second;
+        return kv;//返回mmkv实例对象指针
+    }
+    auto kv = new MMKV(mmapID, size, mode, cryptKey);//没找到，new一个MMKV
+    (*g_instanceDic)[mmapID] = kv;//存到map中，下次就能找到了
+    return kv;//返回mmkv实例对象指针
+}
+</code></pre>
+
+<pre><code class="c++">MMKV::MMKV(const std::string &amp;mmapID, int size, MMKVMode mode, string *cryptKey)
+    : m_mmapID(mmapID)//mmapId
+    , m_path(mappedKVPathWithID(m_mmapID, mode))//mmap映射文件路径
+    , m_crcPath(crcPathWithID(m_mmapID, mode))//crc文件路径
+    , m_metaFile(m_crcPath, DEFAULT_MMAP_SIZE, (mode &amp; MMKV_ASHMEM) ? MMAP_ASHMEM : MMAP_FILE)//meta数据结构存储一些基本信息
+    , m_crypter(nullptr)//加密器
+    , m_fileLock(m_metaFile.getFd())//文件锁
+    , m_sharedProcessLock(&amp;m_fileLock, SharedLockType)
+    , m_exclusiveProcessLock(&amp;m_fileLock, ExclusiveLockType)
+    , m_isInterProcess((mode &amp; MMKV_MULTI_PROCESS) != 0)//多进程模式
+    , m_isAshmem((mode &amp; MMKV_ASHMEM) != 0) {//是否是匿名共享内存模式
+    m_fd = -1;
+    m_ptr = nullptr;
+    m_size = 0;
+    m_actualSize = 0;
+    m_output = nullptr;
+
+    if (m_isAshmem) {
+        m_ashmemFile = new MmapedFile(m_mmapID, static_cast&lt;size_t&gt;(size), MMAP_ASHMEM);//打开匿名共享内存
+        m_fd = m_ashmemFile-&gt;getFd();
+    } else {
+        m_ashmemFile = nullptr;
+    }
+
+    if (cryptKey &amp;&amp; cryptKey-&gt;length() &gt; 0) {
+        m_crypter = new AESCrypt((const unsigned char *) cryptKey-&gt;data(), cryptKey-&gt;length());//初始化加密器
+    }
+
+    m_needLoadFromFile = true;
+
+    m_crcDigest = 0;
+
+    m_sharedProcessLock.m_enable = m_isInterProcess;
+    m_exclusiveProcessLock.m_enable = m_isInterProcess;
+
+    // sensitive zone
+    {
+        SCOPEDLOCK(m_sharedProcessLock);
+        loadFromFile();
+    }
+}
+</code></pre>
+
+<pre><code class="c++">//m_metaFile是MmapedFile类型的，path是crc文件，构造函数：
+MmapedFile::MmapedFile(const std::string &amp;path, size_t size, bool fileType)
+    : m_name(path), m_fd(-1), m_segmentPtr(nullptr), m_segmentSize(0), m_fileType(fileType) {
+    if (m_fileType == MMAP_FILE) {//mmap模式
+        m_fd = open(m_name.c_str(), O_RDWR | O_CREAT, S_IRWXU);//读写模式打开文件
+        if (m_fd &lt; 0) {
+            MMKVError(&quot;fail to open:%s, %s&quot;, m_name.c_str(), strerror(errno));
+        } else {
+            struct stat st = {};
+            if (fstat(m_fd, &amp;st) != -1) {
+                m_segmentSize = static_cast&lt;size_t&gt;(st.st_size);
+            }
+            if (m_segmentSize &lt; DEFAULT_MMAP_SIZE) {
+                m_segmentSize = static_cast&lt;size_t&gt;(DEFAULT_MMAP_SIZE);
+                //ftruncate将crc文件大小调整为DEFAULT_MMAP_SIZE大小
+                if (ftruncate(m_fd, m_segmentSize) != 0 || !zeroFillFile(m_fd, 0, m_segmentSize)) {
+                    MMKVError(&quot;fail to truncate [%s] to size %zu, %s&quot;, m_name.c_str(),
+                              m_segmentSize, strerror(errno));
+                    close(m_fd);
+                    m_fd = -1;
+                    removeFile(m_name);
+                    return;
+                }
+            }
+            //调用mmap映射crc文件到内存
+            m_segmentPtr =
+                (char *) mmap(nullptr, m_segmentSize, PROT_READ | PROT_WRITE, MAP_SHARED, m_fd, 0);
+            if (m_segmentPtr == MAP_FAILED) {
+                MMKVError(&quot;fail to mmap [%s], %s&quot;, m_name.c_str(), strerror(errno));
+                close(m_fd);
+                m_fd = -1;
+                m_segmentPtr = nullptr;
+            }
+        }
+    } else {//ashmem模式
+        m_fd = open(ASHMEM_NAME_DEF, O_RDWR);
+        if (m_fd &lt; 0) {
+            MMKVError(&quot;fail to open ashmem:%s, %s&quot;, m_name.c_str(), strerror(errno));
+        } else {
+            if (ioctl(m_fd, ASHMEM_SET_NAME, m_name.c_str()) != 0) {
+                MMKVError(&quot;fail to set ashmem name:%s, %s&quot;, m_name.c_str(), strerror(errno));
+            } else if (ioctl(m_fd, ASHMEM_SET_SIZE, size) != 0) {
+                MMKVError(&quot;fail to set ashmem:%s, size %d, %s&quot;, m_name.c_str(), size,
+                          strerror(errno));
+            } else {
+                m_segmentSize = static_cast&lt;size_t&gt;(size);
+                m_segmentPtr = (char *) mmap(nullptr, m_segmentSize, PROT_READ | PROT_WRITE,
+                                             MAP_SHARED, m_fd, 0);
+                if (m_segmentPtr == MAP_FAILED) {
+                    MMKVError(&quot;fail to mmap [%s], %s&quot;, m_name.c_str(), strerror(errno));
+                    m_segmentPtr = nullptr;
+                } else {
+                    return;
+                }
+            }
+            close(m_fd);
+            m_fd = -1;
+        }
+    }
+}
+</code></pre>
+
+<pre><code class="c++">void MMKV::loadFromFile() {
+    if (m_isAshmem) {
+        loadFromAshmem();
+        return;
+    }
+
+    m_metaInfo.read(m_metaFile.getMemory());
+
+    m_fd = open(m_path.c_str(), O_RDWR | O_CREAT, S_IRWXU);//打开mmkv数据文件
+    if (m_fd &lt; 0) {
+        MMKVError(&quot;fail to open:%s, %s&quot;, m_path.c_str(), strerror(errno));
+    } else {
+        m_size = 0;
+        struct stat st = {0};
+        if (fstat(m_fd, &amp;st) != -1) {
+            m_size = static_cast&lt;size_t&gt;(st.st_size);
+        }
+        // round up to (n * pagesize)
+        if (m_size &lt; DEFAULT_MMAP_SIZE || (m_size % DEFAULT_MMAP_SIZE != 0)) {
+            size_t oldSize = m_size;
+            m_size = ((m_size / DEFAULT_MMAP_SIZE) + 1) * DEFAULT_MMAP_SIZE;
+            if (ftruncate(m_fd, m_size) != 0) {//将文件大小调整为n*pagesize
+                MMKVError(&quot;fail to truncate [%s] to size %zu, %s&quot;, m_mmapID.c_str(), m_size,
+                          strerror(errno));
+                m_size = static_cast&lt;size_t&gt;(st.st_size);
+            }
+            zeroFillFile(m_fd, oldSize, m_size - oldSize);//用0填充剩余空间
+        }
+        //调用mmap映射数据文件到内存
+        m_ptr = (char *) mmap(nullptr, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_fd, 0);
+        if (m_ptr == MAP_FAILED) {
+            MMKVError(&quot;fail to mmap [%s], %s&quot;, m_mmapID.c_str(), strerror(errno));
+        } else {
+            memcpy(&amp;m_actualSize, m_ptr, Fixed32Size);//提取前4个字节：数据长度
+            MMKVInfo(&quot;loading [%s] with %zu size in total, file size is %zu&quot;, m_mmapID.c_str(),
+                     m_actualSize, m_size);
+            bool loaded = false;
+            if (m_actualSize &gt; 0) {
+                if (m_actualSize &lt; m_size &amp;&amp; m_actualSize + Fixed32Size &lt;= m_size) {
+                    if (checkFileCRCValid()) {//校验crc文件
+                        MMKVInfo(&quot;loading [%s] with crc %u sequence %u&quot;, m_mmapID.c_str(),
+                                 m_metaInfo.m_crcDigest, m_metaInfo.m_sequence);
+                        MMBuffer inputBuffer(m_ptr + Fixed32Size, m_actualSize, MMBufferNoCopy);//将所有数据加载到buffer中，非拷贝模式
+                        if (m_crypter) {
+                            decryptBuffer(*m_crypter, inputBuffer);//数据解密
+                        }
+                        m_dic = MiniPBCoder::decodeMap(inputBuffer);//protobuf解码成数据map
+                        m_output = new CodedOutputData(m_ptr + Fixed32Size + m_actualSize,
+                                                       m_size - Fixed32Size - m_actualSize);//构造数据写入类，以后使用m_output来写入数据
+                        loaded = true;
+                    }
+                }
+            }
+            if (!loaded) {
+                SCOPEDLOCK(m_exclusiveProcessLock);
+
+                if (m_actualSize &gt; 0) {
+                    writeAcutalSize(0);
+                }
+                m_output = new CodedOutputData(m_ptr + Fixed32Size, m_size - Fixed32Size);
+                recaculateCRCDigest();
+            }
+            MMKVInfo(&quot;loaded [%s] with %zu values&quot;, m_mmapID.c_str(), m_dic.size());
+        }
+    }
+
+    if (!isFileValid()) {
+        MMKVWarning(&quot;[%s] file not valid&quot;, m_mmapID.c_str());
+    }
+
+    m_needLoadFromFile = false;
+}
+</code></pre>
+
+<p>3、数据写入：</p>
+<p>//todo</p>
+<p>4、数据读取：</p>
+<p>//todo</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

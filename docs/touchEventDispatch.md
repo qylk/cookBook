@@ -15,7 +15,7 @@
 |onTouchEvent|处理事件|
 
 3、流程图
-![avatar](../assets/1.svg)
+![avatar](./assets/1.svg)
 
 
 4、源码简析
@@ -87,7 +87,7 @@ public boolean shouldCloseOnTouch(Context context, MotionEvent event) {
     return false;
 }
 ```
-![avatar](../assets/2.svg)
+![avatar](./assets/2.svg)
 
 第二层：ViewGroup
 ```java
