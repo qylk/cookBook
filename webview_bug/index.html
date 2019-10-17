@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>漏洞 - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmkv/">MMKV</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="../webview_native/">和Native通信</a>
+</li>
+            
+<li class="active">
+    <a href="./">漏洞</a>
+</li>
+            
+<li >
+    <a href="../webview_optmize/">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="../dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../bookmark/">收藏</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../webview_native/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../webview_optmize/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#1addjavascriptinterface">1、addJavascriptInterface接口导致任意代码执行漏洞</a></li>
+        <li class="main "><a href="#2webview">2、WebView默认开启密码保存功能</a></li>
+        <li class="main "><a href="#3fileurl">3、加载file协议的url</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<ul>
+<li>任意代码执行漏洞</li>
+<li>密码明文存储漏洞</li>
+<li>域控制不严格漏洞</li>
+</ul>
+<p>出现漏洞的原因有三个：</p>
+<ul>
+<li>WebView 中 addJavascriptInterface接口</li>
+<li>WebView 内置导出的 searchBoxJavaBridge_对象</li>
+<li>WebView 内置导出的 accessibility 和 accessibilityTraversalObject 对象</li>
+</ul>
+<h3 id="1addjavascriptinterface">1、addJavascriptInterface接口导致任意代码执行漏洞</h3>
+<pre><code class="javascript">webView.addJavascriptInterface(new JSObject(), &quot;myObj&quot;);
+//通过对象映射将Android中的本地对象和JS中的对象进行关联，从而实现JS调用Android的对象和方法
+</code></pre>
+
+<p>漏洞产生原因是：当JS拿到Android这个对象后，就可以调用这个Java对象中所有的方法，包括系统类（java.lang.Runtime），从而进行任意代码执行。
+具体的：Java对象有公共方法getClass()，可以获取到当前类的Class。Class还有Class.forName方法，可以加载任意类，包括java.lang.Runtime，从而可以执行任意本地linux命令。</p>
+<p>解决：
+Google 在Android 4.2 版本中规定对被调用的函数以 @JavascriptInterface进行注解从而避免漏洞攻击。</p>
+<h3 id="2webview">2、WebView默认开启密码保存功能</h3>
+<pre><code class="JavaScript">mWebView.setSavePassword(true)
+</code></pre>
+
+<p>开启后，在用户输入密码时，会弹出提示框：询问用户是否保存密码；</p>
+<p>如果选择”是”，密码会被明文保到 /data/data/packageName/databases/webview.db 中，这样就有被盗取密码的危险。</p>
+<p>解决：关闭密码保存功能</p>
+<h3 id="3fileurl">3、加载file协议的url</h3>
+<pre><code class="JavaScript">// 设置是否允许 WebView 使用 File 协议
+webView.getSettings().setAllowFileAccess(true);     
+// 默认为true，即允许在 File 域下执行任意 JavaScript 代码
+</code></pre>
+
+<p>使用 file 域加载的 js 代码能够使用进行同源策略跨域访问（指的是对私有目录文件进行访问），从而导致隐私信息泄露。</p>
+<p>解决：</p>
+<pre><code class="JavaScript">//关闭file协议支持
+setAllowFileAccess(true); 
+​
+//对于确实需要file协议的页面，禁止加载 JavaScript
+if (url.startsWith(&quot;file://&quot;) {
+    setJavaScriptEnabled(false);
+} else {
+    setJavaScriptEnabled(true);
+}
+</code></pre>
+
+<p>只禁用 javascript并不能完全杜绝文件泄露：因为如果应用的webview实现了下载功能，对于无法加载的页面，会自动下载到 sd 卡中；攻击者通过构造一个 file URL 指向被攻击应用的沙盒内文件，然后用此 URL 启动被攻击应用的 WebView，这样由于该 WebView 无法加载该文件，就会将该文件下载到 sd 卡下面，造成沙盒文件流出。</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

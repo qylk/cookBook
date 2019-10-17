@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Volatile - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmkv/">MMKV</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="../webview_native/">和Native通信</a>
+</li>
+            
+<li >
+    <a href="../webview_bug/">漏洞</a>
+</li>
+            
+<li >
+    <a href="../webview_optmize/">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="../dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../bookmark/">收藏</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#1">1、可见性</a></li>
+        <li class="main "><a href="#2">2、指令重排</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p><code>volatile</code>是一个轻量级的<code>线程同步</code>机制。它的特性之一，是保证了变量在线程之间的<code>可见性</code>，并不保证更新的原子性。</p>
+<p><code>volatile</code>主要对所修饰的变量提供两个功能：
+* 可见性
+* 防止指令重排序</p>
+<h2 id="1">1、可见性</h2>
+<p>Java内存模型(JMM)上：
+* 每一个线程都有属于自己的工作内存
+* 所有线程共用一个主存
+* 每一个线程会将共享数据从主内存拷贝至自己的工作内存
+<img alt="volatile" src="../assets/22.jpg" /></p>
+<p>为什么会出现共享变量可见性的问题？</p>
+<p>这是因为线程对共享变量的所有操作都必须在自己的工作内存中进行，不能从主内存中读写；而且不同线程之间无法直接访问其它线程工作内存中的变量，线程间变量值的传递需要通过主内存来完成。
+完成可见性，必须要经过如下两个步骤：
+1. 把工作内存1中更新过的共享变量刷新到主内存中；
+2. 把内存中最新的共享变量的值更新到工作内存2中；</p>
+<p>Java语言层面支持的可见性实现方式有两种：
+1. synchronized
+2. volatile</p>
+<p>synchronized不仅能通过互斥锁来实现同步，而且还能够实现可见性。Java内存模型关于synchronized有两条规定：
+* 线程释放锁之前，JMM会将工作内存中的共享变量刷新到主内存中；
+* 线程加锁时，将清空工作内存中共享变量的值，从而使用共享变量时需要从主内存中重新读取最新的值；</p>
+<p>线程执行互斥代码的过程：
+1. 获取监视器锁
+2. 清空工作内存
+3. 从主内存中拷贝变量的最新副本到工作内存
+4. 执行代码
+5. 将更改后的共享变量的值刷新到主内存
+6. 释放监视器锁</p>
+<p>其中volatile是比synchronized更轻量的方案。
+被volatile修饰的变量在修改后，会立即写会主内存，同时被其他线程感知到，并重新从主内存拷贝，获得最新修改值，从而避免数据脏读。</p>
+<p>具体来说：<br />
+* 对volatile变量执行写操作时，会在写操作后加入一条<code>store屏障指令</code>，这样就会把读写时的数据缓存加载到主内存中
+* 对volatile变量执行读操作时，会在读操作前加入一条<code>load屏障指令</code>，这样就会从主内存中加载变量
+所以说，volatile变量每次被线程<code>修改</code>时，会被强迫写回主内存，而每次被线程<code>访问</code>时，都强迫从主内存中重读该变量的值，从而保证不同的线程总能看到该变量的最新值。</p>
+<p><strong>线程写volatile变量的过程：</strong><br />
+1. 改变线程工作内存中volatile变量副本的值；
+2. 将改变后的副本的值从工作内存刷新到主内存中；</p>
+<p><strong>线程读volatile变量的过程：</strong>
+1. 从主内存中读取volatile变量的最新值到线程的工作内存中；
+2. 从工作内存中读取volatile变量的副本</p>
+<p>Java内存模型也规定了工作内存与主内存之间交互的协议，定义了8种<code>原子操作</code>:</p>
+<p>(1) lock:将主内存中的变量锁定，为一个线程所独占<br />
+(2) unclock:将lock加的锁定解除，此时其它的线程可以有机会访问此变量<br />
+(3) read:将主内存中的变量值读到工作内存当中<br />
+(4) load:将read读取的值保存到工作内存中的变量副本中<br />
+(5) use:将值传递给线程的代码执行引擎<br />
+(6) assign:将执行引擎处理返回的值重新赋值给变量副本<br />
+(7) store:将变量副本的值存储到主内存中<br />
+(8) write:将store存储的值写入到主内存的共享变量当中</p>
+<h2 id="2">2、指令重排</h2>
+<p>指令重排序是JVM为了优化指令，提高程序运行效率，在不影响<code>单线程</code>执行结果的前提下，尽可能地提高并行度，可能会对一些操作指令进行了重新排序。在多线程下，指令重排将会给我们的程序带来不确定的结果。</p>
+<p>编译器将不会对存在数据依赖性的程序指令进行重排，这里的依赖性仅仅指单线程情况下的数据依赖性。</p>
+<p>在线程A中:</p>
+<pre><code>context = loadContext();
+contextReady = true;
+</code></pre>
+
+<p>在线程B中:</p>
+<pre><code>while(!contextReady){
+   sleep(100);
+}
+</code></pre>
+
+<p>在单线程模式下, loadContext和contextReady并没有依赖性，所以可能发生指令重排序，类似下面这样：</p>
+<pre><code>contextReady = true;
+context = loadContext();
+</code></pre>
+
+<p>可以看到，在多线程模式下，指令重排可能影响其他线程的逻辑，产生不确定执行结果。</p>
+<p>被<code>volatile</code>修饰的变量，JVM会为我们做两件事：<br />
+1、在每个volatile写操作前插入<code>StoreStore</code>屏障，在写操作后插入<code>StoreLoad</code>屏障。<br />
+2、在每个volatile读操作前插入<code>LoadLoad</code>屏障，在读操作后插入<code>LoadStore</code>屏障。 <br />
+JVM编译器<code>遵循内存屏障的约束</code>，运行时依靠<code>CPU屏障指令</code>来防止指令重排。</p>
+<p>写线程：</p>
+<pre><code>volatile boolean contextReady = false;
+context = loadContext();
+contextReady = true;
+##store屏障指令##
+</code></pre>
+
+<p>读线程：</p>
+<pre><code>while(##load屏障指令## !contextReady){
+   sleep(100);
+}
+</code></pre>
+
+<p>综上来看，<code>volatile</code>核心原理是<code>内存屏障指令</code>, 屏障指令既解决可见性问题，又防止JVM指令重排。</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

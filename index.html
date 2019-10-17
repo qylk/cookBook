@@ -82,21 +82,74 @@
 </li>
                                     
 <li >
-    <a href="java_poet/">JavaPoet</a>
-</li>
-                                    
-<li >
     <a href="lightKV/">lightKV</a>
-</li>
-                                    
-<li >
-    <a href="mmap/">MMAP</a>
 </li>
                                     
 <li >
     <a href="mmkv/">MMKV</a>
 </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="webview_native/">和Native通信</a>
+</li>
+            
+<li >
+    <a href="webview_bug/">漏洞</a>
+</li>
+            
+<li >
+    <a href="webview_optmize/">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="java_poet/">JavaPoet</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="bookmark/">收藏</a>
                             </li>
                         </ul>
 
@@ -126,6 +179,7 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#_1">一号标题</a></li>
             <li><a href="#_2">二号标题</a></li>
+            <li><a href="#-">- - -</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -134,26 +188,47 @@
 <h2 id="_2">二号标题</h2>
 <h3 id="_3">三号标题</h3>
 <p>链接：<a href="http://mkdocs.org">mkdocs.org</a></p>
+<p>自动链接：<a href="http://www.baidu.com">http://www.baidu.com</a></p>
 <p>高亮： <code>hello</code> world</p>
-<p>加粗：<strong>hello</strong></p>
-<p>斜体：<em>hello</em></p>
+<p>加粗强调：<strong>hello</strong></p>
+<p>斜体：<em>hello</em>  </p>
+<p>分割线: 你可以在一行中用三个或以上的星号*、减号-、底线_来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立一条分隔线</p>
+<hr />
+<hr />
+<hr />
+<h2 id="-">- - -</h2>
+<hr />
 <p>加粗又斜体：<strong><em>hello</em></strong></p>
-<p>列表：
+<p>无序列表：
 * 1
 * 2
-* 3</p>
+* 3
+有序列表:
+1. 1
+2. 2
+3. 3</p>
+<p>图片：
+<img alt="链接名" src="链接URL" /></p>
 <p>引用：</p>
 <blockquote>
 <p>cite</p>
 </blockquote>
+<p>段落:每行打一个TAB</p>
+<pre><code>这是一个段落
+</code></pre>
+<p>文本中可直接用html标签，但是要前后加上空行:
+<img width=300 src='https://www.baidu.com/img/baidu_resultlogo@2.png'></p>
 <p>代码：
 ``` java
 public void main();
 ````</p>
-<p>块：</p>
-<pre><code>这是一段文字
-这是一段文字
-</code></pre>
+<p>表格：
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell</p>
+<p>Markdown如何添加多个空行？答：加\<br/>
+<br/><br/><br/><br/><br/></p>
 <p>mkdocs发布：</p>
 <pre><code>mkdocs gh-deploy
 </code></pre></div>
@@ -239,5 +314,5 @@ public void main();
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-10-11 07:17:43
+Build Date UTC : 2019-10-17 08:53:08
 -->

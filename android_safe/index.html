@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Android safe - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmkv/">MMKV</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="../webview_native/">和Native通信</a>
+</li>
+            
+<li >
+    <a href="../webview_bug/">漏洞</a>
+</li>
+            
+<li >
+    <a href="../webview_optmize/">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="../dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../bookmark/">收藏</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#intent">Intent</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="intent">Intent</h2>
+<ol>
+<li>尽量使用显式intent，如果可能有多个应用来接收一个Intent，请使用Intent Chooser。</li>
+<li>在多个自己可管理的应用间共享数据，请加自定义权限。
+    <code>xml
+    &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp"&gt;
+    &lt;permission android:name="my_custom_permission_name"
+                android:protectionLevel="signature" /&gt;
+    &lt;!--具有相同签名的app，才可以申请使用该权限--&gt;</code></li>
+<li>如果不必要，关闭组件导出功能
+    <code>xml
+    &lt;provider
+        ...
+        android:exported="false"&gt;
+        &lt;!-- Place child elements of &lt;provider&gt; here. --&gt;
+    &lt;/provider&gt;</code></li>
+<li>尽量使用https协议和服务端通信</li>
+<li>网络安全配置，具体参考：<a href="https://developer.android.com/training/articles/security-config.html?hl=zh-cn">https://developer.android.com/training/articles/security-config.html?hl=zh-cn</a></li>
+</ol>
+<pre><code class="xml">&lt;manifest ... &gt;
+    &lt;application
+        android:networkSecurityConfig=&quot;@xml/network_security_config&quot;
+        ... &gt;
+        &lt;!-- Place child elements of &lt;application&gt; element here. --&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+
+&lt;!--xml/network_security_config.xml--&gt;
+&lt;network-security-config&gt;
+    &lt;domain-config cleartextTrafficPermitted=&quot;false&quot;&gt;
+        &lt;domain includeSubdomains=&quot;true&quot;&gt;secure.example.com&lt;/domain&gt;
+        ...
+    &lt;/domain-config&gt;
+&lt;/network-security-config&gt;
+
+&lt;!--开发阶段，可信任用户安装的证书--&gt;
+&lt;network-security-config&gt;
+    &lt;debug-overrides&gt;
+        &lt;trust-anchors&gt;
+            &lt;certificates src=&quot;user&quot; /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/debug-overrides&gt;
+&lt;/network-security-config&gt;
+</code></pre>
+
+<ol>
+<li>小心处理webview与native通信，参考：<a href="../webview_native/">webview</a></li>
+<li>使用FileProvider生成资源链接，在多个app间传递数据，并控制好读写权限</li>
+</ol>
+<pre><code class="java">Intent viewPdfIntent = new Intent(Intent.ACTION_VIEW);
+viewPdfIntent.setData(Uri.parse(&quot;content://com.example/personal-info.pdf&quot;));
+
+// This flag gives the started app read access to the file.
+viewPdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+// Make sure that the user has a PDF viewer app installed on their device.
+if (viewPdfIntent.resolveActivity(getPackageManager()) != null) {
+    startActivity(viewPdfIntent);
+}
+</code></pre>
+
+<ol>
+<li>敏感数据要放在沙盒存储内，必要时采取加密措施，秘钥等敏感数据也可以存储到系统<code>KeyStore</code>中</li>
+<li>SQL参数化查询，避免SQL注入风险</li>
+<li>不向控制台输出敏感数据日志</li>
+</ol></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
