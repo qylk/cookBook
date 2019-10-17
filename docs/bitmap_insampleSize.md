@@ -12,7 +12,7 @@ BitmapFactory#Options中对inSampleSize是这样说明的：
  */
 public int inSampleSize;
 ```
-看起来inSampleSize最终对图片的缩放比例只能是2幂次，也就是说只能缩放出1倍、1/2、1/4、1/8这样子，比如inSampleSize=3时，最终缩放比例可能仍然是1/2，而不是1/3。
+看起来inSampleSize最终对图片的缩放比例只能是2的幂次，也就是说只能缩放出1倍、1/2、1/4、1/8这样子，比如inSampleSize=3时，最终缩放比例可能仍然是1/2，而不是1/3。
 通过测试发现在不同系统上，这一点不一定：
 * 4.4 缩放到2的 k 次方
 * 5.0 缩放到2的 k 次方
