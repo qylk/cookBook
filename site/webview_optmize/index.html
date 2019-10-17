@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>优化 - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmkv/">MMKV</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="../webview_native/">和Native通信</a>
+</li>
+            
+<li >
+    <a href="../webview_bug/">漏洞</a>
+</li>
+            
+<li class="active">
+    <a href="./">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">适配</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../dev_compat/">系统适配</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">安全</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../android_safe/">建议</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">工具</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../tcpdump/">tcpdump</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">网络 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../sni/">SNI</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="../dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                    
+<li >
+    <a href="../volatile/">Volatile</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../bookmark/">收藏</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../webview_bug/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../code/bubble_view/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#webview">webview历史</a></li>
+        <li class="main "><a href="#-">优化 - 内核提前初始化</a></li>
+        <li class="main "><a href="#-webview">优化 - 复用webview</a></li>
+        <li class="main "><a href="#-webview_1">优化 - webview独立进程</a></li>
+        <li class="main "><a href="#-_1">优化 - 显示加载进度条</a></li>
+        <li class="main "><a href="#-_2">优化 - 开启硬件加速</a></li>
+        <li class="main "><a href="#-_3">优化 - 开启硬件加速</a></li>
+        <li class="main "><a href="#-webview_2">优化 - webview使用注意事项</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="webview">webview历史</h2>
+<ul>
+<li>从Android4.4系统开始，Chromium内核取代了Webkit内核。</li>
+<li>从Android5.0系统开始，WebView移植成了一个独立的apk，可以不依赖系统而独立存在和更新。</li>
+<li>从Android7.0 系统开始，如果用户手机里安装了 Chrome ， 系统优先选择 Chrome 为应用提供 WebView 渲染。</li>
+<li>从Android8.0系统开始，默认开启WebView多进程模式，即WebView运行在独立的沙盒进程中。</li>
+</ul>
+<h2 id="-">优化 - 内核提前初始化</h2>
+<p>提前初始化webview内核，可提升第一次webview打开速度</p>
+<pre><code class="java">public class App extends Application {
+
+    private WebView mWebView ;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mWebView = new WebView(new MutableContextWrapper(this));
+    }
+}
+</code></pre>
+
+<h2 id="-webview">优化 - 复用webview</h2>
+<p>在使用webview比较频繁的场景下, 复用webview可提高性能和节俭内存。</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/fc7909e24178">https://www.jianshu.com/p/fc7909e24178</a></p>
+</blockquote>
+<pre><code class="java">public class WebPools {
+    private final Queue&lt;WebView&gt; mWebViews;
+
+    private Object lock = new Object();
+    private static WebPools mWebPools = null;
+
+    private static final AtomicReference&lt;WebPools&gt; mAtomicReference = new AtomicReference&lt;&gt;();
+    private static final String TAG=WebPools.class.getSimpleName();
+
+    private WebPools() {
+        mWebViews = new LinkedBlockingQueue&lt;&gt;();
+    }
+
+    public static WebPools getInstance() {
+        if (mWebPools != null)
+            return mWebPools;
+        if (mAtomicReference.compareAndSet(null, new WebPools()))
+            return mWebPools=mAtomicReference.get();
+    }
+
+    public void recycle(WebView webView) {
+        recycleInternal(webView);
+    }
+
+    public WebView acquireWebView(Activity activity) {
+        return acquireWebViewInternal(activity);
+    }
+
+    private WebView acquireWebViewInternal(Activity activity) {
+
+        WebView mWebView = mWebViews.poll();
+
+        LogUtils.i(TAG,&quot;acquireWebViewInternal  webview:&quot;+mWebView);
+        if (mWebView == null) {
+            synchronized (lock) {
+                return new WebView(new MutableContextWrapper(activity));
+            }
+        } else {
+            MutableContextWrapper mMutableContextWrapper = (MutableContextWrapper) mWebView.getContext();
+            mMutableContextWrapper.setBaseContext(activity);
+            return mWebView;
+        }
+    }
+
+    private void recycleInternal(WebView webView) {
+        try {
+
+            if (webView.getContext() instanceof MutableContextWrapper) {
+
+                MutableContextWrapper mContext = (MutableContextWrapper) webView.getContext();
+                mContext.setBaseContext(mContext.getApplicationContext());
+                LogUtils.i(TAG,&quot;enqueue  webview:&quot;+webView);
+                mWebViews.offer(webView);
+            }
+            if(webView.getContext() instanceof  Activity){
+//            throw new RuntimeException(&quot;leaked&quot;);
+                LogUtils.i(TAG,&quot;Abandon this webview  ， It will cause leak if enqueue !&quot;);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+}
+</code></pre>
+
+<p>注意在 WebView 进入 WebPools 之前 ， 需要重置 WebView ，包括清空注入 WebView 的注入对象 ， 否则非常容易泄露。</p>
+<h2 id="-webview_1">优化 - webview独立进程</h2>
+<p>系统需要时间 Fork 出新进程， 那么加载变得更慢了，因为进程的创建也是一件耗时的事情，所谓的预加载进程， 就是提前把进程创建出来， 提升加载速度, 可以使用广播Broadcast提前启动 webview 进程</p>
+<pre><code class="xml">&lt;activity
+    android:name=&quot;.WebActivity&quot;
+    android:process=&quot;:web&quot;
+    /&gt;
+</code></pre>
+
+<h2 id="-_1">优化 - 显示加载进度条</h2>
+<pre><code class="java"> webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress == 100) {
+                    progressBar.setVisibility(View.GONE);//加载完网页进度条消失
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
+                    progressBar.setProgress(newProgress);//设置进度值
+                }
+                super.onProgressChanged(view, newProgress);
+            }
+        });
+</code></pre>
+
+<h2 id="-_2">优化 - 开启硬件加速</h2>
+<p>性能提升还是很明显的，但是会耗费更大的内存</p>
+<pre><code class="java">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) {
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+} else if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+ } else if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+}
+</code></pre>
+
+<h2 id="-_3">优化 - 开启硬件加速</h2>
+<p>拦截请求，使用本地资源代替远程静态资源。</p>
+<pre><code class="java">@Override
+public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+    // 替换资源
+    WebResourceResponse response = new WebResourceResponse(&quot;image/png&quot;,
+                            &quot;utf-8&quot;, resInputStream);
+    // 参数1：http请求里该图片的Content-Type,此处图片为image/png
+    // 参数2：编码类型
+    // 参数3：存放着替换资源的输入流（上面创建的那个）
+    return response;
+}
+</code></pre>
+
+<h2 id="-webview_2">优化 - webview使用注意事项</h2>
+<pre><code class="java">//激活WebView为活跃状态，能正常执行网页的响应
+webView.onResume() ；
+
+//当页面被失去焦点被切换到后台不可见状态，需要执行onPause
+//通过onPause动作通知内核暂停所有的动作，比如DOM的解析、plugin的执行、JavaScript执行。
+webView.onPause()；
+
+//当应用程序(存在webview)被切换到后台时，这个方法不仅仅针对当前的webview而是全局的全应用程序的webview
+//它会暂停所有webview的layout，parsing，javascripttimer。降低CPU功耗。
+webView.pauseTimers()
+//恢复pauseTimers状态
+webView.resumeTimers()；
+
+//销毁Webview
+//在关闭了Activity时，如果Webview的音乐或视频，还在播放，就必须销毁Webview
+rootLayout.removeView(webView); 
+webView.destroy();
+</code></pre>
+
+<pre><code class="java">//声明WebSettings子类
+WebSettings webSettings = webView.getSettings();
+
+//如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
+webSettings.setJavaScriptEnabled(true);  
+
+//支持插件
+webSettings.setPluginsEnabled(true); 
+
+//设置自适应屏幕，两者合用
+webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小 
+webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+
+//缩放操作
+webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
+webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+
+//其他细节操作
+webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存 
+webSettings.setAllowFileAccess(true); //设置可以访问文件 
+webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口 
+webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
+webSettings.setDefaultTextEncodingName(&quot;utf-8&quot;);//设置编码格式
+</code></pre>
+
+<pre><code class="java">//SSL证书错误，不可忽略，需要由用户确认
+@Override
+public void onReceivedSslError(final WebView view, final SslErrorHandler handler, final SslError error) {
+    new AlertDialog.Builder(context)
+            .setTitle(&quot;安全警告&quot;)
+            .setMessage(&quot;该网站的安全证书有问题&quot;)
+            .setPositiveButton(&quot;继续&quot;, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    handler.proceed();
+                }
+            })
+            .setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    handler.cancel();
+                }
+            }).create().show();
+}
+</code></pre>
+
+<hr />
+<p>一个第三方webview封装库：<a href="https://github.com/Justson/AgentWeb">https://github.com/Justson/AgentWeb</a></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

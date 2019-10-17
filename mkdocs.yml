@@ -18,12 +18,21 @@ nav:
         - 漏洞: webview_bug.md
         - 优化: webview_optmize.md
       - 代码片段:
-        - 微信气泡: code/bubble_view.md  
+        - 微信气泡: code/bubble_view.md
+      - 适配:
+        - 系统适配: dev_compat.md
+      - 安全:
+        - 建议: android_safe.md   
+      - 工具:
+        - tcpdump: tcpdump.md
+    - 网络:
+      - SNI: sni.md        
     - 工具:
       - FFMPEG: ffmpeg.md
       - DMG: dmg.md
     - Java:
       - 内存映射: mmap.md  
       - JavaPoet: java_poet.md
+      - Volatile: volatile.md
     - 收藏: bookmark.md
 

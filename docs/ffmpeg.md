@@ -14,4 +14,27 @@ ffmpeg
 output.mp4 ##输出
 ```
 
-ffmpeg下载：<https://evermeet.cx/ffmpeg/>
+# 视频剪切
+```bash
+ffmpeg
+-ss 00:01:00 ##指定剪切起点
+-i input.mp4 ##输入
+-t 00:03:00 ##可选，指定剪切时长(或-t 180)
+-to 00:04:00 ##可选，指定剪切结束点(或-t0 180)
+-c copy ## 无需编码，直接copy
+output.mp4 ##输出
+```
+
+# 视频合并
+```
+#filelist.txt
+
+file 'input1.mkv'
+file 'input2.mkv'
+file 'input3.mkv'
+```
+```bash
+ffmpeg -f concat -i filelist.txt -c copy output.mkv
+```
+
+ffmpeg下载：<https://ffmpeg.zeranoe.com/builds/macos64/static/>
