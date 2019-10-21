@@ -25,6 +25,8 @@ nav:
         - 建议: android_safe.md   
       - 工具:
         - tcpdump: tcpdump.md
+      - 热修复:
+        - ClassLoader: classloader.md  
     - 网络:
       - SNI: sni.md        
     - 工具:
