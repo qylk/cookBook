@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>hotFix - 小黑屋</title>
+        <title>热修复方案 - 小黑屋</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -49,7 +49,7 @@
                             <li >
                                 <a href="..">首页</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -150,6 +150,28 @@
 </li>
     </ul>
   </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">热修复</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../classloader/">ClassLoader</a>
+</li>
+            
+<li >
+    <a href="../instantRun/">Instant Run</a>
+</li>
+            
+<li >
+    <a href="../robust/">Robust</a>
+</li>
+            
+<li class="active">
+    <a href="./">热修复方案</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -189,6 +211,24 @@
 <li >
     <a href="../volatile/">Volatile</a>
 </li>
+                                    
+<li >
+    <a href="../java_collections/">Collections</a>
+</li>
+                                    
+<li >
+    <a href="../class_access/">access$xxx</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Concurrent</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../volatile/">volatile</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li >
@@ -202,6 +242,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li >
+                                <a rel="next" href="../robust/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../sni/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -222,7 +272,7 @@
 <p><img alt="fix" src="../assets/30.png" /></p>
 <h2 id="multidex">multidex类加载方案</h2>
 <p>multidex类加载方案是要求应用重启后，优先加载补丁包中的类，从而达到修复的目的，为什么要求重启呢？因为在java中类是无法卸载的，如果要重新加载类，只能重启jvm，因此这类修复方案的特点是<code>不能即时生效</code>，需要冷启动。</p>
-<p>我们从ClassLoader类加载的逻辑(<a href="./classloader.md">ClassLoader</a>)中可知，在android中，classLoader在第一次加载类的时候其实是按顺序遍历dexElements数组，从每一个DexFile中尝试加载类，如果找到了，下次就不会重复加载了，而是从已加载的类中直接查找。</p>
+<p>我们从ClassLoader类加载的逻辑(<a href="../classloader/">ClassLoader</a>)中可知，在android中，classLoader在第一次加载类的时候其实是按顺序遍历dexElements数组，从每一个DexFile中尝试加载类，如果找到了，下次就不会重复加载了，而是从已加载的类中直接查找。</p>
 <p>因此我们可以将补丁类打包成patch.dex，放到dexElement数组的第一个元素，这样虚拟机在加载类的时候会先找到我们补丁包patch.dex中已经修复的类，而有问题的类因为排在后面的dex中，就也没有机会被加载。<br />
 <img alt="QFix" src="../assets/31.png" /></p>
 <h3 id="_1">实践</h3>
