@@ -14,6 +14,8 @@ android:
 
 蒲公英应用内测分发：<https://www.pgyer.com/>
 
+各系统源码：<https://www.androidos.net.cn/sourcecode>
+
 ---
 
 音乐：
