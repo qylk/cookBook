@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Instant Run - 小黑屋</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">小黑屋</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../strictMode/">StrictMode</a>
+</li>
+                                    
+<li >
+    <a href="../touchEventDispatch/">触摸事件分发</a>
+</li>
+                                    
+<li >
+    <a href="../adb_input/">adb模拟屏幕触摸</a>
+</li>
+                                    
+<li >
+    <a href="../android_flavor/">Android渠道写入方式</a>
+</li>
+                                    
+<li >
+    <a href="../annotation/">Annotation注解处理器</a>
+</li>
+                                    
+<li >
+    <a href="../annotation_debug/">注解处理器调试</a>
+</li>
+                                    
+<li >
+    <a href="../glide/">Glide知识点</a>
+</li>
+                                    
+<li >
+    <a href="../lightKV/">lightKV</a>
+</li>
+                                    
+<li >
+    <a href="../mmkv/">MMKV</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Webview</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../webview_cache/">缓存机制</a>
+</li>
+            
+<li >
+    <a href="../webview_native/">和Native通信</a>
+</li>
+            
+<li >
+    <a href="../webview_bug/">漏洞</a>
+</li>
+            
+<li >
+    <a href="../webview_optmize/">优化</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">代码片段</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../code/bubble_view/">微信气泡</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">适配</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../dev_compat/">系统适配</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">安全</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../android_safe/">建议</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">工具</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../tcpdump/">tcpdump</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">热修复</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../classloader/">ClassLoader</a>
+</li>
+            
+<li class="active">
+    <a href="./">Instant Run</a>
+</li>
+            
+<li >
+    <a href="../robust/">Robust</a>
+</li>
+            
+<li >
+    <a href="../hotFix/">热修复方案</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">网络 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../sni/">SNI</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../ffmpeg/">FFMPEG</a>
+</li>
+                                    
+<li >
+    <a href="../dmg/">DMG</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../mmap/">内存映射</a>
+</li>
+                                    
+<li >
+    <a href="../java_poet/">JavaPoet</a>
+</li>
+                                    
+<li >
+    <a href="../volatile/">Volatile</a>
+</li>
+                                    
+<li >
+    <a href="../java_collections/">Collections</a>
+</li>
+                                    
+<li >
+    <a href="../class_access/">access$xxx</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Concurrent</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../volatile/">volatile</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../bookmark/">收藏</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../classloader/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../robust/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">介绍</a></li>
+        <li class="main "><a href="#_2">三种方式</a></li>
+        <li class="main "><a href="#hotswap">hotswap分析</a></li>
+            <li><a href="#_3">构造方法问题</a></li>
+            <li><a href="#_4">权限问题</a></li>
+        <li class="main "><a href="#patchapp">patch文件如何上传到app里的？</a></li>
+        <li class="main "><a href="#_5">总结</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="_1">介绍</h2>
+<p>Instant Run是android studio2.0新增的一个运行机制，在你编码开发、测试或debug的时候，它都能显著减少你对当前应用的构建和部署的时间。它的一个重要特点是即时生效，一般不需要重启。</p>
+<h2 id="_2">三种方式</h2>
+<p>instant-run加载更新代码有三种方式：hotswap、coldswap、warmswap。
+* hotswap<br />
+如果只是改动现有方法的逻辑，instant-run会自动应用hotswap，<strong>不需要任何重启</strong>就可以看到实际改动
+* warmswap<br />
+当改变的不止是代码，还涉及到资源文件的变动，就做不到像hotswap一样在不影响当前Activity的情况下应用变动了。AS会生成一个新的resources._ap推到设备上，然后<strong>重启当前Activity</strong>来使新的资源生效。
+* coldswap<br />
+如果不符合上面hotswap和warmswap的条件，比如说增加或者删减了方法、修改了类的集成关系、修改了AndroidManifest等，就会应用coldswap。也就是把改动部分推送到设备上，然后会<strong>重启整个app</strong>才能看到变动。</p>
+<h2 id="hotswap">hotswap分析</h2>
+<p>Instant Run在第一次构建apk时，会在每一个方法进行插桩</p>
+<pre><code class="java">//源代码
+public class MainActivity extends AppCompatActivity {
+    private TextView mTv;
+    private int count;
+    public int count2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mTv = findViewById(R.id.textView);
+        mTv.setText(&quot;hello world&quot;);
+    }
+
+    private void toBeFix() {
+        Toast.makeText(this, &quot;I'm a bug&quot;, Toast.LENGTH_SHORT).show();
+        testPublic();
+        testPrivate();
+    }
+
+    public void testPrivate() {
+        count = 2;
+    }
+
+    public void testPublic() {
+        count2 = 3;
+    }
+}
+</code></pre>
+
+<p>instant run插桩后的代码</p>
+<pre><code class="java">public class MainActivity extends AppCompatActivity {
+    private TextView mTv;
+    private int count;
+    public int count2;
+
+    public static final long serialVersionUID = -754549888626914089L;
+    public static volatile transient com.android.tools.ir.runtime.IncrementalChange $change;
+
+    //原有的构造函数
+    public MainActivity() {
+        IncrementalChange var1 = $change;
+        if (var1 != null) {
+            Object[] var10001 = (Object[])var1.access$dispatch(&quot;init$args.([Lcom/example/myapplication/MainActivity;[Ljava/lang/Object;)Ljava/lang/Object;&quot;, new Object[]{null, new Object[0]});
+            Object[] var2 = (Object[])var10001[0];
+            this(var10001, (InstantReloadException)null);
+            var2[0] = this;
+            var1.access$dispatch(&quot;init$body.(Lcom/example/myapplication/MainActivity;[Ljava/lang/Object;)V&quot;, var2);
+        } else {
+            super();
+            this.count = 0;
+        }
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        IncrementalChange var2 = $change;
+        if (var2 != null) {
+            var2.access$dispatch(&quot;onCreate.(Landroid/os/Bundle;)V&quot;, new Object[]{this, savedInstanceState});
+        } else {
+            super.onCreate(savedInstanceState);
+            this.setContentView(R.layout.main);
+            this.mTv = (TextView)this.findViewById(R.id.textView);
+            this.mTv.setText(&quot;hello world&quot;);
+        }
+    }
+
+    private void toBeFix() {
+        IncrementalChange var1 = $change;
+        if (var1 != null) {
+            var1.access$dispatch(&quot;toBeFix.()V&quot;, new Object[]{this});
+        } else {
+            Toast.makeText(this, &quot;I'm a bug&quot;, 0).show();
+            this.testPublic();
+            this.testPrivate();
+        }
+    }
+
+    public void testPrivate() {
+        IncrementalChange var1 = $change;
+        if (var1 != null) {
+            var1.access$dispatch(&quot;testPublic.()V&quot;, new Object[]{this});
+        } else {
+            this.count = 2;
+        }
+    }
+
+    public void testPublic() {
+        IncrementalChange var1 = $change;
+        if (var1 != null) {
+            var1.access$dispatch(&quot;testPrivate.()V&quot;, new Object[]{this});
+        } else {
+            this.count2 = 3;
+        }
+    }
+
+    //instant run增加的构造方法，为了要调用父类的构造函数以及本类的其他构造函数
+    MainActivity(Object[] var1, InstantReloadException var2) {
+        String var3 = (String)var1[1];
+        switch(var3.hashCode()) {
+        case -212194855:
+            super();
+            return;
+        case 69102765:
+            this();
+            return;
+        case 2011923530:
+            super(((Number)var1[2]).intValue());
+            return;
+        default:
+            throw new InstantReloadException(String.format(&quot;String switch could not find '%s' with hashcode %s in %s&quot;, var3, var3.hashCode(), &quot;com/example/myapplication/MainActivity&quot;));
+        }
+    }
+}
+</code></pre>
+
+<p><code>$change</code>初始值为null，这时方法的行为被没有被修改。当<code>$change</code>不为null时，MainActivity的所有方法都被代理到了<code>$change</code>的<code>access$dispatch</code>方法上，从而有了修复原有逻辑的基础，就是让原有逻辑短路，直接跳到另外一个地方执行新的逻辑。</p>
+<p><code>$change</code>是<code>IncrementalChange</code>接口类型，里面只定义了一个<code>access$dispatch</code>方法。</p>
+<pre><code class="java">package com.android.tools.ir.runtime;
+public interface IncrementalChange {
+    Object access$dispatch(String var1, Object... var2);
+}
+</code></pre>
+
+<p><code>$change</code>的具体实现，可以在<code>app/intermediates/transforms/transforms/instantRun</code>目录下找到<br />
+原类名 + $override，实现<code>IncrementalChange</code>接口。该类包含被修复的逻辑，取名$override，意思是要取代原有类。</p>
+<pre><code class="java">public class MainActivity$override implements IncrementalChange {
+    public MainActivity$override() {
+    }
+
+    public static Object init$args(MainActivity[] var0, Object[] var1) {
+        Object[] var2 = new Object[]{new Object[]{var0, new Object[0]}, &quot;androidx/appcompat/app/AppCompatActivity.()V&quot;};
+        return var2;
+    }
+
+    public static void init$body(MainActivity $this, Object[] var1) {
+        AndroidInstantRuntime.setPrivateField($this, new Integer(1), MainActivity.class, &quot;count&quot;);
+    }
+
+    public static void onCreate(MainActivity $this, Bundle savedInstanceState) {
+        Object[] var2 = new Object[]{savedInstanceState};
+        MainActivity.access$super($this, &quot;onCreate.(Landroid/os/Bundle;)V&quot;, var2);
+        $this.setContentView(R.layout.main);
+        AndroidInstantRuntime.setPrivateField($this, (TextView)$this.findViewById(R.id.textView), MainActivity.class, &quot;mTv&quot;);
+        ((TextView)AndroidInstantRuntime.getPrivateField($this, MainActivity.class, &quot;mTv&quot;)).setText(&quot;hello world&quot;);
+    }
+
+    public static void toBeFix(MainActivity $this) {
+        Toast.makeText($this, &quot;I'm fixed&quot;, 0).show();
+        $this.testPublic();
+        $this.testPrivate();
+    }
+
+    public static void testPrivate(MainActivity $this) {
+        AndroidInstantRuntime.setPrivateField($this, new Integer(2), MainActivity.class, &quot;count&quot;);
+    }
+
+    public static void testPublic(MainActivity $this) {
+        $this.count2 = 3;
+    }
+
+    @override
+    public Object access$dispatch(String var1, Object... var2) {
+        //根据方法名hashCode，分发调用对应的方法
+        switch(var1.hashCode()) {
+        case 1189276834:
+            testPublic((MainActivity)var2[0]);
+            return null;
+        case 1310942360:
+            testPrivate((MainActivity)var2[0]);
+            return null;
+        case -909773794:
+            toBeFix((MainActivity)var2[0]);
+            return null;
+        case -641568046:
+            onCreate((MainActivity)var2[0], (Bundle)var2[1]);
+            return null;
+        case 707796331:
+            init$body((MainActivity)var2[0], (Object[])var2[1]);
+            return null;
+        case 1546073223:
+            return init$args((MainActivity[])var2[0], (Object[])var2[1]);
+        default:
+            throw new InstantReloadException(String.format(&quot;String switch could not find '%s' with hashcode %s in %s&quot;, var1, var1.hashCode(), &quot;com/example/myapplication/MainActivity&quot;));
+        }
+    }
+}
+</code></pre>
+
+<h3 id="_3">构造方法问题</h3>
+<p>Instant Run为了在<code>xxx$override</code>类中调用原有类的<code>super()</code>方法和 <code>this()</code>方法，会在原有类中增加一个构造方法。然后在<code>xxx$override</code>类中会生成两个方法<code>args</code>和<code>bodys</code>，args返回一个字符串，代表要调用哪个this或super方法，bodys中则是原来构造函数中的除this或super调用的其他逻辑。当一个类的构造方法被HotFix时，在它的构造方法中会先调用<code>xxx$override</code>类的<code>args</code>，将<code>args</code>返回的字符串传递给新生成的构造方法，在新生成的构造方法里会根据字符串决定要调用哪个函数，之后再调用body方法初始化其他逻辑。
+<img alt="instantRun" src="../assets/36.webp" /></p>
+<h3 id="_4">权限问题</h3>
+<p>因为要在xxx$override类的对象中去访问原有类的属性、方法，所以必定会涉及到访问权限问题。
+1、Instant Run会在编译期间将原有类所有的非public访问权限的方法改为public。
+1、对于非public访问权限的成员变量，Instant Run通过运行时反射访问原类的成员变量。</p>
+<h2 id="patchapp">patch文件如何上传到app里的？</h2>
+<p>apk第一次编译时，编译器会把instant-run.jar打包到主dex中
+instant-run.jar在<code>app/build/intermediates/incremental-runtime-classes/debug</code>目录下可以找到，主要包含了2个方面的代码：
+* App Server，接收patch推送
+* 修复逻辑
+<img alt="instant-run" src="../assets/37.png" /></p>
+<p>Instant run在Gradle 2.0 ~ 2.3 ~ 3.0版本都有不同的改动，但核心逻辑没变，这里以Gralde3.x版本为例。
+找到构建完的apk，发现manifest.xml中多了一个provider组件
+<img alt="provider" src="../assets/38.png" />
+可以在instant-run.jar中找到这个组件的代码</p>
+<pre><code class="java">public final class InstantRunContentProvider extends ContentProvider {
+  public boolean onCreate() {
+    if (isMainProcess()) {
+      Log.i(&quot;InstantRun&quot;, &quot;starting instant run server: is main process&quot;);
+      Server.create(getContext());
+    } else {
+      Log.i(&quot;InstantRun&quot;, &quot;not starting instant run server: not main process&quot;);
+    } 
+    return true;
+  }
+  //...其他没有营养的逻辑
+</code></pre>
+
+<p>我们知道ContentProvider的<code>onCreate</code>的调用时机介于Application的<code>attachBaseContext</code>和<code>onCreate</code>之间，也就是说，provider的<code>onCreate</code>会在应用启动时自动被调用。
+InstantRunContentProvider在其<code>onCreate</code>方法中就做了一件事，就是启动一个server。</p>
+<pre><code class="java">public class Server{
+    public static Server create(Context context) { 
+        return new Server(context.getPackageName(), context); 
+    }
+
+    private Server(String packageName, Context context) {
+        this.context = context;
+        try {
+            //以packageName作为名字新建LocalServerSocket
+            this.serverSocket = new LocalServerSocket(packageName);
+        } catch (IOException e) {
+            Log.e(&quot;InstantRun&quot;, &quot;IO Error creating local socket at &quot; + packageName, e);
+            return;
+        }
+        //启动server
+        startServer();
+    }
+
+    private void startServer() {
+        try {
+            Thread socketServerThread = new Thread(new SocketServerThread(this, null));
+            //在独立线程中启动socket，并处理相应socket请求。
+            socketServerThread.start();
+        } catch (Throwable e) {
+        }
+    }
+
+    //...
+
+    //处理socket请求数据
+    private void handle(DataInputStream input, DataOutputStream output) throws IOException {
+      int message;
+
+      int version = input.readInt();
+      output.writeInt(4);
+      if (version != 4) {
+        Log.w(&quot;InstantRun&quot;, &quot;Mismatched protocol versions; app is using 
+            version 4 and tool is using version &quot; + version);
+        return;
+      }
+
+      while (true) {
+        //...
+        List&lt;ApplicationPatch&gt; changes;
+        message = input.readInt();
+        switch (message) {
+            case 1:
+                //从socket读出changes列表
+                changes = ApplicationPatch.read(input);
+                hasResources = Server.hasResources(changes);
+                updateMode = input.readInt();
+                //处理changes
+                updateMode = Server.this.handlePatches(changes, hasResources, updateMode);
+                //根据updateMode(更新方式)，比如重启当前activity或重启app
+                Server.this.restart(updateMode, hasResources, showToast);
+                continue;
+            //其他case
+        }
+      }
+    }
+
+    //处理patch
+    private int handlePatches(List&lt;ApplicationPatch&gt; changes, boolean hasResources, int updateMode) {
+        if (hasResources) {
+            FileManager.startUpdate();
+        }
+
+        for (ApplicationPatch change : changes) {
+            String path = change.getPath();
+            if (path.equals(&quot;classes.dex.3&quot;)) {
+                //处理热交换patch
+                updateMode = handleHotSwapPatch(updateMode, change); continue;
+            }  if (isResourcePath(path)) {
+                //处理资源patch
+                updateMode = handleResourcePatch(updateMode, change, path);
+            }
+        }
+        if (hasResources) {
+            FileManager.finishUpdate(true);
+        }
+        return updateMode;
+    }
+
+    private int handleHotSwapPatch(int updateMode, ApplicationPatch patch) {
+        try {
+            //把patch数据写入dex文件
+            String dexFile = FileManager.writeTempDexFile(patch.getBytes());
+            String nativeLibraryPath = FileManager.getNativeLibraryFolder().getPath();
+            //使用DexClassLoader加载patch(dex)
+            DexClassLoader dexClassLoader = new DexClassLoader(dexFile, 
+                this.context.getCacheDir().getPath(), 
+                nativeLibraryPath, getClass().getClassLoader());
+
+            //加载类AppPatchesLoaderImpl
+            Class&lt;?&gt; aClass = Class.forName(&quot;com.android.tools.ir.runtime.AppPatchesLoaderImpl&quot;,
+                 true, dexClassLoader);
+
+            try {
+                if (Log.isLoggable(&quot;InstantRun&quot;, 2)) {
+                    Log.v(&quot;InstantRun&quot;, &quot;Got the patcher class &quot; + aClass);
+                }
+                //实例化AppPatchesLoaderImpl
+                PatchesLoader loader = (PatchesLoader) aClass.newInstance();
+
+                //调用AppPatchesLoaderImpl的load()方法，加载热修复逻辑
+                if (!loader.load()) {
+                    updateMode = 3;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                updateMode = 3;
+            }
+        } catch (Throwable e) {
+            updateMode = 3;
+        }
+        return updateMode;
+    }
+
+    //其他逻辑
+}
+</code></pre>
+
+<p>从上面的代码可知，AppPatchesLoaderImpl类是靠加载patch的classLoader加载的。实际推送到设备上的patch为<code>app/intermediates/reload-dex/classes.dex</code>，里面有两个类，一个类是上面已经说过的MainActivity$override，另一个类就是AppPatchesLoaderImpl，作用是指明哪些类需要patch。</p>
+<pre><code class="java">public class AppPatchesLoaderImpl extends AbstractPatchesLoaderImpl {
+    public static final long BUILD_ID = 1571577597897L;
+
+    public AppPatchesLoaderImpl() {
+    }
+
+    public String[] getPatchedClasses() {
+        //罗列哪些类需要被patch
+        return new String[]{&quot;com.example.myapplication.MainActivity&quot;};
+    }
+}
+</code></pre>
+
+<p>看来load方法是在其父类AbstractPatchesLoaderImpl中，我们在instant-run.jar的runtime下找到了。</p>
+<pre><code class="java">public abstract class AbstractPatchesLoaderImpl implements PatchesLoader {
+    private final Method get = java.util.concurrent.atomic.AtomicReference.class.getMethod(&quot;get&quot;, new Class[0]);
+    private final Method set = java.util.concurrent.atomic.AtomicReference.class.getMethod(&quot;set&quot;, new Class[]{Object.class});
+
+    public abstract String[] getPatchedClasses();
+
+    public boolean load() {
+        //遍历需要修复的类
+        for (String className : getPatchedClasses()) {
+            try {
+                ClassLoader cl = getClass().getClassLoader();
+                //加载对应被修复的$override类
+                Class&lt;?&gt; aClass = cl.loadClass(className + &quot;$override&quot;);
+                //实例化
+                Object o = aClass.newInstance();
+
+                //加载原类class
+                Class&lt;?&gt; originalClass = cl.loadClass(className);
+                //定位原类的静态成员$change
+                Field changeField = originalClass.getDeclaredField(&quot;$change&quot;);
+                changeField.setAccessible(true);
+                //将实例化的$override赋值给$change，这里根据原类是是否是接口，逻辑有点不同
+                Object previous = originalClass.isInterface() ? 
+                    patchInterface(changeField, o) : patchClass(changeField, o);
+
+                //...
+            } catch (Exception e) {
+                //...
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Object patchInterface(Field changeField, Object patch) {
+        Object atomicReference = changeField.get(null);
+        Object previous = this.get.invoke(atomicReference, new Object[0]);
+        this.set.invoke(atomicReference, new Object[]{patch});
+        return previous;
+    }
+
+    private Object patchClass(Field changeField, Object patch) {
+        Object previous = changeField.get(null);
+        changeField.set(null, patch);
+        return previous;
+    }
+}
+</code></pre>
+
+<p>到这里，看到$change变量被赋值为$change对象，我们就知道热修复逻辑完成了。</p>
+<h2 id="_5">总结</h2>
+<p>完整的过程可以概述为：
+1. 在第一次完整编译的时候给所有的类插桩，使它们的方法能被代理
+2. app启动时启动一个AppServer，等待Android Studio推送增量包
+3. 代码改动后的增量编译中，通过gradle插件生成包含了改动代码的代理类$change
+4. Android Studio将patch推送到app中，然后给被改动的类的<code>$change</code>字段赋值，这样所有方法都转发到了代理类</p>
+<hr />
+<p>//todo 资源修复</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -27,6 +27,9 @@ nav:
         - tcpdump: tcpdump.md
       - 热修复:
         - ClassLoader: classloader.md  
+        - Instant Run: instantRun.md
+        - Robust: robust.md
+        - 热修复方案: hotFix.md
     - 网络:
       - SNI: sni.md        
     - 工具:
@@ -36,5 +39,9 @@ nav:
       - 内存映射: mmap.md  
       - JavaPoet: java_poet.md
       - Volatile: volatile.md
+      - Collections: java_collections.md
+      - access$xxx: class_access.md
+      - Concurrent:
+        - volatile: volatile.md
     - 收藏: bookmark.md
 

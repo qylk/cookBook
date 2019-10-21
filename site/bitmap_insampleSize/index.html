@@ -150,6 +150,28 @@
 </li>
     </ul>
   </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">热修复</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../classloader/">ClassLoader</a>
+</li>
+            
+<li >
+    <a href="../instantRun/">Instant Run</a>
+</li>
+            
+<li >
+    <a href="../robust/">Robust</a>
+</li>
+            
+<li >
+    <a href="../hotFix/">热修复方案</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -189,6 +211,24 @@
 <li >
     <a href="../volatile/">Volatile</a>
 </li>
+                                    
+<li >
+    <a href="../java_collections/">Collections</a>
+</li>
+                                    
+<li >
+    <a href="../class_access/">access$xxx</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Concurrent</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../volatile/">volatile</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li >
@@ -228,7 +268,7 @@
 public int inSampleSize;
 </code></pre>
 
-<p>看起来inSampleSize最终对图片的缩放比例只能是2幂次，也就是说只能缩放出1倍、1/2、1/4、1/8这样子，比如inSampleSize=3时，最终缩放比例可能仍然是1/2，而不是1/3。
+<p>看起来inSampleSize最终对图片的缩放比例只能是2的幂次，也就是说只能缩放出1倍、1/2、1/4、1/8这样子，比如inSampleSize=3时，最终缩放比例可能仍然是1/2，而不是1/3。
 通过测试发现在不同系统上，这一点不一定：
 * 4.4 缩放到2的 k 次方
 * 5.0 缩放到2的 k 次方
