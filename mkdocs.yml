@@ -3,15 +3,18 @@ theme: gitbook
 nav:
     - 首页: index.md
     - Android:
-      - StrictMode: strictMode.md
-      - 触摸事件分发: touchEventDispatch.md
-      - adb模拟屏幕触摸: adb_input.md
-      - Android渠道写入方式: android_flavor.md
-      - Annotation注解处理器: annotation.md
-      - 注解处理器调试: annotation_debug.md
-      - Glide知识点: glide.md
-      - lightKV: lightKV.md
-      - MMKV: mmkv.md
+      - 编译/脚本:
+        - Annotation注解处理器: annotation.md
+        - 注解处理器调试: annotation_debug.md
+        - Android渠道写入方式: android_flavor.md
+      - 框架:
+        - Glide: glide.md
+        - lightKV: lightKV.md
+        - MMKV: mmkv.md
+        - EventBus: eventbus.md
+      - 系统分析:
+        - StrictMode: strictMode.md
+        - 触摸事件分发: touchEventDispatch.md
       - Webview:
         - 缓存机制: webview_cache.md
         - 和Native通信: webview_native.md
@@ -22,14 +25,19 @@ nav:
       - 适配:
         - 系统适配: dev_compat.md
       - 安全:
-        - 建议: android_safe.md   
+        - 建议: android_safe.md
       - 工具:
+        - adb模拟屏幕触摸: adb_input.md
         - tcpdump: tcpdump.md
       - 热修复:
         - ClassLoader: classloader.md  
         - Instant Run: instantRun.md
         - Robust: robust.md
         - 热修复方案: hotFix.md
+      - 未分类:
+        - 应用保活: keepAlive.md
+      - 性能优化:
+        - Bitmap: bitmap.md
     - 网络:
       - SNI: sni.md        
     - 工具:
@@ -43,5 +51,9 @@ nav:
       - access$xxx: class_access.md
       - Concurrent:
         - volatile: volatile.md
+      - 线程池: threadPool.md  
+    - 虚拟机:
+      - 内存模型: jvm.md
+      - GC: gc.md
     - 收藏: bookmark.md
 
