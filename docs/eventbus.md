@@ -42,7 +42,8 @@ public class MyEventBusIndex implements SubscriberInfoIndex {
 
 ----
 
-EventBus支持5种ThreadMode方式  
+EventBus支持5种ThreadMode方式
+
 * POSTING 在当前线程直接调用订阅方法，可以看成是同步post，应该尽快返回，否则卡当前线程
 * MAIN 抛给主线程处理，如果当前线程是主线程，则直接调用订阅方法，否则加入队列等待使用Handler处理
 * MAIN_ORDERED 统一加入队列等待使用Handler处理，保证了事件`产生顺序`和事件`处理顺序`是一致的

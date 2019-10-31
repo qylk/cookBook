@@ -1,273 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>热修复方案 - 小黑屋</title>
-        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>热修复方案 - 小黑屋</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+<meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
 
-    <body>
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
 
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="..">小黑屋</a>
-                </div>
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href=".." target="_blank" class="custom-link">小黑屋</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="..">首页</a>
+<li class="header">Android</li>
 
-                <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li >
-                                <a href="..">首页</a>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Android <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../strictMode/">StrictMode</a>
-</li>
-                                    
-<li >
-    <a href="../touchEventDispatch/">触摸事件分发</a>
-</li>
-                                    
-<li >
-    <a href="../adb_input/">adb模拟屏幕触摸</a>
-</li>
-                                    
-<li >
-    <a href="../android_flavor/">Android渠道写入方式</a>
-</li>
-                                    
-<li >
-    <a href="../annotation/">Annotation注解处理器</a>
-</li>
-                                    
-<li >
-    <a href="../annotation_debug/">注解处理器调试</a>
-</li>
-                                    
-<li >
-    <a href="../glide/">Glide知识点</a>
-</li>
-                                    
-<li >
-    <a href="../lightKV/">lightKV</a>
-</li>
-                                    
-<li >
-    <a href="../mmkv/">MMKV</a>
-</li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">Webview</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../webview_cache/">缓存机制</a>
-</li>
-            
-<li >
-    <a href="../webview_native/">和Native通信</a>
-</li>
-            
-<li >
-    <a href="../webview_bug/">漏洞</a>
-</li>
-            
-<li >
-    <a href="../webview_optmize/">优化</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">代码片段</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../code/bubble_view/">微信气泡</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">适配</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../dev_compat/">系统适配</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">安全</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../android_safe/">建议</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">工具</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../tcpdump/">tcpdump</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">热修复</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../classloader/">ClassLoader</a>
-</li>
-            
-<li >
-    <a href="../instantRun/">Instant Run</a>
-</li>
-            
-<li >
-    <a href="../robust/">Robust</a>
-</li>
-            
-<li class="active">
-    <a href="./">热修复方案</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">网络 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../sni/">SNI</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../ffmpeg/">FFMPEG</a>
-</li>
-                                    
-<li >
-    <a href="../dmg/">DMG</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../mmap/">内存映射</a>
-</li>
-                                    
-<li >
-    <a href="../java_poet/">JavaPoet</a>
-</li>
-                                    
-<li >
-    <a href="../volatile/">Volatile</a>
-</li>
-                                    
-<li >
-    <a href="../java_collections/">Collections</a>
-</li>
-                                    
-<li >
-    <a href="../class_access/">access$xxx</a>
-</li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#">Concurrent</a>
-    <ul class="dropdown-menu">
-            
-<li >
-    <a href="../volatile/">volatile</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                            <li >
-                                <a href="../bookmark/">收藏</a>
-                            </li>
-                        </ul>
+<li>
+<a href="#">编译/脚本</a>
+<ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li >
-                                <a rel="next" href="../robust/">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../sni/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<li>
+<a href="../annotation/" class="">Annotation注解处理器</a>
+</li>
 
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#multidex">multidex类加载方案</a></li>
-            <li><a href="#_1">实践</a></li>
-        <li class="main "><a href="#dex">Dex替换方案</a></li>
-        <li class="main "><a href="#instant-run">Instant Run热插拔方案</a></li>
-        <li class="main "><a href="#_2">底层方法替换方案</a></li>
-    </ul>
-</div></div>
-                <div class="col-md-9" role="main">
+<li>
+<a href="../annotation_debug/" class="">注解处理器调试</a>
+</li>
+
+<li>
+<a href="../android_flavor/" class="">Android渠道写入方式</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">框架</a>
+<ul>
+
+<li>
+<a href="../glide/" class="">Glide</a>
+</li>
+
+<li>
+<a href="../lightKV/" class="">lightKV</a>
+</li>
+
+<li>
+<a href="../mmkv/" class="">MMKV</a>
+</li>
+
+<li>
+<a href="../eventbus/" class="">EventBus</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">系统分析</a>
+<ul>
+
+<li>
+<a href="../strictMode/" class="">StrictMode</a>
+</li>
+
+<li>
+<a href="../touchEventDispatch/" class="">触摸事件分发</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">Webview</a>
+<ul>
+
+<li>
+<a href="../webview_cache/" class="">缓存机制</a>
+</li>
+
+<li>
+<a href="../webview_native/" class="">和Native通信</a>
+</li>
+
+<li>
+<a href="../webview_bug/" class="">漏洞</a>
+</li>
+
+<li>
+<a href="../webview_optmize/" class="">优化</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">代码片段</a>
+<ul>
+
+<li>
+<a href="../code/bubble_view/" class="">微信气泡</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">适配</a>
+<ul>
+
+<li>
+<a href="../dev_compat/" class="">系统适配</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">安全</a>
+<ul>
+
+<li>
+<a href="../android_safe/" class="">建议</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">工具</a>
+<ul>
+
+<li>
+<a href="../adb_input/" class="">adb模拟屏幕触摸</a>
+</li>
+
+<li>
+<a href="../tcpdump/" class="">tcpdump</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">热修复</a>
+<ul>
+
+<li>
+<a href="../classloader/" class="">ClassLoader</a>
+</li>
+
+<li>
+<a href="../instantRun/" class="">Instant Run</a>
+</li>
+
+<li>
+<a href="../robust/" class="">Robust</a>
+</li>
+
+<li>
+<a href="./" class="active">热修复方案</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">未分类</a>
+<ul>
+
+<li>
+<a href="../keepAlive/" class="">应用保活</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">性能优化</a>
+<ul>
+
+<li>
+<a href="../bitmap/" class="">Bitmap</a>
+</li>
+</ul>
+</li>
+
+<li class="header">网络</li>
+
+<li>
+<a href="../sni/" class="">SNI</a>
+</li>
+
+<li class="header">工具</li>
+
+<li>
+<a href="../ffmpeg/" class="">FFMPEG</a>
+</li>
+
+<li>
+<a href="../dmg/" class="">DMG</a>
+</li>
+
+<li class="header">Java</li>
+
+<li>
+<a href="../mmap/" class="">内存映射</a>
+</li>
+
+<li>
+<a href="../java_poet/" class="">JavaPoet</a>
+</li>
+
+<li>
+<a href="../volatile/" class="">Volatile</a>
+</li>
+
+<li>
+<a href="../java_collections/" class="">Collections</a>
+</li>
+
+<li>
+<a href="../class_access/" class="">access$xxx</a>
+</li>
+
+<li>
+<a href="#">Concurrent</a>
+<ul>
+
+<li>
+<a href="../volatile/" class="">volatile</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="../threadPool/" class="">线程池</a>
+</li>
+
+<li class="header">虚拟机</li>
+
+<li>
+<a href="../jvm/" class="">内存模型</a>
+</li>
+
+<li>
+<a href="../gc/" class="">GC</a>
+</li>
+
+<li class="chapter" data-path="bookmark/">
+<a href="../bookmark/">收藏</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
 
 <p><img alt="fix" src="../assets/30.png" /></p>
 <h2 id="multidex">multidex类加载方案</h2>
@@ -530,83 +559,35 @@ PatchesInfoImpl：补丁包说明类，可以获取所有补丁对象；每个�
 so和资源的替换暂时不支持
 会增大apk的体积，平均一个函数会比原来增加17.47个字节，10万个函数会增加1.67M。
 会增加少量方法数，使用了Robust插件后，原来能被ProGuard内联的函数不能被内联了</p>
-<h2 id="_2">底层方法替换方案</h2></div>
-        </div>
+<h2 id="_2">底层方法替换方案</h2>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
 
-    </body>
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
 </html>

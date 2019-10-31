@@ -1,8 +1,10 @@
-glide架构图
+## glide架构图
 ![glide](./assets/6.png)
 [glide架构分析](http://sniffer.site/2017/05/20/Glide%E8%AF%A6%E8%A7%A3%E4%B9%8B%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/)
 
-glide配置：通过GlideModule配置
+___
+
+## glide配置Module
 ```java
 public class MyGlideModule implements GlideMGlideModuleodule {
 
@@ -41,9 +43,7 @@ Glide(Engine engine, MemoryCache memoryCache, BitmapPool bitmapPool, Context con
 ```
 GlideModule的初始化：`manifest.xml`配置`meta-data`节点，Glide在调用`get(context)`时读取并初始化。
 
-glide生命周期管理：使用挂载fragment的方式监听Activity生命周期。
-![glide](./assets/7.png)
-对于图片请求会在onStop的时候自动暂停，然后在onStart的时候重新启动，gif的动画也会在onStop的时候停止，以免在后台消耗电量， 此外，当设备的网络状态发生改变的时候，所有失败的请求会自动重启，保证数据的正确性。
+glide对于图片请求会在onStop的时候自动暂停，然后在onStart的时候重新启动，gif的动画也会在onStop的时候停止，以免在后台消耗电量， 此外，当设备的网络状态发生改变的时候，所有失败的请求会自动重启，保证数据的正确性。
 
 glide默认的远程下载使用`HttpURLConnection`，相关类见：`HttpUrlGlideUrlLoader` 和 `HttpUrlFetcher`，如果使用okHttp，需要使用官方依赖库：`okhttp3-integration`
 
@@ -70,3 +70,10 @@ glide默认不支持webp，需要借助第三方库：`GlideWebpSupport`（其�
 
 glide最新大版本：Glide v4
 
+
+## Glide源码分析
+1. [with方法](./glide_first.md)  
+2. [load-into方法](./glide_load.md)  
+3. [engine方法](./glide_engine.md)  
+4. [Glide缓存机制](./glide_cache.md)  
+5. [Glide中的线程池](./glide_thread.md)  
