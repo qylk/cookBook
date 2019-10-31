@@ -391,10 +391,11 @@ load方法显然在RequestManager中，load也是有多个重载方法，可以�
     }
 </code></pre>
 
-<p>这里<br />
-* modelClass是指输入参数类型，比如我们传入的是String类型的url字符串，则modelClass为String.class
-* resourceClass是指数据资源类型，我们从网络上下载图片，图片数据以流的形式存在，则resourceClass为InputStream.class
-我们知道Glide在其构造方法中默认注册了一大堆ModelLoader工厂类，比如：</p>
+<ul>
+<li>modelClass是指输入参数类型，比如我们传入的是String类型的url字符串，则modelClass为String.class</li>
+<li>resourceClass是指数据资源类型，我们从网络上下载图片，图片数据以流的形式存在，则resourceClass为InputStream.class</li>
+</ul>
+<p>我们知道Glide在其构造方法中默认注册了一大堆ModelLoader工厂类，比如：</p>
 <pre><code class="java">register(String.class, InputStream.class, new StreamStringLoader.Factory());
 </code></pre>
 
@@ -413,10 +414,12 @@ public class GenericRequestBuilder&lt;ModelType, DataType, ResourceType, Transco
 <li>ResourceType: 图片类型，如Bitmap.class, GifDrawable.class</li>
 <li>TranscodeType: 图片转换后额类型，如Drawable.class</li>
 </ul>
-<p>DrawableRequestBuilder 除了ModelType，确定了后三个泛型：
-* DataType -&gt; ImageVideoWrapper，包装了InputStream和ParcelFileDescriptor两种类型
-* DataType -&gt; GifBitmapWrapper，包装了GifDrawable和Bitmap两种类型
-* TranscodeType -&gt; PicassoDrawable，引自于Picasso项目的Drawable类</p>
+<p>DrawableRequestBuilder 除了ModelType，确定了后三个泛型：</p>
+<ul>
+<li>DataType -&gt; ImageVideoWrapper，包装了InputStream和ParcelFileDescriptor两种类型</li>
+<li>DataType -&gt; GifBitmapWrapper，包装了GifDrawable和Bitmap两种类型</li>
+<li>TranscodeType -&gt; PicassoDrawable，引自于Picasso项目的Drawable类</li>
+</ul>
 <p>DrawableTypeRequest 在 DrawableRequestBuilder 区别不大，只是添加了一些额外几个方法而已。
 显然DrawableTypeRequest也是个RequestBuilder，既然是Builder，作用就是记录request的各种参数以及类型。</p>
 
