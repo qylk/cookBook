@@ -427,6 +427,7 @@ public abstract class AbstractPatchesLoaderImpl implements PatchesLoader {
 
 ## 总结
 完整的过程可以概述为：
+
 1. 在第一次完整编译的时候给所有的类插桩，使它们的方法能被代理
 2. app启动时启动一个AppServer，等待Android Studio推送增量包
 3. 代码改动后的增量编译中，通过gradle插件生成包含了改动代码的代理类$change

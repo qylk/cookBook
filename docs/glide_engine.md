@@ -119,7 +119,7 @@ private Resource<?> decodeFromCache() throws Exception {
         }
 
         if (result == null) {
-            //先从磁盘读原始缓存，后续需要transform
+            //后从磁盘读原始缓存，后续需要transform
             result = decodeJob.decodeSourceFromCache();
         }
         return result;

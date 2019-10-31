@@ -27,21 +27,21 @@ if (diskCacheFactory == null) {
     diskCacheFactory = new InternalCacheDiskCacheFactory(context);
 }
 ```
-除此之外 Engine 中还有一个 ActiveResources 作为第一级缓存
-> 在旧版本的Glide中，你可能发现 ActiveResources 并不是第一级缓存，而是第二级。
+除此之外 Engine 中还有一个 `ActiveResources` 作为第一级缓存
+> 在旧版本的Glide中，你可能发现 `ActiveResources` 并不是第一级缓存，而是第二级。
 
 ## ActiveResources 与 MemoryCache
-ActiveResources 是第一级缓存，表示当前活动中的资源。
+ActiveResources 是第一级缓存，表示当前活动中的资源集合。
 ```java
 private final Map<Key, WeakReference<EngineResource<?>>> activeResources;
 ```
 ActiveResources 中通过一个 HashMap 来存储，数据保存在一个弱引用（WeakReference）中。
 
-通过ResourceWeakReference将资源，资源key和ReferenceQueue包装起来，作为value存入activeResources。
+通过 ResourceWeakReference 将资源、资源key和 ReferenceQueue 包装起来，作为value存入 activeResources 。
 ```java
 activeResources.put(key, new ResourceWeakReference(key, cached, getReferenceQueue()));
 ```
-ResourceWeakReference是一个WeakReference，没什么特别的。关键是我们传入了一个ReferenceQueue参数。
+ResourceWeakReference 是一个WeakReference，没什么特别的。关键是传入了一个 ReferenceQueue 对象。
 ```java
 private static class ResourceWeakReference extends WeakReference<EngineResource<?>> {
         private final Key key;
@@ -52,7 +52,7 @@ private static class ResourceWeakReference extends WeakReference<EngineResource<
         }
     }
 ```
-getReferenceQueue方法将新建一个ReferenceQueue返回，我们知道对象被GC时会先放入ReferenceQueue中，通过ReferenceQueue可以跟踪那些被GC的弱引用（或者软引用、虚引用）。
+我们知道对象被GC时会先放入 ReferenceQueue 中，通过 ReferenceQueue 可以跟踪那些被GC的弱引用（或者软引用、虚引用）。
 ```java
 private ReferenceQueue<EngineResource<?>> getReferenceQueue() {
         if (resourceReferenceQueue == null) {
@@ -64,7 +64,7 @@ private ReferenceQueue<EngineResource<?>> getReferenceQueue() {
         return resourceReferenceQueue;
 }
 ```
-同时在当前线程Looper添加IdleHandler回调，IdleHandler回调是指Looper空闲(队列中没有处理任务)的时候调用。
+getReferenceQueue方法中，还在当前主线程事件队列中添加 IdleHandler 回调，IdleHandler 回调是指 Looper 空闲(事件队列中没有处理任务)的时候回调。
 ```java
 private static class RefQueueIdleHandler implements MessageQueue.IdleHandler {
         private final Map<Key, WeakReference<EngineResource<?>>> activeResources;
@@ -78,10 +78,10 @@ private static class RefQueueIdleHandler implements MessageQueue.IdleHandler {
 
         @Override
         public boolean queueIdle() {
-            //闲的时候检查ReferenceQueue中有没有被回收的资源对象
+            //闲的时候检查 ReferenceQueue 中有没有被回收的资源对象
             ResourceWeakReference ref = (ResourceWeakReference) queue.poll();
             if (ref != null) {
-                //有的话就从activeResources移除
+                //有的话就从 activeResources 移除
                 activeResources.remove(ref.key);
             }
             //返回true，表示下次继续回调
@@ -149,9 +149,8 @@ public class Engine implements EngineJobListener,
     ...
 }
 ```
-可以看到，当我们从MemoryCache中获取到缓存图片之后会将它从缓存中**移除**，并将缓存图片存储到activeResources当中。
-另外注意到，每次获取到缓存资源后，都会调用acquire方法。
-看下acquire源码：
+可以看到，当从MemoryCache中获取到缓存图片之后会将它从缓存中**移除**，并转移存储到activeResources当中。  
+另外注意到，每次获取到缓存资源后，都会调用acquire方法，看下acquire源码。
 ```java
 class EngineResource<Z> implements Resource<Z> {
     ...
@@ -170,7 +169,7 @@ class EngineResource<Z> implements Resource<Z> {
 }
 ```
 EngineResource中维护了一个计数器，类似引用计数，当资源需要release时，检查计数器是否为0，如果为0，表示该资源没有引用了，资源可以回收。
-onResourceReleased回调到Engine中
+调用onResourceReleased，回调到Engine中
 ```java
     @Override
     public void onResourceReleased(Key cacheKey, EngineResource resource) {
@@ -182,16 +181,72 @@ onResourceReleased回调到Engine中
         }
     }
 ```
-首先从activeResources移除，因为其不再是active资源了，然后检查resource是否可以被缓存，如果可以，就重新回到MemoryCache中，否则将recycle掉。
-
+首先从activeResources移除，因为其不再是active资源了，然后检查resource是否可以被缓存，如果可以，就重新回到MemoryCache中，否则将被recycle掉。
+___
+总结下缓存的转移图：  
 ![Glide](./assets/50.png)
 
 为什么要搞一个activeResource呢？   
-使用activeResources来缓存正在使用中的图片，用来保护正在使用中的图片不会被LruCache算法回收掉。
+使用 activeResources 来缓存正在使用中的图片，用来保护正在使用中的图片不会被LruCache算法回收掉。
+
+## DiskCache
+使用DiskLruCache实现，Glide默认使用250M磁盘空间，缓存目录默认为InternalCache。
+
+Glide的磁盘缓存除了保存下载的图片文件以外，还保存transform过的图片资源。  
+看下 transformEncodeAndTranscode 方法，该方法在获取原始图片资源后调用，进行 transform 和 transcode。
+```java
+    private Resource<Z> transformEncodeAndTranscode(Resource<T> decoded) {
+        Resource<T> transformed = transform(decoded);
+        
+        //transform结果 写入磁盘缓存
+        writeTransformedToCache(transformed);
+
+        Resource<Z> result = transcode(transformed);
+        
+        return result;
+    }
+```
+是否需要使用磁盘缓存transform结果，由DiskCacheStrategy决定，其中有两个布尔变量
+* cacheSource：是否保存原始图片
+* cacheResult：是否保存transform后的图片
+```java
+public enum DiskCacheStrategy {
+    /** Caches with both {@link #SOURCE} and {@link #RESULT}. */
+    ALL(true, true),
+    /** Saves no data to cache. */
+    NONE(false, false),
+    /** Saves just the original data to cache. */
+    SOURCE(true, false),
+    /** Saves the media item after all transformations to cache. */
+    RESULT(false, true);
+
+    private final boolean cacheSource;
+    private final boolean cacheResult;
+    ...
+}
+```
+在从磁盘读取缓存时，也是优先读取transform缓存，后读取原始图片缓存，因为读原始数据，仍然需要transform，比较耗时，耗内存，所以加一级transform缓存可以加速性能。
+```java
+    private Resource<?> decodeFromCache() throws Exception {
+        Resource<?> result = null;
+        try {
+            //优先从磁盘读transfrom过的缓存
+            result = decodeJob.decodeResultFromCache();
+        } catch (Exception e) {
+        }
+
+        if (result == null) {
+            //后从磁盘读原始缓存，后续需要transform
+            result = decodeJob.decodeSourceFromCache();
+        }
+        return result;
+    }
+```
+
 
 ## BitmapPool
 BitmapPool是用来复用Bitmap从而避免重复创建Bitmap而带来的内存浪费，BitmapPool的实现类是LruBitmapPool。
-BitmapPool是根据Bitmap尺寸和Bitmap.Config来查找可复用的Bitmap对象，复用过程主要发生在图片的transform阶段，因为这个阶段对Bitmap的操作比较多，创建、回收都比较频繁，因此使用BitmapPool重用Bitmap，可减少内存抖动。
+BitmapPool是根据Bitmap尺寸和Bitmap.Config来查找可复用的Bitmap对象，复用过程主要发生在图片的transform阶段，因为这个阶段对Bitmap的操作比较多，创建、回收Bitmap都比较频繁，因此使用BitmapPool重用Bitmap对象，可减少内存抖动。
 ```java
 public interface BitmapPool {
    boolean put(Bitmap bitmap);
