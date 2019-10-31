@@ -405,17 +405,19 @@ public class DrawableRequestBuilder&lt;ModelType&gt;
 public class GenericRequestBuilder&lt;ModelType, DataType, ResourceType, TranscodeType&gt;         
 </code></pre>
 
-<p>DrawableTypeRequest 继承自 DrawableRequestBuilder，DrawableRequestBuilder 又继承自 GenericRequestBuilder。
-GenericRequestBuilder中的Generic是指拥有泛型，可见GenericRequestBuilder需要指定4个泛型：
-* ModelType: 图片资源地址的类型，如String.class
-* DataType: 图片原始数据类型，如InputStream.class
-* ResourceType: 图片类型，如Bitmap.class, GifDrawable.class
-* TranscodeType: 图片转换后额类型，如Drawable.class
-DrawableRequestBuilder 除了ModelType，确定了后三个泛型：
+<p>DrawableTypeRequest 继承自 DrawableRequestBuilder，DrawableRequestBuilder 又继承自 GenericRequestBuilder。</p>
+<p>GenericRequestBuilder中的Generic是指拥有泛型，可见GenericRequestBuilder需要指定4个泛型：</p>
+<ul>
+<li>ModelType: 图片资源地址的类型，如String.class</li>
+<li>DataType: 图片原始数据类型，如InputStream.class</li>
+<li>ResourceType: 图片类型，如Bitmap.class, GifDrawable.class</li>
+<li>TranscodeType: 图片转换后额类型，如Drawable.class</li>
+</ul>
+<p>DrawableRequestBuilder 除了ModelType，确定了后三个泛型：
 * DataType -&gt; ImageVideoWrapper，包装了InputStream和ParcelFileDescriptor两种类型
 * DataType -&gt; GifBitmapWrapper，包装了GifDrawable和Bitmap两种类型
-* TranscodeType -&gt; PicassoDrawable，引自于Picasso项目的Drawable类
-DrawableTypeRequest 在 DrawableRequestBuilder 区别不大，只是添加了一些额外几个方法而已。
+* TranscodeType -&gt; PicassoDrawable，引自于Picasso项目的Drawable类</p>
+<p>DrawableTypeRequest 在 DrawableRequestBuilder 区别不大，只是添加了一些额外几个方法而已。
 显然DrawableTypeRequest也是个RequestBuilder，既然是Builder，作用就是记录request的各种参数以及类型。</p>
 
 
