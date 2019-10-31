@@ -365,13 +365,60 @@ HashMap是非线程安全的，只是用于单线程环境下，多线程环境�
 <h2 id="weakhashmap">WeakHashMap</h2>
 <p>以弱键实现的基于哈希表的Map。在 WeakHashMap 中，当某个键不再正常使用时，将自动移除其条目。
 像大多数集合类一样，该类是不同步的。</p>
-<p>Class|初始大小|加载因子|扩容倍数|底层实现|是否线程安全
-|---|---|---|---|---|---|
-|ArrayList|10|1|1.5倍+1|Object数组|不安全|
-|Vector|10|1|2倍|Object数组|安全|
-|HashSet|16|0.75f|2倍|HashMap<E,Object>|不安全|
-|HashMap|16|0.75f|2倍|Map.Entry|不安全|
-|Hashtable|11|0.75f|2倍+1|Hashtable.Entry数组|安全|</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>初始大小</th>
+<th>加载因子</th>
+<th>扩容倍数</th>
+<th>底层实现</th>
+<th>是否线程安全</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>10</td>
+<td>1</td>
+<td>1.5倍+1</td>
+<td>Object数组</td>
+<td>不安全</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td>10</td>
+<td>1</td>
+<td>2倍</td>
+<td>Object数组</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>16</td>
+<td>0.75f</td>
+<td>2倍</td>
+<td>HashMap<E,Object></td>
+<td>不安全</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>16</td>
+<td>0.75f</td>
+<td>2倍</td>
+<td>Map.Entry</td>
+<td>不安全</td>
+</tr>
+<tr>
+<td>Hashtable</td>
+<td>11</td>
+<td>0.75f</td>
+<td>2倍+1</td>
+<td>Hashtable.Entry数组</td>
+<td>安全</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
