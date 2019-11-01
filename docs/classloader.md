@@ -206,3 +206,38 @@ public class DexClassLoader extends BaseDexClassLoader {
 ```
 所以说 PathClassLoader 和 DexClassLoader 其实并没有多大区别，但是一般而言，使用PathDexClassLoader用来加载已安装的apk的dex，使用DexClassLoader加载未被虚拟机加载的外部dex。
 假如非要使用PathDexClassLoader来加载外部的dex其实也是可以成功的。
+
+___
+
+
+其他classLoader
+* InMemoryDexClassLoader
+
+    是API26新增的类加载器，可用于加载内存中的dex。
+
+* DelegateLastClassLoader
+
+    是API27新增的类加载器，是一个先查找再委托的类加载器实现  
+    ```java
+    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+        Class<?> cl = findLoadedClass(name);
+        if (cl != null) {
+            return cl;
+        }
+        try {
+            return Object.class.getClassLoader().loadClass(name);
+        } catch (ClassNotFoundException ignored) {
+        }
+        ClassNotFoundException fromSuper = null;
+        try {
+            return findClass(name);
+        } catch (ClassNotFoundException ex) {
+            fromSuper = ex;
+        }
+        try {
+            return getParent().loadClass(name);
+        } catch (ClassNotFoundException cnfe) {
+            throw fromSuper;
+        }
+    }
+    ```  
