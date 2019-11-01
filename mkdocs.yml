@@ -28,6 +28,7 @@ nav:
         - 系统适配: dev_compat.md
       - 安全:
         - 建议: android_safe.md
+        - 风险点: android_danger.md
       - 工具:
         - adb模拟屏幕触摸: adb_input.md
         - tcpdump: tcpdump.md
