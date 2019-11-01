@@ -254,10 +254,6 @@
 <a href="../jvm/" class="">内存模型</a>
 </li>
 
-<li>
-<a href="../gc/" class="">GC</a>
-</li>
-
 <li class="chapter" data-path="bookmark/">
 <a href="../bookmark/">收藏</a>
 <li class="divider"></li>
@@ -718,11 +714,13 @@ InstantRunContentProvider在其<code>onCreate</code>方法中就做了一件事�
 
 <p>到这里，看到$change变量被赋值为$change对象，我们就知道热修复逻辑完成了。</p>
 <h2 id="_5">总结</h2>
-<p>完整的过程可以概述为：
-1. 在第一次完整编译的时候给所有的类插桩，使它们的方法能被代理
-2. app启动时启动一个AppServer，等待Android Studio推送增量包
-3. 代码改动后的增量编译中，通过gradle插件生成包含了改动代码的代理类$change
-4. Android Studio将patch推送到app中，然后给被改动的类的<code>$change</code>字段赋值，这样所有方法都转发到了代理类</p>
+<p>完整的过程可以概述为：</p>
+<ol>
+<li>在第一次完整编译的时候给所有的类插桩，使它们的方法能被代理</li>
+<li>app启动时启动一个AppServer，等待Android Studio推送增量包</li>
+<li>代码改动后的增量编译中，通过gradle插件生成包含了改动代码的代理类$change</li>
+<li>Android Studio将patch推送到app中，然后给被改动的类的<code>$change</code>字段赋值，这样所有方法都转发到了代理类</li>
+</ol>
 <hr />
 <p>//todo 资源修复</p>
 

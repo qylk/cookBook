@@ -54,6 +54,5 @@ nav:
       - 线程池: threadPool.md  
     - 虚拟机:
       - 内存模型: jvm.md
-      - GC: gc.md
     - 收藏: bookmark.md
 
