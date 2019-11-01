@@ -12,6 +12,8 @@ nav:
         - lightKV: lightKV.md
         - MMKV: mmkv.md
         - EventBus: eventbus.md
+        - OkHttp: okhttp.md
+        - OkHttp-Dns: okhttp_dns.md
       - 系统分析:
         - StrictMode: strictMode.md
         - 触摸事件分发: touchEventDispatch.md
@@ -52,6 +54,7 @@ nav:
       - Concurrent:
         - volatile: volatile.md
       - 线程池: threadPool.md  
+      - 泛型通配符: java_generic.md
     - 虚拟机:
       - 内存模型: jvm.md
     - 收藏: bookmark.md
