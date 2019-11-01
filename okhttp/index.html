@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Java concurrent - 小黑屋</title>
+<title>OkHttp - 小黑屋</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
@@ -73,7 +73,7 @@
 </li>
 
 <li>
-<a href="../okhttp/" class="">OkHttp</a>
+<a href="./" class="active">OkHttp</a>
 </li>
 
 <li>
@@ -306,7 +306,14 @@ Theme by GitBook
 
 
 
-
+<h2 id="_1">关键流程</h2>
+<p><img alt="okhttp" src="../assets/33.png" /></p>
+<p><img alt="okhttp" src="../assets/47.png" /></p>
+<p>interceptors和networkInterces在责任链中的位置不同，他们能做的事情也就不同了。比如，如果我们要对服务端返回的数据做自定义缓存就应该在interceptors中处理，而如果我们想控制网络请求的创建连接等就应该在networkInterceptor中处理了。</p>
+<p>最后一个关键的Interceptor是CallServerInterceptor，真正完成对服务端的请求。</p>
+<p><img alt="okhttp" src="../assets/46.png" /></p>
+<p>HTTP协议的构建和解析由HttpCodec完成。HttpCodec的实现类有Http1Codec和Http2Codec，分别代表HTTP1.1和HTTP1.2协议的实现。</p>
+<p>HTTP信息流传输是最终是靠socket实现的。</p>
 
 
 </section>

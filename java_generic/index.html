@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Java concurrent - 小黑屋</title>
+<title>泛型通配符 - 小黑屋</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
@@ -257,7 +257,7 @@
 </li>
 
 <li>
-<a href="../java_generic/" class="">泛型通配符</a>
+<a href="./" class="active">泛型通配符</a>
 </li>
 
 <li class="header">虚拟机</li>
@@ -306,7 +306,27 @@ Theme by GitBook
 
 
 
+<p>\&lt;? extends T&gt; 和 \&lt;? super T&gt; 是Java泛型中的“通配符（Wildcards）”和“边界（Bounds）”的概念。</p>
+<ul>
+<li>\&lt;? extends T&gt; 指 “上界通配符”  </li>
+<li>\&lt;? super T&gt;   指 “下界通配符”</li>
+</ul>
+<p>泛型通配符主要解决泛型容器不兼容问题，比如</p>
+<pre><code>error: incompatible types: List&lt;Apple&gt; cannot be converted to List&lt;Fruit&gt;
+</code></pre>
 
+<p>即便Apple是Fruit的子类，List\<Apple>也并非List\<Fruit>的子类型，因此无法类型转换，发生以上异常。</p>
+<p>编译器简单认为：</p>
+<ul>
+<li>苹果 IS-A 水果</li>
+<li>装苹果的篮子 NOT-IS-A 装水果的篮子</li>
+</ul>
+<p>但是List\<Apple>却是List\&lt;? extend Fruit&gt;的子类型，因而可以类型转换，这就是通配符出现的原因。</p>
+<p>上界通配符\&lt;? extend Fruit&gt;中的 '?' 代表了Fruit的某个子类，但是具体是哪个子类，实际上是未知的，这表示了这个 '?' 类型有一个上界类型Fruit。</p>
+<p>这使得List\&lt;? extend Fruit&gt;中的元素可以被当成Fruit类型来访问，但是另一方面却无法向List\&lt;? extend Fruit&gt;中添加任何新的元素(因为你不知道它具体装的是哪种Fruit，所以不能随便加，不过取是没问题的，取出来一定是?类型的。</p>
+<p>下界通配符List\&lt;? super Apple&gt;，List\<Fruit>是它的子类型，'?' 代表了Apple的某个超类，但是具体是哪个超类，实际上也是未知的，这表示了这个 '?' 类型有一个下界类型Apple。</p>
+<p>这使得可以向List&lt;? super Apple&gt;中新添加Apple，但是另一方面却无法从这个List\&lt;? super Apple&gt;中读取任何一个元素并当成Apple来访问(因为你不知道它具体是Apple的哪个超类，或许是Fruit，或许是Food，你根本不能把它们当作Apple来处理，这与上面是有区别的)。</p>
+<p>最后还有一种<strong>无界通配符</strong>，如List\&lt;?&gt;，List\<Object>是它的子类型，不能向List&lt;?&gt;里添加任何新元素，从List&lt;?&gt;里取出的元素只能被当成Object类型来处理。</p>
 
 
 </section>
