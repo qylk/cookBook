@@ -586,6 +586,152 @@ so和资源的替换暂时不支持
 会增大apk的体积，平均一个函数会比原来增加17.47个字节，10万个函数会增加1.67M。
 会增加少量方法数，使用了Robust插件后，原来能被ProGuard内联的函数不能被内联了</p>
 <h2 id="_2">底层方法替换方案</h2>
+<p>android虚拟机在加载一个类的时候会将类中方法解析成 ArtMethod 结构体，每一个Java方法在art中都对应着一个ArtMethod，ArtMethod记录了这个Java方法的所有信息，包括所属类、访问权限、代码执行入口地址（entrypoint)等等。通过把原方法对应的ArtMethod对象的entrypoint替换为目标方法的entrypoint，可以使得原方法被调用过程中取entrypoint的时候拿到的是目标方法的entry，进而直接跳转到目标方法的code段；从而达到Hook的目的。阿里AndFix就是基于这个原理来做热修复的。</p>
+<p>ArtMethod结构体源码在"platform/art/runtime/art_method.h"中，并且基本每个android大版本，ArtMethod结构都有部分变化。</p>
+<p>这是android 6.0版本中ArtMethod的定义：</p>
+<pre><code class="java">class ArtMethod {
+  // Field order required by test &quot;ValidateFieldOrderOfJavaCppUnionClasses&quot;. 
+  // The class we are a part of. 
+  GcRoot&lt;mirror::Class&gt; declaring_class_;
+
+  // Short cuts to declaring_class_-&gt;dex_cache_ member for fast compiled code access. 
+  GcRoot&lt;mirror::PointerArray&gt; dex_cache_resolved_methods_;
+
+  // Short cuts to declaring_class_-&gt;dex_cache_ member for fast compiled code access. 
+  GcRoot&lt;mirror::ObjectArray&lt;mirror::Class&gt;&gt; dex_cache_resolved_types_;
+
+  // Access flags; low 16 bits are defined by spec. 
+  uint32_t access_flags_;
+
+  /* Dex file fields. The defining dex file is available via declaring_class_-&gt;dex_cache_ */
+
+  // Offset to the CodeItem. 
+  uint32_t dex_code_item_offset_;
+
+  // Index into method_ids of the dex file associated with this method. 
+  uint32_t dex_method_index_;
+
+  /* End of dex file fields. */
+
+  // Entry within a dispatch table for this method. For static/direct methods the index is into 
+  // the declaringClass.directMethods, for virtual methods the vtable and for interface methods the 
+  // ifTable. 
+  uint32_t method_index_;
+
+  // Fake padding field gets inserted here. 
+  // Must be the last fields in the method. 
+  // PACKED(4) is necessary for the correctness of 
+  // RoundUp(OFFSETOF_MEMBER(ArtMethod, ptr_sized_fields_), pointer_size). 
+  struct PACKED(4) PtrSizedFields {
+
+    // Method dispatch from the interpreter invokes this pointer which may cause a bridge into 
+    // compiled code. 
+    void* entry_point_from_interpreter_;
+
+    // Pointer to JNI function registered to this method, or a function to resolve the JNI function. 
+    void* entry_point_from_jni_;
+
+    // Method dispatch from quick compiled code invokes this pointer which may cause bridging into 
+    // the interpreter. 
+    void* entry_point_from_quick_compiled_code_;
+  } ptr_sized_fields_;
+}
+</code></pre>
+
+<p>这其中最重要的字段就是<code>entrypoint_from_interpreter_</code> 和 <code>entrypoint_from_quick_compiled_code_</code>2个指针了，从名字可以看出来，他们就是方法的执行入口。</p>
+<p>我们知道，Java代码在Android中会被编译为Dex Code执行，ART虚拟机中可以采用解释模式或者AOT机器码模式执行。</p>
+<p>解释模式，就是取出Dex Code，逐条解释执行。如果方法的调用者是以解释模式运行的，在调用这个方法时，就会取得这个方法的<code>entrypoint_from_interpreter_</code>指针，然后跳转过去执行。</p>
+<p>而如果是AOT的方式，就会先预编译好Dex Code对应的机器码，然后运行期直接执行机器码就行了，不需要一条条地解释执行Dex Code。如果方法的调用者是以AOT机器码方式执行的，在调用这个方法时，就是跳转到<code>entry_point_from_quick_compiled_code_</code>执行。因此可以简单的认为，只要替换掉</p>
+<p>这两个指针，就可以达到更改代码执行逻辑的目的。</p>
+<p>那如何取到一个java方法对应的ArtMethod呢？</p>
+<p>通过env -&gt; FromReflectedMethod(srcMethodObj)，可以由Method对象得到这个方法对应的ArtMethod结构体的内存地址，然后可以把它强转为ArtMethod指针，从而对其所有成员进行修改。</p>
+<p>但是上面也说了，每个android大版本，ArtMethod结构体的结构都有部分变化，这意味着里面的字段位置不是固定的，需要参考AOSP开源代码根据android版本来适配，另一方面《深入探索 Android 热修复技术原理》里也提到不同ROM厂商也可能会对ArtMethod定义进行修改(且不开源)，适配难度很大。</p>
+<p><img alt="method" src="../assets/62.png" /></p>
+<p>所以更保险的方法是对ArtMethod进行整体替换，而不用关心ArtMethod结构体中具体有什么，这就避免了大量的适配工作，这边是AndFix的升级版<code>Sophix</code>。要实现整体替换，就需要知道ArtMethod结构体的长度，但是这个长度会因为ArtMethod的不同版本或不同修改而不同。</p>
+<p>有人可能想问用sizeof(ArtMethod)不就得到长度了吗？是的，但是前提是我们编译时使用的ArtMethod必须和虚拟机中的ArtMethod是同一个版本，这意味着我们需要在工程中针对不同的版本引入不用的art_method.h。</p>
+<p>因为我们可以知道一个ArtMethod在内存上的起始地址，但是不知道结束地址，《深入探索 Android 热修复技术原理》里介绍了一个取巧的方法来获取ArtMethod的长度。就是取两个相邻ArtMethod的内存地址进行相减，从而间接得出ArtMethod的长度。这个方法的前提很明确，就是得构造2个java方法，且其对应的ArtMethod在内存上是相邻的，中间没有内存空隙。</p>
+<p><code>《深入探索 Android 热修复技术原理》</code>里介绍，参考ART虚拟机源码中对ArtMethod的排列逻辑，类的方法有direct_method 和 virtual_method之分，其中direct_method是包含那些static方法和不能继承的对象方法，而virtual_method就是那些可以继承的对象方法。很幸运的是，ArtMethod在内存中是线性排列的，就像下面这样.</p>
+<p><img alt="method" src="../assets/64.png" /></p>
+<p>我们在类中构造2个相邻的静态java空方法 f1 和 f2，方法名并不重要，重要的是他们是相邻的，且都是静态方法，因此他们都属于direct_method，而且在内存排列上也是相邻的。</p>
+<pre><code class="java">public class NativeStructsModel{
+  final public static void f1(){}
+  final public static void f2(){}
+}
+</code></pre>
+
+<pre><code class="java">size_t firMid = (size_t) env -&gt; GetStaticMethodID(NativeStructsModelClazz, &quot;f1&quot;, &quot;()V&quot;);
+size_t secMid = (size_t) env -&gt; GetStaticMethodID(NativeStructsModelClazz, &quot;f2&quot;, &quot;()V&quot;);
+size_t methodSize = secMid - firMid;
+LOGD(&quot;########## methodSize = %d&quot;, methodSize);
+</code></pre>
+
+<p>使用Method Hook可以用来实现代码修复或者AOP，Sophix中将原ArtMethod丢弃，换成新的ArtMethod，这就无法实现AOP了。AndroidMethodHook基于Sophix的原理，用dexmaker动态生成类，将原方法保存下来，从而实现了AOP。</p>
+<p>附测试代码：</p>
+<pre><code class="C++">#include &lt;jni.h&gt;
+#include &lt;string.h&gt;
+#include&lt;android/log.h&gt;
+
+#define TAG &quot;myDemo-jni&quot; // 这个是自定义的LOG的标识
+#define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,TAG,__VA_ARGS__) // 定义LOGD类型
+
+static const char* kClassMethodHookChar = &quot;com/qylk/jetpack_demo/MethodHook&quot;;
+
+static struct {
+    jmethodID m1;
+    jmethodID m2;
+    size_t methodSize;
+} methodHookClassInfo;
+
+
+static long methodHook(JNIEnv* env, jclass type, jobject srcMethodObj, jobject destMethodObj) {
+    int* srcMethod = reinterpret_cast&lt;int*&gt;(env -&gt; FromReflectedMethod(srcMethodObj));
+    int* destMethod = reinterpret_cast&lt;int*&gt;(env -&gt; FromReflectedMethod(destMethodObj));
+    int* backupMethod = new int[methodHookClassInfo.methodSize];
+
+    memcpy(backupMethod, srcMethod, methodHookClassInfo.methodSize);
+    memcpy(srcMethod, destMethod, methodHookClassInfo.methodSize);
+    return reinterpret_cast&lt;long&gt;(backupMethod);
+}
+
+static jobject methodRestore(JNIEnv* env, jclass type, jobject srcMethod, jlong methodPtr) {
+    int* backupMethod = reinterpret_cast&lt;int*&gt;(methodPtr);
+    void* artMethodSrc = reinterpret_cast&lt;void*&gt;(env -&gt; FromReflectedMethod(srcMethod));
+    memcpy(artMethodSrc, backupMethod, methodHookClassInfo.methodSize);
+    delete []backupMethod;
+    return srcMethod;
+}
+
+static JNINativeMethod gMethods[] = {
+        {
+                &quot;hook_native&quot;,
+                &quot;(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)J&quot;,
+                (void*)methodHook
+        },
+        {
+                &quot;restore_native&quot;,
+                &quot;(Ljava/lang/reflect/Method;J)Ljava/lang/reflect/Method;&quot;,
+                (void*)methodRestore
+        }
+};
+
+extern &quot;C&quot;
+JNIEXPORT jint JNICALL
+JNI_OnLoad(JavaVM* vm, void* reserved) {
+    JNIEnv *env = nullptr;
+    if (vm-&gt;GetEnv((void **) &amp;env, JNI_VERSION_1_4) != JNI_OK) {
+        return JNI_FALSE;
+    }
+    jclass classEvaluateUtil = env-&gt;FindClass(kClassMethodHookChar);
+    if(env -&gt; RegisterNatives(classEvaluateUtil, gMethods, sizeof(gMethods)/ sizeof(gMethods[0])) &lt; 0) {
+        return JNI_FALSE;
+    }
+    methodHookClassInfo.m1 = env -&gt; GetStaticMethodID(classEvaluateUtil, &quot;m1&quot;, &quot;()V&quot;);
+    methodHookClassInfo.m2 = env -&gt; GetStaticMethodID(classEvaluateUtil, &quot;m2&quot;, &quot;()V&quot;);
+    methodHookClassInfo.methodSize = reinterpret_cast&lt;size_t&gt;(methodHookClassInfo.m2) - reinterpret_cast&lt;size_t&gt;(methodHookClassInfo.m1);
+    LOGD(&quot;########## methodSize = %d&quot;, methodHookClassInfo.methodSize);
+    return JNI_VERSION_1_4;
+}
+</code></pre>
 
 
 </section>
