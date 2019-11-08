@@ -1,358 +1,406 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Android onresult - 小黑屋</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Android onresult - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-<meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
-
-<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta rel="next" href="" />
-<link href="../css/style.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Android onresult";
+    var mkdocs_page_input_path = "android_onresult.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
-<body>
-<div class="book">
-<div class="book-summary">
-<div id="book-search-input" role="search">
-<input type="text" placeholder="Type to search" />
-</div> <!-- end of book-search-input -->
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Android onresult</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
-<nav role="navigation">
-<ul class="summary">
-<li>
-<a href=".." target="_blank" class="custom-link">小黑屋</a>
-</li>
-<li class="divider"></li>
-<li class="chapter" data-path="">
-<a href="..">首页</a>
-<li class="header">Android</li>
-
-<li>
-<a href="#">编译/脚本</a>
-<ul>
-
-<li>
-<a href="../annotation/" class="">Annotation注解处理器</a>
-</li>
-
-<li>
-<a href="../annotation_debug/" class="">注解处理器调试</a>
-</li>
-
-<li>
-<a href="../android_flavor/" class="">Android渠道写入方式</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">框架</a>
-<ul>
-
-<li>
-<a href="../glide/" class="">Glide</a>
-</li>
-
-<li>
-<a href="../lightKV/" class="">lightKV</a>
-</li>
-
-<li>
-<a href="../mmkv/" class="">MMKV</a>
-</li>
-
-<li>
-<a href="../eventbus/" class="">EventBus</a>
-</li>
-
-<li>
-<a href="../okhttp/" class="">OkHttp</a>
-</li>
-
-<li>
-<a href="../okhttp_dns/" class="">OkHttp-Dns</a>
-</li>
-
-<li>
-<a href="../okhttp_retry/" class="">Okhttp重试机制</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">系统分析</a>
-<ul>
-
-<li>
-<a href="../strictMode/" class="">StrictMode</a>
-</li>
-
-<li>
-<a href="../touchEventDispatch/" class="">触摸事件分发</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">Webview</a>
-<ul>
-
-<li>
-<a href="../webview_cache/" class="">缓存机制</a>
-</li>
-
-<li>
-<a href="../webview_native/" class="">和Native通信</a>
-</li>
-
-<li>
-<a href="../webview_bug/" class="">漏洞</a>
-</li>
-
-<li>
-<a href="../webview_optmize/" class="">优化</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">代码片段</a>
-<ul>
-
-<li>
-<a href="../code/bubble_view/" class="">微信气泡</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">适配</a>
-<ul>
-
-<li>
-<a href="../dev_compat/" class="">系统适配</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">多媒体</a>
-<ul>
-
-<li>
-<a href="../renderscript/" class="">RenderScript</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">安全</a>
-<ul>
-
-<li>
-<a href="../android_safe/" class="">建议</a>
-</li>
-
-<li>
-<a href="../android_danger/" class="">风险点</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">工具</a>
-<ul>
-
-<li>
-<a href="../adb_input/" class="">adb模拟屏幕触摸</a>
-</li>
-
-<li>
-<a href="../tcpdump/" class="">tcpdump</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">热修复</a>
-<ul>
-
-<li>
-<a href="../classloader/" class="">ClassLoader</a>
-</li>
-
-<li>
-<a href="../instantRun/" class="">Instant Run</a>
-</li>
-
-<li>
-<a href="../robust/" class="">Robust</a>
-</li>
-
-<li>
-<a href="../hotFix/" class="">热修复方案</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">未分类</a>
-<ul>
-
-<li>
-<a href="../keepAlive/" class="">应用保活</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">性能优化</a>
-<ul>
-
-<li>
-<a href="../bitmap/" class="">Bitmap</a>
-</li>
-</ul>
-</li>
-
-<li class="header">网络</li>
-
-<li>
-<a href="../sni/" class="">SNI</a>
-</li>
-
-<li class="header">工具</li>
-
-<li>
-<a href="../ffmpeg/" class="">FFMPEG</a>
-</li>
-
-<li>
-<a href="../dmg/" class="">DMG</a>
-</li>
-
-<li class="header">Java</li>
-
-<li>
-<a href="../mmap/" class="">内存映射</a>
-</li>
-
-<li>
-<a href="../java_poet/" class="">JavaPoet</a>
-</li>
-
-<li>
-<a href="../volatile/" class="">Volatile</a>
-</li>
-
-<li>
-<a href="../java_collections/" class="">Collections</a>
-</li>
-
-<li>
-<a href="../class_access/" class="">access$xxx</a>
-</li>
-
-<li>
-<a href="#">Concurrent</a>
-<ul>
-
-<li>
-<a href="../volatile/" class="">volatile</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="../threadPool/" class="">线程池</a>
-</li>
-
-<li>
-<a href="../java_generic/" class="">泛型通配符</a>
-</li>
-
-<li class="header">虚拟机</li>
-
-<li>
-<a href="../jvm/" class="">内存模型</a>
-</li>
-
-<li class="chapter" data-path="bookmark/">
-<a href="../bookmark/">收藏</a>
-<li class="divider"></li>
-
-
-
-<li><a href="http://www.mkdocs.org">
-Published with MkDocs
-</a></li>
-
-<li><a href="https://github.com/GitbookIO/theme-default">
-Theme by GitBook
-</a></li>
-</ul>
-
-</nav>
-
-</div> <!-- end of book-summary -->
-
-<div class="book-body">
-<div class="body-inner">
-<div class="book-header" role="navigation">
-
-<!-- Title -->
-<h1>
-<i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="." ></a>
-</h1>
-
-</div> <!-- end of book-header -->
-
-<div class="page-wrapper" tabindex="-1" role="main">
-<div class="page-inner">
-<div id="book-search-results">
-<div class="search-noresults">
-
-<section class="normal markdown-section">
-
-
-
-
-
-
-</section>
-</div> <!-- end of search-noresults -->
-<div class="search-results">
-<div class="has-results">
-
-<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-<ul class="search-results-list"></ul>
-
-</div> <!-- end of has-results -->
-<div class="no-results">
-
-<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-
-</div> <!-- end of no-results -->
-</div> <!-- end of search-results -->
-</div> <!-- end of book-search-results -->
-
-</div> <!-- end of page-inner -->
-</div> <!-- end of page-wrapper -->
-
-</div> <!-- end of body-inner -->
-
-</div> <!-- end of book-body -->
-<script src="../js/main.js"></script>
-<script src="../search/main.js"></script>
-<script src="../js/gitbook.min.js"></script>
-<script src="../js/theme.min.js"></script>
 </body>
 </html>

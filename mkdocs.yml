@@ -1,5 +1,6 @@
 site_name: 小黑屋
-theme: gitbook
+##theme: gitbook
+theme: readthedocs
 nav:
     - 首页: index.md
     - Android:

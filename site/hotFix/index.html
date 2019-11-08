@@ -1,330 +1,402 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>热修复方案 - 小黑屋</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>热修复方案 - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-<meta name="generator" content="mkdocs-1.0.4, mkdocs-gitbook-1.0.7">
-
-<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta rel="next" href="" />
-<link href="../css/style.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u70ed\u4fee\u590d\u65b9\u6848";
+    var mkdocs_page_input_path = "hotFix.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
-<body>
-<div class="book">
-<div class="book-summary">
-<div id="book-search-input" role="search">
-<input type="text" placeholder="Type to search" />
-</div> <!-- end of book-search-input -->
-
-<nav role="navigation">
-<ul class="summary">
-<li>
-<a href=".." target="_blank" class="custom-link">小黑屋</a>
-</li>
-<li class="divider"></li>
-<li class="chapter" data-path="">
-<a href="..">首页</a>
-<li class="header">Android</li>
-
-<li>
-<a href="#">编译/脚本</a>
-<ul>
-
-<li>
-<a href="../annotation/" class="">Annotation注解处理器</a>
-</li>
-
-<li>
-<a href="../annotation_debug/" class="">注解处理器调试</a>
-</li>
-
-<li>
-<a href="../android_flavor/" class="">Android渠道写入方式</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">框架</a>
-<ul>
-
-<li>
-<a href="../glide/" class="">Glide</a>
-</li>
-
-<li>
-<a href="../lightKV/" class="">lightKV</a>
-</li>
-
-<li>
-<a href="../mmkv/" class="">MMKV</a>
-</li>
-
-<li>
-<a href="../eventbus/" class="">EventBus</a>
-</li>
-
-<li>
-<a href="../okhttp/" class="">OkHttp</a>
-</li>
-
-<li>
-<a href="../okhttp_dns/" class="">OkHttp-Dns</a>
-</li>
-
-<li>
-<a href="../okhttp_retry/" class="">Okhttp重试机制</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">系统分析</a>
-<ul>
-
-<li>
-<a href="../strictMode/" class="">StrictMode</a>
-</li>
-
-<li>
-<a href="../touchEventDispatch/" class="">触摸事件分发</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">Webview</a>
-<ul>
-
-<li>
-<a href="../webview_cache/" class="">缓存机制</a>
-</li>
-
-<li>
-<a href="../webview_native/" class="">和Native通信</a>
-</li>
-
-<li>
-<a href="../webview_bug/" class="">漏洞</a>
-</li>
-
-<li>
-<a href="../webview_optmize/" class="">优化</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">代码片段</a>
-<ul>
-
-<li>
-<a href="../code/bubble_view/" class="">微信气泡</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">适配</a>
-<ul>
-
-<li>
-<a href="../dev_compat/" class="">系统适配</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">多媒体</a>
-<ul>
-
-<li>
-<a href="../renderscript/" class="">RenderScript</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">安全</a>
-<ul>
-
-<li>
-<a href="../android_safe/" class="">建议</a>
-</li>
-
-<li>
-<a href="../android_danger/" class="">风险点</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">工具</a>
-<ul>
-
-<li>
-<a href="../adb_input/" class="">adb模拟屏幕触摸</a>
-</li>
-
-<li>
-<a href="../tcpdump/" class="">tcpdump</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">热修复</a>
-<ul>
-
-<li>
-<a href="../classloader/" class="">ClassLoader</a>
-</li>
-
-<li>
-<a href="../instantRun/" class="">Instant Run</a>
-</li>
-
-<li>
-<a href="../robust/" class="">Robust</a>
-</li>
-
-<li>
-<a href="./" class="active">热修复方案</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">未分类</a>
-<ul>
-
-<li>
-<a href="../keepAlive/" class="">应用保活</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="#">性能优化</a>
-<ul>
-
-<li>
-<a href="../bitmap/" class="">Bitmap</a>
-</li>
-</ul>
-</li>
-
-<li class="header">网络</li>
-
-<li>
-<a href="../sni/" class="">SNI</a>
-</li>
-
-<li class="header">工具</li>
-
-<li>
-<a href="../ffmpeg/" class="">FFMPEG</a>
-</li>
-
-<li>
-<a href="../dmg/" class="">DMG</a>
-</li>
-
-<li class="header">Java</li>
-
-<li>
-<a href="../mmap/" class="">内存映射</a>
-</li>
-
-<li>
-<a href="../java_poet/" class="">JavaPoet</a>
-</li>
-
-<li>
-<a href="../volatile/" class="">Volatile</a>
-</li>
-
-<li>
-<a href="../java_collections/" class="">Collections</a>
-</li>
-
-<li>
-<a href="../class_access/" class="">access$xxx</a>
-</li>
-
-<li>
-<a href="#">Concurrent</a>
-<ul>
-
-<li>
-<a href="../volatile/" class="">volatile</a>
-</li>
-</ul>
-</li>
-
-<li>
-<a href="../threadPool/" class="">线程池</a>
-</li>
-
-<li>
-<a href="../java_generic/" class="">泛型通配符</a>
-</li>
-
-<li class="header">虚拟机</li>
-
-<li>
-<a href="../jvm/" class="">内存模型</a>
-</li>
-
-<li class="chapter" data-path="bookmark/">
-<a href="../bookmark/">收藏</a>
-<li class="divider"></li>
-
-
-
-<li><a href="http://www.mkdocs.org">
-Published with MkDocs
-</a></li>
-
-<li><a href="https://github.com/GitbookIO/theme-default">
-Theme by GitBook
-</a></li>
-</ul>
-
-</nav>
-
-</div> <!-- end of book-summary -->
-
-<div class="book-body">
-<div class="body-inner">
-<div class="book-header" role="navigation">
-
-<!-- Title -->
-<h1>
-<i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="." ></a>
-</h1>
-
-</div> <!-- end of book-header -->
-
-<div class="page-wrapper" tabindex="-1" role="main">
-<div class="page-inner">
-<div id="book-search-results">
-<div class="search-noresults">
-
-<section class="normal markdown-section">
-
-
-
-<p><img alt="fix" src="../assets/30.png" /></p>
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">热修复方案</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#multidex">multidex类加载方案</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_1">实践</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#dex">Dex替换方案</a></li>
+    
+
+    <li class="toctree-l4"><a href="#instant-run">Instant Run热插拔方案</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_2">底层方法替换方案</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>热修复 &raquo;</li>
+        
+      
+        
+          <li>Android &raquo;</li>
+        
+      
+    
+    <li>热修复方案</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><img alt="fix" src="../assets/30.png" /></p>
 <h2 id="multidex">multidex类加载方案</h2>
 <p>multidex类加载方案是要求应用重启后，优先加载补丁包中的类，从而达到修复的目的，为什么要求重启呢？因为在java中类是无法卸载的，如果要重新加载类，只能重启jvm，因此这类修复方案的特点是<code>不能即时生效</code>，需要冷启动。</p>
 <p>我们从ClassLoader类加载的逻辑(<a href="../classloader/">ClassLoader</a>)中可知，在android中，classLoader在第一次加载类的时候其实是按顺序遍历dexElements数组，从每一个DexFile中尝试加载类，如果找到了，下次就不会重复加载了，而是从已加载的类中直接查找。</p>
@@ -586,34 +658,198 @@ so和资源的替换暂时不支持
 会增大apk的体积，平均一个函数会比原来增加17.47个字节，10万个函数会增加1.67M。
 会增加少量方法数，使用了Robust插件后，原来能被ProGuard内联的函数不能被内联了</p>
 <h2 id="_2">底层方法替换方案</h2>
+<p>android虚拟机在加载一个类的时候会将类中方法解析成 ArtMethod 结构体，每一个Java方法在art中都对应着一个ArtMethod，ArtMethod记录了这个Java方法的所有信息，包括所属类、访问权限、代码执行入口地址（entrypoint)等等。通过把原方法对应的ArtMethod对象的entrypoint替换为目标方法的entrypoint，可以使得原方法被调用过程中取entrypoint的时候拿到的是目标方法的entry，进而直接跳转到目标方法的code段；从而达到Hook的目的。阿里AndFix就是基于这个原理来做热修复的。</p>
+<p>ArtMethod结构体源码在"platform/art/runtime/art_method.h"中，并且基本每个android大版本，ArtMethod结构都有部分变化。</p>
+<p>这是android 6.0版本中ArtMethod的定义：</p>
+<pre><code class="java">class ArtMethod {
+  // Field order required by test &quot;ValidateFieldOrderOfJavaCppUnionClasses&quot;. 
+  // The class we are a part of. 
+  GcRoot&lt;mirror::Class&gt; declaring_class_;
+
+  // Short cuts to declaring_class_-&gt;dex_cache_ member for fast compiled code access. 
+  GcRoot&lt;mirror::PointerArray&gt; dex_cache_resolved_methods_;
+
+  // Short cuts to declaring_class_-&gt;dex_cache_ member for fast compiled code access. 
+  GcRoot&lt;mirror::ObjectArray&lt;mirror::Class&gt;&gt; dex_cache_resolved_types_;
+
+  // Access flags; low 16 bits are defined by spec. 
+  uint32_t access_flags_;
+
+  /* Dex file fields. The defining dex file is available via declaring_class_-&gt;dex_cache_ */
+
+  // Offset to the CodeItem. 
+  uint32_t dex_code_item_offset_;
+
+  // Index into method_ids of the dex file associated with this method. 
+  uint32_t dex_method_index_;
+
+  /* End of dex file fields. */
+
+  // Entry within a dispatch table for this method. For static/direct methods the index is into 
+  // the declaringClass.directMethods, for virtual methods the vtable and for interface methods the 
+  // ifTable. 
+  uint32_t method_index_;
+
+  // Fake padding field gets inserted here. 
+  // Must be the last fields in the method. 
+  // PACKED(4) is necessary for the correctness of 
+  // RoundUp(OFFSETOF_MEMBER(ArtMethod, ptr_sized_fields_), pointer_size). 
+  struct PACKED(4) PtrSizedFields {
+
+    // Method dispatch from the interpreter invokes this pointer which may cause a bridge into 
+    // compiled code. 
+    void* entry_point_from_interpreter_;
+
+    // Pointer to JNI function registered to this method, or a function to resolve the JNI function. 
+    void* entry_point_from_jni_;
+
+    // Method dispatch from quick compiled code invokes this pointer which may cause bridging into 
+    // the interpreter. 
+    void* entry_point_from_quick_compiled_code_;
+  } ptr_sized_fields_;
+}
+</code></pre>
+
+<p>这其中最重要的字段就是<code>entrypoint_from_interpreter_</code> 和 <code>entrypoint_from_quick_compiled_code_</code>2个指针了，从名字可以看出来，他们就是方法的执行入口。</p>
+<p>我们知道，Java代码在Android中会被编译为Dex Code执行，ART虚拟机中可以采用解释模式或者AOT机器码模式执行。</p>
+<p>解释模式，就是取出Dex Code，逐条解释执行。如果方法的调用者是以解释模式运行的，在调用这个方法时，就会取得这个方法的<code>entrypoint_from_interpreter_</code>指针，然后跳转过去执行。</p>
+<p>而如果是AOT的方式，就会先预编译好Dex Code对应的机器码，然后运行期直接执行机器码就行了，不需要一条条地解释执行Dex Code。如果方法的调用者是以AOT机器码方式执行的，在调用这个方法时，就是跳转到<code>entry_point_from_quick_compiled_code_</code>执行。因此可以简单的认为，只要替换掉</p>
+<p>这两个指针，就可以达到更改代码执行逻辑的目的。</p>
+<p>那如何取到一个java方法对应的ArtMethod呢？</p>
+<p>通过env -&gt; FromReflectedMethod(srcMethodObj)，可以由Method对象得到这个方法对应的ArtMethod结构体的内存地址，然后可以把它强转为ArtMethod指针，从而对其所有成员进行修改。</p>
+<p>但是上面也说了，每个android大版本，ArtMethod结构体的结构都有部分变化，这意味着里面的字段位置不是固定的，需要参考AOSP开源代码根据android版本来适配，另一方面《深入探索 Android 热修复技术原理》里也提到不同ROM厂商也可能会对ArtMethod定义进行修改(且不开源)，适配难度很大。</p>
+<p><img alt="method" src="../assets/62.png" /></p>
+<p>所以更保险的方法是对ArtMethod进行整体替换，而不用关心ArtMethod结构体中具体有什么，这就避免了大量的适配工作，这边是AndFix的升级版<code>Sophix</code>。要实现整体替换，就需要知道ArtMethod结构体的长度，但是这个长度会因为ArtMethod的不同版本或不同修改而不同。</p>
+<p>有人可能想问用sizeof(ArtMethod)不就得到长度了吗？是的，但是前提是我们编译时使用的ArtMethod必须和虚拟机中的ArtMethod是同一个版本，这意味着我们需要在工程中针对不同的版本引入不用的art_method.h。</p>
+<p>因为我们可以知道一个ArtMethod在内存上的起始地址，但是不知道结束地址，《深入探索 Android 热修复技术原理》里介绍了一个取巧的方法来获取ArtMethod的长度。就是取两个相邻ArtMethod的内存地址进行相减，从而间接得出ArtMethod的长度。这个方法的前提很明确，就是得构造2个java方法，且其对应的ArtMethod在内存上是相邻的，中间没有内存空隙。</p>
+<p><code>《深入探索 Android 热修复技术原理》</code>里介绍，参考ART虚拟机源码中对ArtMethod的排列逻辑，类的方法有direct_method 和 virtual_method之分，其中direct_method是包含那些static方法和不能继承的对象方法，而virtual_method就是那些可以继承的对象方法。很幸运的是，ArtMethod在内存中是线性排列的，就像下面这样.</p>
+<p><img alt="method" src="../assets/64.png" /></p>
+<p>我们在类中构造2个相邻的静态java空方法 f1 和 f2，方法名并不重要，重要的是他们是相邻的，且都是静态方法，因此他们都属于direct_method，而且在内存排列上也是相邻的。</p>
+<pre><code class="java">public class NativeStructsModel{
+  final public static void f1(){}
+  final public static void f2(){}
+}
+</code></pre>
+
+<pre><code class="java">size_t firMid = (size_t) env -&gt; GetStaticMethodID(NativeStructsModelClazz, &quot;f1&quot;, &quot;()V&quot;);
+size_t secMid = (size_t) env -&gt; GetStaticMethodID(NativeStructsModelClazz, &quot;f2&quot;, &quot;()V&quot;);
+size_t methodSize = secMid - firMid;
+LOGD(&quot;########## methodSize = %d&quot;, methodSize);
+</code></pre>
+
+<p>使用Method Hook可以用来实现代码修复或者AOP，Sophix中将原ArtMethod丢弃，换成新的ArtMethod，这就无法实现AOP了。AndroidMethodHook基于Sophix的原理，用dexmaker动态生成类，将原方法保存下来，从而实现了AOP。</p>
+<p>附测试代码：</p>
+<pre><code class="C++">#include &lt;jni.h&gt;
+#include &lt;string.h&gt;
+#include&lt;android/log.h&gt;
+
+#define TAG &quot;myDemo-jni&quot; // 这个是自定义的LOG的标识
+#define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,TAG,__VA_ARGS__) // 定义LOGD类型
+
+static const char* kClassMethodHookChar = &quot;com/qylk/jetpack_demo/MethodHook&quot;;
+
+static struct {
+    jmethodID m1;
+    jmethodID m2;
+    size_t methodSize;
+} methodHookClassInfo;
 
 
-</section>
-</div> <!-- end of search-noresults -->
-<div class="search-results">
-<div class="has-results">
+static long methodHook(JNIEnv* env, jclass type, jobject srcMethodObj, jobject destMethodObj) {
+    int* srcMethod = reinterpret_cast&lt;int*&gt;(env -&gt; FromReflectedMethod(srcMethodObj));
+    int* destMethod = reinterpret_cast&lt;int*&gt;(env -&gt; FromReflectedMethod(destMethodObj));
+    int* backupMethod = new int[methodHookClassInfo.methodSize];
 
-<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-<ul class="search-results-list"></ul>
+    memcpy(backupMethod, srcMethod, methodHookClassInfo.methodSize);
+    memcpy(srcMethod, destMethod, methodHookClassInfo.methodSize);
+    return reinterpret_cast&lt;long&gt;(backupMethod);
+}
 
-</div> <!-- end of has-results -->
-<div class="no-results">
+static jobject methodRestore(JNIEnv* env, jclass type, jobject srcMethod, jlong methodPtr) {
+    int* backupMethod = reinterpret_cast&lt;int*&gt;(methodPtr);
+    void* artMethodSrc = reinterpret_cast&lt;void*&gt;(env -&gt; FromReflectedMethod(srcMethod));
+    memcpy(artMethodSrc, backupMethod, methodHookClassInfo.methodSize);
+    delete []backupMethod;
+    return srcMethod;
+}
 
-<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+static JNINativeMethod gMethods[] = {
+        {
+                &quot;hook_native&quot;,
+                &quot;(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)J&quot;,
+                (void*)methodHook
+        },
+        {
+                &quot;restore_native&quot;,
+                &quot;(Ljava/lang/reflect/Method;J)Ljava/lang/reflect/Method;&quot;,
+                (void*)methodRestore
+        }
+};
 
-</div> <!-- end of no-results -->
-</div> <!-- end of search-results -->
-</div> <!-- end of book-search-results -->
+extern &quot;C&quot;
+JNIEXPORT jint JNICALL
+JNI_OnLoad(JavaVM* vm, void* reserved) {
+    JNIEnv *env = nullptr;
+    if (vm-&gt;GetEnv((void **) &amp;env, JNI_VERSION_1_4) != JNI_OK) {
+        return JNI_FALSE;
+    }
+    jclass classEvaluateUtil = env-&gt;FindClass(kClassMethodHookChar);
+    if(env -&gt; RegisterNatives(classEvaluateUtil, gMethods, sizeof(gMethods)/ sizeof(gMethods[0])) &lt; 0) {
+        return JNI_FALSE;
+    }
+    methodHookClassInfo.m1 = env -&gt; GetStaticMethodID(classEvaluateUtil, &quot;m1&quot;, &quot;()V&quot;);
+    methodHookClassInfo.m2 = env -&gt; GetStaticMethodID(classEvaluateUtil, &quot;m2&quot;, &quot;()V&quot;);
+    methodHookClassInfo.methodSize = reinterpret_cast&lt;size_t&gt;(methodHookClassInfo.m2) - reinterpret_cast&lt;size_t&gt;(methodHookClassInfo.m1);
+    LOGD(&quot;########## methodSize = %d&quot;, methodHookClassInfo.methodSize);
+    return JNI_VERSION_1_4;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../keepAlive/" class="btn btn-neutral float-right" title="应用保活">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../robust/" class="btn btn-neutral" title="Robust"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
-</div> <!-- end of page-inner -->
-</div> <!-- end of page-wrapper -->
+  <hr/>
 
-</div> <!-- end of body-inner -->
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
 
-</div> <!-- end of book-body -->
-<script src="../js/main.js"></script>
-<script src="../search/main.js"></script>
-<script src="../js/gitbook.min.js"></script>
-<script src="../js/theme.min.js"></script>
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../robust/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../keepAlive/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
 </body>
 </html>
