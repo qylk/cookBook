@@ -332,13 +332,11 @@ Theme by GitBook
 </code></pre>
 
 <p>但是并不是所有的网络请求失败了都可以进行重试的，因此RetryAndFollowUpInterceptor内部会进行检测网络请求异常和响应码的情况，根据这些情况判断是否需要重新进行网络请求。</p>
-<p>RetryAndFollowUpInterceptor的功能主要包括如下几点</p>
-<ul>
-<li>创建StreamAllocation对象； </li>
-<li>调用realChain.proceed(request, streamAllocation, null, null)进行网络请求；</li>
-<li>根据异常结果或者响应结果判断是否进行重新请求；</li>
-<li>调用下一个拦截器，对responese进行处理，返回给上一个拦截器；</li>
-</ul>
+<p>RetryAndFollowUpInterceptor的功能主要包括如下几点
+* 创建StreamAllocation对象<br />
+<em> 调用realChain.proceed(request, streamAllocation, null, null)进行网络请求<br />
+</em> 根据异常结果或者响应结果判断是否进行重新请求 <br />
+* 调用下一个拦截器，对responese进行处理，返回给上一个拦截器</p>
 <p>其中第二和第三点是在while(true)内部执行的，也就是系统通过死循环来实现重连机制。</p>
 <pre><code class="java">    while (true) {
       ...
