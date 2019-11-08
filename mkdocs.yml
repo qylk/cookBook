@@ -14,6 +14,7 @@ nav:
         - EventBus: eventbus.md
         - OkHttp: okhttp.md
         - OkHttp-Dns: okhttp_dns.md
+        - Okhttp重试机制: okhttp_retry.md
       - 系统分析:
         - StrictMode: strictMode.md
         - 触摸事件分发: touchEventDispatch.md
@@ -26,6 +27,8 @@ nav:
         - 微信气泡: code/bubble_view.md
       - 适配:
         - 系统适配: dev_compat.md
+      - 多媒体:
+        - RenderScript: renderscript.md
       - 安全:
         - 建议: android_safe.md
         - 风险点: android_danger.md
