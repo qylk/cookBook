@@ -77,3 +77,9 @@ JVM通过GC机制（内存垃圾回收）来释放回收堆和方法区中的内
 `Old GC`是指老年代GC，主要采用`标记整理算法`。
 
 `Full GC`是针对整个新生代、老生代的全局范围的GC，采用`分代收集算法`。
+
+## Android虚拟机有分代GC吗？
+Android Q开始google才为ART虚拟机添加分代收集机制。
+https://zhuanlan.zhihu.com/p/24835977
+http://www.cnxiaocheng.top/tag/Android-Q-%E6%94%B9%E8%BF%9B%E4%BA%86ART/
+https://www.jianshu.com/p/c0450ce6d3a6

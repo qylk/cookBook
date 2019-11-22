@@ -6,6 +6,8 @@
     this.retryOnConnectionFailure = retryOnConnectionFailure;
   }
 ```
+
+### 异常的重连机制
 但是并不是所有的网络请求失败了都可以进行重试的，因此RetryAndFollowUpInterceptor内部会进行检测网络请求异常和响应码的情况，根据这些情况判断是否需要重新进行网络请求。
 
 RetryAndFollowUpInterceptor的功能主要包括如下几点
@@ -104,6 +106,7 @@ private boolean isRecoverable(IOException e, boolean requestSendStarted) {
 ```
 可见通过while循环，异常下的重试机制次数是不限制的，直到产生了不可重试的异常，比如无可用路由。
 
+### followUpRequest 响应码检测
 上面的while循环后面还有处理重定向的代码
 ```java
     Request followUp = followUpRequest(response);

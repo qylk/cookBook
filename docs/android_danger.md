@@ -43,3 +43,5 @@
 
 
 其他参考：<https://blog.csdn.net/yzzst/article/details/46471277>
+
+[Android安全之应用防dex2jar原理及实现](https://ivonhoe.github.io/2017/02/09/%E7%BE%8E%E5%9B%A2%E5%A6%82%E4%BD%95%E9%98%B2dex2jar/)
