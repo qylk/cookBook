@@ -121,3 +121,5 @@ SUSPENDED           线程暂停，通常是由于GC或debug被暂停
 2. 从trace.txt文件查看调用stack
 3. 看代码
 4. 仔细查看ANR的成因（iowait?block?memoryleak?）
+
+其他参考：[ANR问题一般解决思路](https://www.jianshu.com/p/3959a601cea6)、[anr分析](https://blog.csdn.net/u011386173/article/details/89298196)

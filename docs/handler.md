@@ -1,3 +1,8 @@
+# Handler总结
+
+## MessageQueue 中底层是采用的队列？
+是单链表，不是队列，链表顺序按消息计划执行时间排列
+
 ## Handler如何实现延迟处理消息
 sendEmptyMessageDelayed(int what, long delayMillis) —>  
 sendMessageDelayed(Message msg, long delayMillis) —>  
@@ -285,3 +290,83 @@ private Handler mHandler = new Handler() {
 解决办法：
 1. 静态Handler，匿名内部类将无法引用外部activity，通过在Handler的构造方法中加入activity弱引用，以实现对activity的访问。  
 2. activity销毁时，移除Handler所发送的所有未处理消息。mHandler.removeCallbacksAndMessages(null);
+
+
+## Looper如何退出
+Looper 的退出方法是调用 quit() 或 quitSafely()，有什么区别?  
+quit() 和 quitSafely() 的本质就是让 MessageQueue 的 next() 返回 null，以此来退出Looper的for循环。
+```java
+//Looper
+    public void quit() {
+        mQueue.quit(false);
+    }
+
+    public void quitSafely() {
+        mQueue.quit(true);
+    }
+
+    void quit(boolean safe) {
+        //特殊逻辑，主线程不允许退出
+        if (!mQuitAllowed)  throw new IllegalStateException("Main thread not allowed to quit.");
+        synchronized (this) {
+            if (mQuitting) return;
+            mQuitting = true;
+            if (safe)  removeAllFutureMessagesLocked(); // 把所有延迟的消息清空
+            else       removeAllMessagesLocked();  // 直接把消息队列里面的所有消息清空
+            nativeWake(mPtr);//唤醒阻塞，Looper将退出。
+        }
+    }
+```
+```java
+//MessageQueue#next()
+    // Process the quit message now that all pending messages have been handled.
+    if (mQuitting) {
+        dispose();
+        eturn null;
+    }
+```
+```java
+//Looper#loop()
+    for (;;) {
+        Message msg = queue.next(); // might block
+        if (msg == null) {
+            // No message indicates that the message queue is quitting.
+            return;
+        }
+        //...
+```
+
+quitSafely() 会清空 MessageQueue 中的所有延迟消息(即所有 when > SystemClock.uptimeMillis() 的消息)，未处理的消息都等待处理后再终止Looper，所有禁止新的消息再放进MessageQueue。而quit() 则直接清除所有未处理消息，Looper立即退出。
+
+## Looper阻塞是否占用CPU性能
+Message的入列和出列其实是一个很典型的**生产者-消费者模型**,其中使用了`epoll管道机制`，当没有消息的时候会进行阻塞，Linux底层会`释放CPU时间片`避免死循环造成性能的浪费。虽然是不断循环取出头结点的Message进行分发处理，但是如果没有消息时它是阻塞在 `nativePollOnce` 这个native方法中的，当我们enqueue插入Message时会触发 `nativeWake` 这个方法去唤醒，从而 nativePollOnce 阻塞解除，继续遍历MessageQueue取出头结点去处理。
+```java
+    int pendingIdleHandlerCount = -1; // for循环迭代的首次为-1
+    //阻塞操作，当等待nextPollTimeoutMillis时长，或者消息队列被唤醒，都会返回
+    //nextPollTimeoutMillis 为-1，一直阻塞，在调用nativeWake（enqueue Message或Looper.quit()退出Looper）时会被唤醒解除阻塞
+    //nextPollTimeoutMillis 为0，不阻塞
+    //nextPollTimeoutMillis 为>0，阻塞到对应时间后解除，如为10_000则阻塞十秒后解除，用于处理延迟消息
+    nativePollOnce(ptr, nextPollTimeoutMillis);
+```
+
+## 一个Looper对应一个MessageQueue吗？
+Looper.loop()在一个线程中调用next()不断的取出消息，另外一个线程则通过enqueueMessage向队列中插入消息，所以在这两个方法中使用了synchronized 同步块，其中this为MessageQueue对象，不管在哪个线程，这个对象都是同一个，因为Handler中的mQueue指向的是Looper中的mQueue(mQueue是Looper创建的)，这样防止了多个线程对同一个队列的同时操作。
+
+
+## 一个线程只有一个Looper吗？
+要创建Looper，需要调用 Looper.prepare 和 Looper.loop。
+```java
+private static void prepare(boolean quitAllowed) {
+    //看当前线程是否已通过TL绑定对应的实例, 有的话抛异常, 所以prepare方法只允许调用一次
+    if (sThreadLocal.get() != null) {
+        throw new RuntimeException("Only one Looper may be created per thread");
+    }
+    //创建Looper对象，并通过TL建立与线程的绑定关系
+    sThreadLocal.set(new Looper(quitAllowed));
+}
+```
+可知Looper.prepare()在每个线程只允许执行一次，该方法给当前线程通过TL绑定一个线程所属的唯一一个实例。
+
+## IdleHandler 是什么
+IdleHandler接口表示当MessageQueue发现当前没有更多消息可以处理的时候, 则顺便干点别的事情的callback函数(即如果发现idle了，那就找点别的事干)。callback函数有个boolean的返回值, 表示是否keep. 如果返回false, 则它会在调用完毕之后从mIdleHandlers中移除。  
+IdleHandler 可以用来提升提升性能，主要用在我们希望能够在当前线程消息队列空闲时做些事情（譬如UI线程在显示完成后，如果线程空闲我们就可以提前准备其他内容）的情况下，不过最好不要做耗时操作，否则影响Looper循环性能。

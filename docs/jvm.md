@@ -78,8 +78,76 @@ JVM通过GC机制（内存垃圾回收）来释放回收堆和方法区中的内
 
 `Full GC`是针对整个新生代、老生代的全局范围的GC，采用`分代收集算法`。
 
+## Dalvik中GC的原理
+在Dalvik虚拟机中定义了四种触发GC的条件（参看Heap.h）：  
+> * GC_CONCURRENT，当Heap的使用率达到某一阈值时自动触发。
+> * GC_FOR_MALLOC，当Heap没有足够的空间用于容下新创建的对象时。
+> * GC_EXPLICIT，用户主动调用GC时。
+> * GC_BEFORE_OOM，当要发生OOM时系统尝试进行最后GC的努力。
+
+GC_CONCURRENT 和 GC_EXPLICIT 是并行的，GC过程中应用不会被暂停，只在GC开始和结束时会暂停应用，每次暂停的时间比较短，一般只有3~4ms。  
+GC_FOR_MALLOC是非并行的，GC过程中应用被暂停，耗时比较长，可能几十毫秒也可能几百毫秒。在应用向Dalvik申请内存时，Dalvik先检查当前Heap中有无足够的空余空间用来安排对象，当发现没有足够的空间的时候会先进行 GC_FOR_MALLOC 以试图释放垃圾对象来获取新的空间，如果发现空间还不够则进行Heap的增长。  
+在每次成功分配完新的空间后，Dalvik会检查当前Heap的使用情况，如果使用空间超过一定的阈值的时候，GC_CONCURRENT就会触发。
+
+## Art中GC的原理
+与Dalvik不同，ART不会log非显式（隐式）请求的GC，GC只会在被判定为很慢时输出信息。更准确地，条件是GC停顿超过5ms，或者GC耗时超过100ms。如果app不是处于一种可察觉的停顿状态，那么GC不会就被判定为很慢，而显式GC会被log出来
+
+引起GC原因:  
+* `Concurrent`  
+    并发GC，不会使App的线程暂停，该 GC 是在后台线程运行的，并不会阻止内存分配。   
+* `Alloc`  
+    当堆内存已满时，App尝试分配内存而引起的GC，这个GC会发生在正在分配内存的线程。  
+* `Explicit`  
+    App显示的请求垃圾收集，例如调用System.gc()。与Dalvik一样，最佳做法是应该信任GC并避免显示的请求GC，显示的请求GC会阻止分配线程并引起不必要的 CPU 周期。如果显式的请求GC导致其他线程被抢占，那么显式GC会导致jank。  
+    P.S.jank是指第n帧绘制过后，本该绘制第n+1帧，但因为CPU被抢占，数据没有准备好，只好再显示一次第n帧，下一次绘制时显示第n+1帧。  
+* `NativeAlloc`  
+    Native内存分配时，比如为Bitmap或者RenderScript分配对象，这会导致Native内存压力，从而触发GC。  
+* `CollectorTransition`  
+    由堆转换引起的回收，这是运行时切换GC而引起的。收集器转换包括将所有对象从空闲列表空间复制到碰撞指针空间（反之亦然）。当前，收集器转换仅在以下情况下出现：在内存较小的设备上，App将进程状态从可察觉的暂停状态变更为可察觉的非暂停状态（反之亦然）。  
+* `HomogeneousSpaceCompact`  
+    齐性空间压缩是指空闲列表到压缩的空闲列表空间，通常发生在当App已经移动到可察觉的暂停进程状态。这样做的主要原因是减少了内存使用并对堆内存进行碎片整理。  
+* `DisableMovingGc`  
+    不是真正的触发GC原因，发生并发堆压缩时，由于使用了 GetPrimitiveArrayCritical，收集会被阻塞。一般情况下，强烈建议不要使用。  
+* `HeapTrim`  
+    不是触发GC原因，但是请注意，收集会一直被阻塞，直到堆内存整理完毕。  
+
+GC_Name指的是垃圾收集器名称，有以下几种：
+
+* `Concurrent mark sweep (CMS)`  
+    CMS收集器是一种以获取最短收集暂停时间为目标收集器，采用了标记-清除算法（Mark-Sweep）实现。 它是完整的堆垃圾收集器，能释放除了Image Space之外的所有的空间。
+* `Concurrent partial mark sweep`
+    部分完整的堆垃圾收集器，能释放除了Image Space和Zygote Spaces之外的所有空间。
+* `Concurrent sticky mark sweep`
+    分代收集器，它只能释放自上次GC以来分配的对象。这个垃圾收集器比一个完整的或部分完整的垃圾收集器扫描的更频繁，因为它更快并且有更短的暂停时间。
+* `Marksweep + semispace`  
+    非并发的，复制堆过渡和homogeneous space compaction（用来整理heap碎片）使用的GC。
+
+其他信息: 
+* `Objects freed`  
+    本次GC从非Large Object Space中回收的对象的数量。
+* `Size_freed`  
+    本次GC从非Large Object Space中回收的字节数。
+* `Large objects freed`  
+    本次GC从Large Object Space中回收的对象的数量。
+* `Large object size freed`  
+    本次GC从Large Object Space中回收的字节数。
+* `Heap stats`  
+    堆的空闲内存百分比 （已用内存）/（堆的总内存）。
+* `Pause times`  
+    暂停时间，暂停时间与在GC运行时修改的对象引用的数量成比例。目前，ART的CMS收集器仅有一次暂停，它出现GC的结尾附近。移动的垃圾收集器暂停时间会很长，会在大部分垃圾回收期间持续出现。
+
+```
+Explicit concurrent mark sweep GC freed 104710(7MB) AllocSpace objects, 21(416KB) LOS objects, 33% free, 25MB/38MB, paused 1.230ms total 67.216ms
+```
+这个GC日志的含义为：引起GC原因是Explicit；垃圾收集器为CMS收集器；释放对象的数量为104710个，释放字节数为7MB；释放大对象的数量为21个，释放大对象字节数为416KB；堆的空闲内存百分比为33%，已用内存为25MB，堆的总内存为38MB；GC暂停时长为1.230ms，GC总时长为67.216ms。
+
+如果在logcat看到一堆GC信息，找到heap stats（例子中是25MB/38MB），如果持续增长从不减小，就可能存在内存泄漏。如果看到GC的原因是Alloc，那么说明heap已经要满了，快OOM了。
+
 ## Android虚拟机有分代GC吗？
 Android Q开始google才为ART虚拟机添加分代收集机制。
 https://zhuanlan.zhihu.com/p/24835977
 http://www.cnxiaocheng.top/tag/Android-Q-%E6%94%B9%E8%BF%9B%E4%BA%86ART/
 https://www.jianshu.com/p/c0450ce6d3a6
+
+
+其他GC文档：<https://cruise1008.github.io/2016/03/30/Android-GC-%E4%BB%8Edalvik%E5%88%B0ART%E7%9A%84%E6%94%B9%E8%BF%9B%E5%88%86%E6%9E%90/>
