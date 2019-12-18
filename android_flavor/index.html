@@ -86,6 +86,9 @@
     <li class="toctree-l4"><a href="#4v2">4、基于v2签名的渠道写入方式</a></li>
     
 
+    <li class="toctree-l4"><a href="#v1-v2">V1 和 V2签名</a></li>
+    
+
     </ul>
                 </li>
     </ul>
@@ -121,6 +124,14 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
                 </li>
     </ul>
                 </li>
@@ -167,6 +178,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
                 </li>
     </ul>
                 </li>
@@ -224,6 +239,10 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
+    <a class="" href="../transform.md">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
     <a class="" href="../classloader/">ClassLoader</a>
                 </li>
                 <li class="toctree-l3">
@@ -237,6 +256,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
                 </li>
     </ul>
                 </li>
@@ -257,6 +280,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
                 </li>
     </ul>
                 </li>
@@ -304,6 +331,10 @@
                 <li class="">
                     
     <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
                 </li>
                 <li class="">
                     
@@ -410,6 +441,26 @@
 <p>工具开源地址：<a href="https://github.com/Meituan-Dianping/walle">https://github.com/Meituan-Dianping/walle</a></p>
 <p><br></p>
 <p>参考：<a href="https://zhuanlan.zhihu.com/p/26674427">https://zhuanlan.zhihu.com/p/26674427</a></p>
+<hr />
+<h2 id="v1-v2">V1 和 V2签名</h2>
+<p>从Android 7.0开始, 谷歌增加新签名方案 V2 Scheme (APK Signature)<br />
+但Android 7.0以下版本, 只能用旧签名方案 V1 scheme (JAR signing)</p>
+<ul>
+<li>
+<p>V1签名<br />
+    来自JDK(jarsigner), 对zip压缩包的每个文件进行验证, 签名后还能对压缩包修改(移动/重新压缩文件)
+    对V1签名的apk/jar解压, 在META-INF存放签名文件(MANIFEST.MF, CERT.SF, CERT.RSA), 
+    其中MANIFEST.MF文件保存所有文件的SHA1指纹(除了META-INF文件)。V1签名是对压缩包中单个文件签名验证</p>
+</li>
+<li>
+<p>V2签名<br />
+    来自Google(apksigner), 对zip压缩包的整个文件验证, 签名后不能修改压缩包(包括zipalign)。V2签名是对整个APK签名验证</p>
+</li>
+</ul>
+<p>V2签名优点很明显:<br />
+<em> 签名更安全(不能修改压缩包)<br />
+</em> 签名验证时间更短(不需要解压验证),因而安装速度加快</p>
+<p>注意: apksigner工具默认同时使用V1和V2签名,以兼容Android 7.0以下版本</p>
               
             </div>
           </div>

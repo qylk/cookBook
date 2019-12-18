@@ -110,8 +110,24 @@
             
     <li class="toctree-l4"><a href="#retryandfollowupinterceptor">RetryAndFollowUpInterceptor</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_1">异常的重连机制</a></li>
+        
+            <li><a class="toctree-l5" href="#followuprequest">followUpRequest 响应码检测</a></li>
+        
+        </ul>
+    
 
     </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
                 </li>
     </ul>
                 </li>
@@ -158,6 +174,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
                 </li>
     </ul>
                 </li>
@@ -215,6 +235,10 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
+    <a class="" href="../transform.md">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
     <a class="" href="../classloader/">ClassLoader</a>
                 </li>
                 <li class="toctree-l3">
@@ -228,6 +252,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
                 </li>
     </ul>
                 </li>
@@ -248,6 +276,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
                 </li>
     </ul>
                 </li>
@@ -295,6 +327,10 @@
                 <li class="">
                     
     <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
                 </li>
                 <li class="">
                     
@@ -388,6 +424,7 @@
   }
 </code></pre>
 
+<h3 id="_1">异常的重连机制</h3>
 <p>但是并不是所有的网络请求失败了都可以进行重试的，因此RetryAndFollowUpInterceptor内部会进行检测网络请求异常和响应码的情况，根据这些情况判断是否需要重新进行网络请求。</p>
 <p>RetryAndFollowUpInterceptor的功能主要包括如下几点</p>
 <ul>
@@ -484,6 +521,7 @@ private boolean isRecoverable(IOException e, boolean requestSendStarted) {
 </code></pre>
 
 <p>可见通过while循环，异常下的重试机制次数是不限制的，直到产生了不可重试的异常，比如无可用路由。</p>
+<h3 id="followuprequest">followUpRequest 响应码检测</h3>
 <p>上面的while循环后面还有处理重定向的代码</p>
 <pre><code class="java">    Request followUp = followUpRequest(response);
 
@@ -531,7 +569,7 @@ case HTTP_SEE_OTHER:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../strictMode/" class="btn btn-neutral float-right" title="StrictMode">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../blockCanary/" class="btn btn-neutral float-right" title="BlockCanary">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../okhttp_dns/" class="btn btn-neutral" title="OkHttp-Dns"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -563,7 +601,7 @@ case HTTP_SEE_OTHER:
         <span><a href="../okhttp_dns/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../strictMode/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../blockCanary/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

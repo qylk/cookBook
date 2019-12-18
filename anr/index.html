@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Anr - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Anr";
+    var mkdocs_page_input_path = "anr.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../transform.md">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">Anr</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#anr">ANR</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_1">类型</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#_2">常见原因</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_3">日志</a></li>
+    
+
+    <li class="toctree-l4"><a href="#trace">trace文件</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_4">旧版本系统</a></li>
+        
+            <li><a class="toctree-l5" href="#_5">新版本系统</a></li>
+        
+            <li><a class="toctree-l5" href="#trace_1">trace文件解析</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#_6">线程状态</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_7">方法论</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>性能优化 &raquo;</li>
+        
+      
+        
+          <li>Android &raquo;</li>
+        
+      
+    
+    <li>Anr</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="anr">ANR</h2>
+<h3 id="_1">类型</h3>
+<p>ANR一般有三种类型：
+1. KeyDispatchTimeout(<code>5 seconds</code>) -- 主要类型<br />
+按键或触摸事件在特定时间内无响应Reason。<br />
+日志关键字： <font color=red> Input event dispatching timedout</font></p>
+<ol>
+<li>
+<p>BroadcastTimeout(<code>10 seconds</code>)<br />
+BroadcastReceiver在特定时间内无法处理完成</p>
+</li>
+<li>
+<p>ServiceTimeout(<code>20 seconds</code>) -- 小概率类型</p>
+</li>
+</ol>
+<h2 id="_2">常见原因</h2>
+<ol>
+<li>主线程耗时操作，如复杂的layout，庞大的for循环，IO等</li>
+<li>主线程被子线程同步锁block</li>
+<li>主线程被Binder对端block</li>
+<li>Binder被占满导致主线程无法和SystemServer通信</li>
+<li>得不到系统资源（CPU/RAM/IO）</li>
+</ol>
+<h2 id="_3">日志</h2>
+<pre><code>//发生ANR的时间和生成trace.txt的时间
+04-01 13:12:11.572 I/InputDispatcher( 220): Application is not responding:Window{2b263310com.android.email/com.android.email.activity.SplitScreenActivitypaused=false}.  5009.8ms since event, 5009.5ms since waitstarted
+//已经等待了5009.8ms
+04-01 13:12:11.572 I/WindowManager( 220): Input event dispatching timedout sending tocom.android.email/com.android.email.activity.SplitScreenActivity
+
+04-01 13:12:14.123 I/Process(  220): Sending signal. PID: 21404 SIG: 3
+04-01 13:12:14.123 I/dalvikvm(21404):threadid=4: reacting to signal 3 
+……
+//发生ANR的页面和进程
+04-01 13:12:15.872 E/ActivityManager(  220): ANR in com.android.email(com.android.email/.activity.SplitScreenActivity)
+//anr类型
+04-01 13:12:15.872 E/ActivityManager(  220): Reason:keyDispatchingTimedOut 
+
+//Load是1分钟,5分钟,15分钟CPU的负载
+04-01 13:12:15.872 E/ActivityManager(  220): Load: 8.68 / 8.37 / 8.53
+
+//CPU在ANR发生前的使用情况
+04-01 13:12:15.872 E/ActivityManager(  220):CPUusage from 4361ms to 699ms ago 
+
+//CPU的使用率 + 用户态的使用率 + 内核态的使用率
+04-01 13:12:15.872 E/ActivityManager(  220):   5.5%21404/com.android.email: 1.3% user + 4.1% kernel / faults: 10 minor
+//minor:高速缓存的缺页次数, major:内存的缺页次数
+04-01 13:12:15.872 E/ActivityManager(  220):   4.3%220/system_server: 2.7% user + 1.5% kernel / faults: 11 minor 2 major
+04-01 13:12:15.872 E/ActivityManager(  220):   0.9%52/spi_qsd.0: 0% user + 0.9% kernel
+04-01 13:12:15.872 E/ActivityManager(  220):   0.5%65/irq/170-cyttsp-: 0% user + 0.5% kernel
+04-01 13:12:15.872 E/ActivityManager(  220):   0.5%296/com.android.systemui: 0.5% user + 0% kernel
+//注意iowait
+04-01 13:12:15.872 E/ActivityManager(  220): 100%TOTAL: 4.8% user + 7.6% kernel + 87% iowait
+
+//ANR后CPU的使用量
+04-01 13:12:15.872 E/ActivityManager(  220):CPUusage from 3697ms to 4223ms later 
+04-01 13:12:15.872 E/ActivityManager(  220):   25%21404/com.android.email: 25% user + 0% kernel / faults: 191 minor
+04-01 13:12:15.872 E/ActivityManager(  220):    16% 21603/__eas(par.hakan: 16% user + 0% kernel
+04-01 13:12:15.872 E/ActivityManager(  220):    7.2% 21406/GC: 7.2% user + 0% kernel
+04-01 13:12:15.872 E/ActivityManager(  220):    1.8% 21409/Compiler: 1.8% user + 0% kernel
+04-01 13:12:15.872 E/ActivityManager(  220):   5.5%220/system_server: 0% user + 5.5% kernel / faults: 1 minor
+04-01 13:12:15.872 E/ActivityManager(  220):    5.5% 263/InputDispatcher: 0% user + 5.5% kernel
+04-01 13:12:15.872 E/ActivityManager(  220): 32%TOTAL: 28% user + 3.7% kernel
+</code></pre>
+
+<p>从LOG可以看出ANR的类型，CPU的使用情况。</p>
+<ul>
+<li>如果CPU使用量接近100%，说明当前设备很忙，有可能是CPU饥饿导致了ANR</li>
+<li>如果CPU使用量很少，说明主线程被BLOCK了</li>
+<li>如果IOwait很高，说明ANR有可能是主线程在进行I/O操作造成的</li>
+</ul>
+<h2 id="trace">trace文件</h2>
+<p>除了看LOG，解决ANR还得需要trace.txt文件。</p>
+<h3 id="_4">旧版本系统</h3>
+<p>ANR的log都是放在data/anr/traces.txt</p>
+<pre><code>adb shell cat /data/anr/traces.txt &gt; /.../traces.txt 可以导出日志文件
+</code></pre>
+
+<h3 id="_5">新版本系统</h3>
+<p>/data/anr/目录没有traces.txt，而是anr_XXX多个文件，且使用adb shell cat命令会报错，提示permission denied。
+需要使用</p>
+<pre><code>adb bugreport &lt;zip_file&gt;
+</code></pre>
+
+<h3 id="trace_1">trace文件解析</h3>
+<pre><code>-----pid 21404 at 2011-04-0113:12:14 -----  
+Cmdline: com.android.email
+
+DALVIK THREADS:
+(mutexes: tll=0 tsl=0 tscl=0 ghl=0 hwl=0 hwll=0)
+//main(线程名)、prio(线程优先级,默认是5)、tid(线程唯一标识ID)、NATIVE(线程状态)
+&quot;main&quot; prio=5 tid=1 NATIVE
+//线程组名称、线程挂起次数、用于调试的线程挂起次数、线程的Java对象地址、线程的Native对象地址
+  | group=&quot;main&quot; sCount=1 dsCount=0 obj=0x2aad2248 self=0xcf70
+//sysTid是线程真正意义的tid(主线程的线程号和进程号相同)
+  | sysTid=21404 nice=0 sched=0/0cgrp=[fopen-error:2] handle=1876218976
+//堆栈，分析ANR最重要的信息
+  atandroid.os.MessageQueue.nativePollOnce(Native Method)
+  atandroid.os.MessageQueue.next(MessageQueue.java:119)
+  atandroid.os.Looper.loop(Looper.java:110)
+ at android.app.ActivityThread.main(ActivityThread.java:3688)
+ at java.lang.reflect.Method.invokeNative(Native Method)
+  atjava.lang.reflect.Method.invoke(Method.java:507)
+  atcom.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:866)
+ at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:624)
+ at dalvik.system.NativeStart.main(Native Method)
+</code></pre>
+
+<h2 id="_6">线程状态</h2>
+<pre><code>ZOMBIE              线程死亡，终止运行  
+RUNNING/RUNNABLE    线程可运行或正在运行  
+TIMED_WAIT          执行了带有超时参数的wait、sleep或join函数  
+MONITOR             线程阻塞，等待获取对象锁  
+WAIT                执行了无超时参数的wait函数  
+INITIALIZING        新建，正在初始化，为其分配资源  
+STARTING            新建，正在启动  
+NATIVE              正在执行JNI本地函数  
+VMWAIT              正在等待VM资源  
+SUSPENDED           线程暂停，通常是由于GC或debug被暂停  
+</code></pre>
+
+<h2 id="_7">方法论</h2>
+<ol>
+<li>首先分析log</li>
+<li>从trace.txt文件查看调用stack</li>
+<li>看代码</li>
+<li>仔细查看ANR的成因（iowait?block?memoryleak?）</li>
+</ol>
+<p>其他参考：<a href="https://www.jianshu.com/p/3959a601cea6">ANR问题一般解决思路</a>、<a href="https://blog.csdn.net/u011386173/article/details/89298196">anr分析</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sni/" class="btn btn-neutral float-right" title="SNI">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../bitmap/" class="btn btn-neutral" title="Bitmap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../bitmap/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sni/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
