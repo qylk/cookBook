@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>ASM - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ASM";
+    var mkdocs_page_input_path = "asm.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../transform/">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">ASM</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#asm">ASM</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_1">概念</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_2">原理</a></li>
+    
+
+    <li class="toctree-l4"><a href="#_3">实践</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_4">新增方法</a></li>
+        
+            <li><a class="toctree-l5" href="#_5">新增成员</a></li>
+        
+            <li><a class="toctree-l5" href="#_6">删除方法</a></li>
+        
+            <li><a class="toctree-l5" href="#_7">删除方法体</a></li>
+        
+            <li><a class="toctree-l5" href="#_8">修改方法</a></li>
+        
+            <li><a class="toctree-l5" href="#_9">用途</a></li>
+        
+            <li><a class="toctree-l5" href="#qa">QA</a></li>
+        
+            <li><a class="toctree-l5" href="#demo">DEMO</a></li>
+        
+            <li><a class="toctree-l5" href="#asm_1">ASM常用指令</a></li>
+        
+            <li><a class="toctree-l5" href="#asm_2">ASM插桩</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>热修复 &raquo;</li>
+        
+      
+        
+          <li>Android &raquo;</li>
+        
+      
+    
+    <li>ASM</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="asm">ASM</h1>
+<p>参考：<a href="https://www.ibm.com/developerworks/cn/java/j-lo-asm30/">https://www.ibm.com/developerworks/cn/java/j-lo-asm30/</a>、<a href="https://kahnsen.github.io/kahnblog/2017/11/29/ASM%E5%85%A8%E8%A7%A3%E6%9E%90/">https://kahnsen.github.io/kahnblog/2017/11/29/ASM%E5%85%A8%E8%A7%A3%E6%9E%90/</a>、<a href="https://asm.ow2.io/asm4-guide.pdf">ASM英文手册</a></p>
+<h1 id="_1">概念</h1>
+<p>ASM 是一个 Java 字节码操控框架。它能被用来动态生成类或者增强既有类的功能。ASM 可以直接产生二进制 class 文件，也可以在类被加载入 Java 虚拟机之前动态改变类行为。</p>
+<h1 id="_2">原理</h1>
+<p>ASM 在读取 “.class” 文件内容时也会按照递class结构顺序进行调用。每拜访一个结构中的成员都会使用相应的接口，具体关系如下：
+树形关系|使用的接口
+---|---
+Class|ClassVisitor
+Field|FieldVisitor
+Method|MethodVisitor
+Annotation|AnnotationVisitor</p>
+<p>ClassVisitor，在 ASM3.0 中是一个接口，到了 ASM4.0 与 ClassAdapter 抽象类合并。主要负责 visit 类成员信息。其中包括（标记在类上的注解，类的构造方法，类的字段，类的方法，静态代码块）, 它的完整接口如下：</p>
+<p><img alt="asm" src="../assets/68.png" /></p>
+<ol>
+<li>
+<p>visit(int version, int access, String name, String signature, String superName, String[] interfaces)<br />
+该方法是当扫描类时<code>第一个</code>调用的方法，主要用于类声明使用。</p>
+<ul>
+<li>version：JDK版本（V1_6、V1_7等）</li>
+<li>access：类的修饰符（ACC_PUBLIC、ACC_FINAL、ACC_INTERFACE等）</li>
+<li>name：完整类名，如 org/more/test/asm/simple/TestBean</li>
+<li>signature：泛型信息</li>
+<li>superName：继承的父类类名，所有类都继承自 java.lang.Object </li>
+<li>interfaces：类实现的接口，如[java/io/Serializable, java/util/List]</li>
+</ul>
+</li>
+<li>
+<p>visitAnnotation(String desc, boolean visible)
+该方法是当扫描器扫描到类注解声明时进行调用。  </p>
+<ul>
+<li>desc：注解的类型，如"Lnet/hasor/core/gift/bean/Bean"</li>
+<li>visible：该注解是否在 JVM 中可见</li>
+</ul>
+</li>
+<li>
+<p>visitField(int access, String name, String desc, String signature, Object value)
+该方法是当扫描器扫描到类中字段时进行调用。 </p>
+<ul>
+<li>access：字段的修饰符</li>
+<li>name：字段名称</li>
+<li>desc：字段类型，如"Ljava/lang/String;"</li>
+<li>signature：字段泛型信息</li>
+<li>value：字段默认值</li>
+</ul>
+</li>
+<li>
+<p>visitMethod(int access, String name, String desc, String signature, String[] exceptions)<br />
+该方法是当扫描器扫描到类的方法时进行调用。  </p>
+<ul>
+<li>access：方法修饰符</li>
+<li>name：方法名称</li>
+<li>desc：方法签名，如"(Ljava/lang/String;)V"</li>
+<li>signature：泛型信息</li>
+<li>exceptions：可能会抛出的异常，如["java/lang/Exception"]</li>
+</ul>
+</li>
+<li>
+<p>visitCode<br />
+该方法是当扫描器在开始扫描方法体时调用。</p>
+</li>
+<li>
+<p>visitInsn<br />
+方法体内每执行一个指令都会调用</p>
+</li>
+<li>
+<p>visitLdcInsn<br />
+可以在JVM指令表中查到，Ldc表示将int, float或String型常量值从常量池中推送至栈顶</p>
+</li>
+<li>
+<p>visitEnd()<br />
+该方法是当扫描器完成扫描时才会调用，如果想在类中追加某些方法。可以在该方法中实现。</p>
+</li>
+<li>
+<p>visitMaxs<br />
+该方法用于指定本方法执行帧的本地变量区和操作栈大小。当然也可以不用操心最大操作栈大小，可以依靠‘COMPUTE_MAXS’参数，使用该参数后会计算出最佳的操作栈大小，而不是最坏情况的值。</p>
+</li>
+</ol>
+<p>方法签名：</p>
+<pre><code>&quot;I&quot;        = int
+&quot;B&quot;        = byte
+&quot;C&quot;        = char
+&quot;D&quot;        = double
+&quot;F&quot;        = float
+&quot;J&quot;        = long
+&quot;S&quot;        = short
+&quot;Z&quot;        = boolean
+&quot;V&quot;        = void
+&quot;[...;&quot;    = 数组
+&quot;[[...;&quot;   = 二维数组
+&quot;L....;&quot;   = 引用类型
+</code></pre>
+
+<p>Android Studio可以安装一款插件<a href="https://plugins.jetbrains.com/plugin/5918-asm-bytecode-outline/versions">ASM Bytecode Outline</a>，可以把java代码翻译成ASM指令。</p>
+<h1 id="_3">实践</h1>
+<h2 id="_4">新增方法</h2>
+<p>可以在ClassVisitor的visit或者 visitEnd 回调处增加ASM指令。</p>
+<h2 id="_5">新增成员</h2>
+<p>可在visit回调中增加相关指令。</p>
+<pre><code>    @Override
+    public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
+        super.visit(version, access, name, signature, superName, interfaces);
+
+        FieldVisitor fv = super.visitField(Opcodes.ACC_PRIVATE, &quot;addField&quot;, &quot;Ljava/lang/String;&quot;, null, null);
+        if (fv != null) {
+            fv.visitEnd();
+        }
+    }
+</code></pre>
+
+<h2 id="_6">删除方法</h2>
+<pre><code class="java">    @Override
+    public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+        if (name.equals(&quot;removedMethod&quot;)) {
+            return null;
+        }
+        return super.visitMethod(access, name, desc, signature, exceptions);
+    }
+</code></pre>
+
+<h2 id="_7">删除方法体</h2>
+<pre><code class="java">class EmptyMethodVisitor extends MethodVisitor {
+
+        public EmptyMethodVisitor(int api, MethodVisitor mv) {
+            super(api, mv);
+        }
+
+        @Override
+        public void visitCode() {
+            super.visitCode();
+            visitInsn(Opcodes.RETURN);
+        }
+
+        @Override
+        public void visitMaxs(int maxStack, int maxLocals) {
+            super.visitMaxs(0, 0);
+        }
+}
+</code></pre>
+
+<h2 id="_8">修改方法</h2>
+<pre><code class="java">class ModifierMethodWriter extends MethodVisitor{
+
+    public ModifierMethodWriter(int api, MethodVisitor mv) {
+        super(api, mv);
+    }
+
+    @Override
+    public void visitCode() {
+        super.visitCode();
+        //InjectCodeHere
+    }
+}
+</code></pre>
+
+<h2 id="_9">用途</h2>
+<p>打Log、性能监控、安全性检查、埋点打桩等。</p>
+<h2 id="qa">QA</h2>
+<ol>
+<li>
+<p>How do I make ASM calculate visitMaxs for me?
+When calling the constructor for ClassWriter use the COMPUTE_MAXS flag. You must also still include the visitMaxs method call, but the values you give are ignored, so visitMaxs(0,0) is fine.</p>
+</li>
+<li>
+<p>How do I replace a method/field? I end up with duplicated members!
+You must either return the replacement method/field when you visit the original one using a ClassVisitor, or you must first remove the original method/field in the ClassVisitor (see "1. How do I remove a method/field?"), and then add the new method/field by calling a visit method on the ClassWriter.</p>
+</li>
+</ol>
+<h2 id="demo">DEMO</h2>
+<p><a href="https://github.com/qylk/AsmPluginTest">https://github.com/qylk/AsmPluginTest</a></p>
+<p>ASM  对方法的处理
+Java 代码是在线程内部执行的。每个线程都有自己的执行栈，栈由帧组成。每个帧表示一个方法调用:每次调用一个方法时，会将一个新帧压入当前线程的执行栈。当方法返回时，或者是正常返回，或者是因为异常返回，会将这个帧从执行栈中弹出，执行过程在发出调用的方法中继续进行(这个方法的帧现在位于栈的顶端)。</p>
+<p>每一帧包括两部分:一个局部变量部分和一个操作数栈部分。局部变量部分包含可根据索引以随机顺序访问的变量。由名字可以看出，操作数栈部分是一个栈，其中包含了供字节代码指令用作操作数的值。这意味着这个栈中的值只能按照“后入先出”顺序访问</p>
+<h2 id="asm_1">ASM常用指令</h2>
+<ol>
+<li>
+<p>ALOAD<br />
+从局部变量表的相应位置装载一个对象引用到操作数栈的栈顶。<br />
+aload_0把this装载到了操作数栈中，aload_1把第一个局部参数装载到了操作数栈中，aload_0是一组格式为aload_的操作码中的一个，这一组操作码把对象的引用装载到操作数栈中，标志了待处理的局部变量表中的位置，但取值仅可为0、1、2、3</p>
+</li>
+<li>
+<p>ILOAD,LLOAD,FLOAD,DLOAD
+和ALOAD作用类似，这里的I代表int型，L代表long型，F代表float型以及D代表double型，在局部变量表中的索引位置大于3的变量的装载可以使用ILOAD、LLOAD、FLOAD,、DLOAD和ALOAD，这些操作码都需要一个操作数的参数，用于确认需要装载的局部变量的位置。</p>
+</li>
+<li>
+<p>ICONST_、BIPUSH、SIPUSH、IDC
+整形常量值入栈指令
+当 int 取值 -1~5 采用 ICONST 指令，取值 -128~127 采用 BIPUSH 指令，取值 -32768~32767 采用 SIPUSH 指令，取值 -2147483648~2147483647 采用 LDC 指令。</p>
+</li>
+<li>
+<p>ASTORE_、ISTORE_、LSTORE_、FSTORE_、DSTORE_
+将一个数值从操作数栈取出，存储到局部变量表的指令，参考XLOAD</p>
+</li>
+<li>
+<p>NEW
+创建对象实例的指令</p>
+</li>
+<li>
+<p>NEWARRAY
+创建对象数组的指定</p>
+</li>
+<li>
+<p>DUP
+复制操作数栈的栈顶数据并压栈</p>
+</li>
+<li>
+<p>GETFILED、PUTFIELD、GETSTATIC,PUTSTATIC
+访问字段指令</p>
+</li>
+<li>
+<p>INVOKESPECIAL、INVOKEVIRTUAL、INVOKESTATIC、INVOKEINTERFACE
+调用方法
+INVOKESPECIAL只能调用三类方法：<init>方法；private方法；super.method()。
+INVOKEVIRTUAL是调用对象的实例方法
+INVOKESTATIC是调用静态方法
+INVOKEINTERFACE是调用接口方法
+操作数栈中的操作数将出栈(包括this,参数)</p>
+</li>
+<li>
+<p>AASTORE
+栈顶的引用型数值（value）、数组下标（index）、数组引用（arrayref）出栈，将数值存入对应的数组位置中，注意：操作数栈 出栈了3个操作数</p>
+</li>
+<li>
+<p>return、ireturn、lreturn、freturn、dreturn、areturn
+返回值为void的指令</p>
+</li>
+<li>
+<p>IFEQ
+当栈顶int型数值等于0时跳转</p>
+</li>
+<li>
+<p>CHECKCAST
+强制类型转换</p>
+</li>
+</ol>
+<p>参考：<a href="https://segmentfault.com/a/1190000009956534">https://segmentfault.com/a/1190000009956534</a></p>
+<p>、、、、、、https://km.sankuai.com/page/25692230</p>
+<h2 id="asm_2">ASM插桩</h2>
+<p>参考Robust</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../keepAlive/" class="btn btn-neutral float-right" title="应用保活">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../hotFix/" class="btn btn-neutral" title="热修复方案"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../hotFix/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../keepAlive/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

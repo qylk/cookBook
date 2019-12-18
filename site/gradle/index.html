@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Gradle - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gradle";
+    var mkdocs_page_input_path = "gradle.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../transform/">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Gradle</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="gradle">Gradle</h1>
+<h2 id="_1">介绍</h2>
+<p>Gradle 的核心在于基于 Groovy 的域描述语言(DSL)</p>
+<h3 id="groovy">Groovy</h3>
+<p>Groovy是一种动态语言。它和Java一样，也运行于Java虚拟机中。Groovy对自己的定义就是：Groovy是在 java平台上的、 具有像Python， Ruby 和 Smalltalk 语言特性的灵活动态语言， Groovy保证了这些特性像 Java语法一样被 Java开发者使用。除了语言和Java相通外，Groovy有时候又像一种脚本语言。当执行Groovy脚本时，Groovy会先将其编译成Java类字节码，然后通过Jvm来执行这个Java类。</p>
+<h3 id="groovy_1">基础的Groovy知识</h3>
+<ol>
+<li>注释<br />
+Groovy注释标记和Java一样，支持//或者/**/</li>
+<li>无分号<br />
+Groovy语句可以不用分号结尾</li>
+<li>定义变量<br />
+Groovy中支持动态类型，即定义变量的时候可以不指定其类型。Groovy中，变量定义可以使用关键字def。注意，虽然def不是必须的，但是为了代码清晰，建议还是使用def关键字</li>
+<li>函数参数
+函数的参数的类型可以不指定  </li>
+</ol>
+<pre><code class="groovy">//无需指定参数类型
+String testFunction(arg1,arg2){
+  ...
+}
+</code></pre>
+
+<ol>
+<li>函数返回值
+返回值可以是无类型的，函数最后一行代码的执行结果就是本函数的返回值，可以不加<code>return</code>关键字</li>
+</ol>
+<pre><code class="groovy">//无类型的函数定义，必须使用def关键字
+def  nonReturnTypeFunc(){
+    last_line
+}
+//如果指定了函数返回类型，则可不必加def关键字来定义函数
+String  getString(){
+   return 'I am a string'
+}
+</code></pre>
+
+<ol>
+<li>字符串<br />
+<code>单引号</code>中的内容严格对应Java中的String，不对$符号进行转义<br />
+<code>双引号</code>的内容则和脚本语言的处理有点像，如果字符中有<code>$</code>号的话，则它会<code>$</code>表达式先求值</li>
+</ol>
+<pre><code class="groovy">def x = 1
+def doubleQuoteWithDollar = &quot;I am $x dolloar&quot;
+</code></pre>
+
+<p><code>三个引号</code>中的字符串支持随意换行 
+7. 函数调用<br />
+函数调用的时候还可以不加括号</p>
+<pre><code class="groovy">println(&quot;test&quot;)
+println &quot;test&quot;
+</code></pre>
+
+<ol>
+<li>数据类型
+基础数据类型，对应Java中的数据类型<br />
+容器类：List：链表，Map：键-值表，Range：范围</li>
+</ol>
+<pre><code class="groovy">def aList = [5,'string',true]
+assert aList[1] == 'string'
+
+def aMap = ['key1':'value1','key2':true] 
+//Map中元素的存取更加方便，它支持多种方法：
+println aMap.key1    //&lt;==这种表达方法好像key就是aMap的一个成员变量一样
+println aMap['key1'] //&lt;==这种表达方法更传统一点
+aMap.key3 = &quot;i am map&quot; // &lt;==为map添加新元素
+
+def aRange = 1..5//[1,5]
+def aRangeWithoutEnd = 1..&lt;5//[1,5)
+println aRange.from
+println aRange.to
+</code></pre>
+
+<ol>
+<li>闭包
+闭包，英文叫Closure，是Groovy中非常重要的一个数据类型  </li>
+</ol>
+<pre><code class="groovy">def aClosure = { 
+    String param1, int param2 -&gt; 
+        println &quot;this is code&quot;
+}
+</code></pre>
+
+<p>简而言之，Closure的定义格式是：</p>
+<pre><code>def xxx = {参数 -&gt; code}  //或者  
+def xxx = {无参数，纯code}  这种case不需要-&gt;符号
+</code></pre>
+
+<p>闭包的执行有2种：</p>
+<pre><code class="groovy">aClosure.call(&quot;this is string&quot;, 100) //或者  
+aClosure(&quot;this is string&quot;, 100)
+</code></pre>
+
+<p>如果闭包没定义参数的话，则隐含有一个参数，这个参数名字叫it，和this的作用类似，it代表闭包的参数。</p>
+<pre><code class="groovy">def greeting = { &quot;Hello, $it!&quot; }
+def greeting = { it -&gt; &quot;Hello, $it!&quot; }
+assert greeting('Patrick') == 'Hello, Patrick!'
+</code></pre>
+
+<p>闭包在Groovy中大量使用，比如很多类都定义了一些函数，这些函数最后一个参数都是一个闭包。比如：</p>
+<pre><code class="groovy">public static &lt;T&gt; List&lt;T&gt; each(List&lt;T&gt; self, Closure closure)
+</code></pre>
+
+<p>Groovy中，当函数的最后一个参数是闭包的话，可以省略圆括号。</p>
+<pre><code class="groovy">def iamList = [1,2,3,4,5]
+iamList.each {//省略圆括号
+      println it
+}
+
+def testClosure(int a1, Closure closure){
+      closure()
+}
+testClosure 4, {
+   println &quot;i am in closure&quot;
+}
+</code></pre>
+
+<h2 id="_2">基本组件</h2>
+<p>project 和 task 是 Gradle 中最重要的两个概念。
+Gradle中，每一个待编译的工程都叫一个Project，任何一个 Gradle 构建都是由一个或多个 project 组成，每个 project 包括许多可构建组成部分。而每一个Project在构建的时候都包含一系列的Task，每个 task 都代表了构建执行过程中的一个原子性操作。如编译，打包，生成 javadoc，发布到某个仓库等操作。</p>
+<h3 id="task">Task</h3>
+<ol>
+<li>定义task</li>
+</ol>
+<pre><code class="gradle">task hello {
+    doLast {
+        println 'Hello world!'
+    }
+}
+task hello &lt;&lt; {
+    println 'Hello world!'
+}
+</code></pre>
+
+<ol>
+<li>任务依赖
+在两个任务之间指明依赖关系</li>
+</ol>
+<pre><code class="gradle">task hello &lt;&lt; {
+    println 'Hello world!'
+}
+task intro(dependsOn: hello) &lt;&lt; {
+    println &quot;I'm Gradle&quot;
+}
+</code></pre>
+
+<p>对于如下的任务依赖图：
+<img alt="task" src="../assets/80.png" /></p>
+<pre><code class="gradle">task compile &lt;&lt; {
+    println 'compiling source'
+}
+task compileTest(dependsOn: compile) &lt;&lt; {
+    println 'compiling unit tests'
+}
+task test(dependsOn: [compile, compileTest]) &lt;&lt; {
+    println 'running unit tests'
+}
+task dist(dependsOn: [compile, test]) &lt;&lt; {
+    println 'building the distribution'
+}
+</code></pre>
+
+<p>对于未定义的依赖，可以采取延迟依赖</p>
+<pre><code class="gradle">task taskX(dependsOn: 'taskY') &lt;&lt; {
+    println 'taskX'
+}
+task taskY &lt;&lt; {
+    println 'taskY'
+}
+</code></pre>
+
+<ol>
+<li>增加依赖关系
+通过 API 进行任务之间的依赖设置</li>
+</ol>
+<pre><code class="gradle">task0.dependsOn task2, task3
+</code></pre>
+
+<p>除了dependsOn，还可以使用mustRunAfter来做任务排序(任务排序并不意味着任务执行)</p>
+<pre><code>task taskX &lt;&lt; {
+    println 'taskX'
+}
+task taskY &lt;&lt; {
+    println 'taskY'
+}
+taskY.mustRunAfter taskX  
+</code></pre>
+
+<ol>
+<li>动态创建task</li>
+</ol>
+<pre><code class="gradle">4.times { counter -&gt;
+    task &quot;task$counter&quot; &lt;&lt; {
+        println &quot;I'm task number $counter&quot;
+    }
+}
+</code></pre>
+
+<ol>
+<li>增加任务行为</li>
+</ol>
+<pre><code class="gradle">task hello &lt;&lt; {
+    println 'Hello Earth'
+}
+hello.doFirst {
+    println 'Hello Venus'
+}
+hello.doLast {
+    println 'Hello Mars'
+}
+</code></pre>
+
+<p>&lt;&lt; 操作符 是 doLast 的简写方式，doFirst和doLast可以多次调用，他们分别被添加在任务的TaskAction列表的开头和结尾。
+<img alt="task" src="../assets/71.png" /></p>
+<ol>
+<li>短标记法
+以属性的方式访问任务  </li>
+</ol>
+<pre><code class="gradle">task hello &lt;&lt; {
+    println 'Hello world!'
+}
+hello.doLast {
+    println &quot;Greetings from the $hello.name task.&quot;
+}
+</code></pre>
+
+<ol>
+<li>增加自定义属性
+你可以用 ext.xxx 的方式为一个任务添加额外的属性。这样便增加了一个自定义属性。</li>
+</ol>
+<pre><code class="groovy">task myTask {
+    ext.myProperty = &quot;myValue&quot;
+}
+
+task printTaskProperties &lt;&lt; {
+    println myTask.myProperty
+}
+</code></pre>
+
+<ol>
+<li>替换任务</li>
+</ol>
+<pre><code class="groovy">task copy(type: Copy)
+task copy(overwrite: true) &lt;&lt; {
+    println('I am the new one.')
+}  
+</code></pre>
+
+<ol>
+<li>跳过任务
+你可以使用 onlyIf()方法将断言附加到一项任务中。如果断言结果为 true，才会执行任务的操作。你可以用一个闭包来实现断言。闭包会作为一个参数传给任务，并且任务应该执行时返回 true，或任务应该跳过时返回 false。断言只在任务要执行前才计算。</li>
+</ol>
+<pre><code class="groovy">task hello &lt;&lt; {
+    println 'hello world'
+}
+hello.onlyIf { !project.hasProperty('skipHello') }  
+</code></pre>
+
+<ol>
+<li>启用和禁用任务
+每一项任务有一个默认值为 true 的 enabled 标记。将它设置为 false，可以不让这个任务的任何操作执行。</li>
+</ol>
+<pre><code class="groovy">task disableMe &lt;&lt; {
+    println 'This should not be printed if the task is disabled.'
+}
+disableMe.enabled = false 
+</code></pre>
+
+<ol>
+<li>声明一个任务的输入和输出
+若要使用 Gradle 的最新状态（up-to-date）检查，您需要声明这个任务的输入和输出。每个任务都有一个 inputs 和 outputs 的属性，用来声明任务的输入和输出。</li>
+</ol>
+<pre><code class="groovy">task transform {
+    ext.srcFile = file('mountains.xml')
+    ext.destDir = new File(buildDir, 'generated')
+    inputs.file srcFile
+    outputs.dir destDir
+    doLast {
+        println &quot;Transforming source file.&quot;
+        destDir.mkdirs()
+        def mountains = new XmlParser().parse(srcFile)
+        mountains.mountain.each { mountain -&gt;
+            def name = mountain.name[0].text()
+            def height = mountain.height[0].text()
+            def destFile = new File(destDir, &quot;${name}.txt&quot;)
+            destFile.text = &quot;$name -&gt; ${height}\n&quot;
+        }
+    }
+}
+</code></pre>
+
+<p>一个没有定义输出的任务将永远不会被当作是最新的。对于任务的输出并不是文件的场景，或者是更复杂的场景， TaskOutputs.upToDateWhen() 方法允许您以编程方式计算任务的输出是否应该被判断为最新状态。</p>
+<ol>
+<li>Task创建时可以指定Type，其实就是指task对象从哪个基类Type派生</li>
+</ol>
+<pre><code class="groovy">task copyTask(type:Copy){
+    from xxx
+    to yyy
+}
+</code></pre>
+
+<h3 id="gradle_1">Gradle插件</h3>
+<p>一个Project到底包含多少个Task，其实是由编译脚本指定的插件决定。<br />
+Gradle是一个框架，作为框架，它负责定义流程和规则。而具体的编译工作则是通过插件的方式来完成的。比如编译Java有Java插件，编译Groovy有Groovy插件，编译Android APP有Android APP插件，编译Android Library有Android Library插件。<br />
+大部分 Java 项目基本流程都是相似的：编译源文件，进行单元测试，创建 jar 包。使用 Gradle 做这些工作不必为每个工程都编写代码。Gradle 已经提供了完美的插件来解决这些问题。插件就是 Gradle 的扩展，简而言之就是为你添加一些非常有用的默认配置。Gradle 自带了很多插件，并且你也可以很容易的编写和分享自己的插件。Java plugin 作为其中之一，为你提供了诸如编译，测试，打包等一些常用功能。</p>
+<h3 id="java">java插件</h3>
+<p>应用插件使用Project#apply方法</p>
+<pre><code class="groovy">void apply(Map&lt;String, ?&gt; var1)
+</code></pre>
+
+<p>可以使用插件id或者插件类来加载插件，其中id是插件的一个字符串名称。</p>
+<pre><code class="gradle">apply([plugin: 'java'])
+apply plugin: 'java'//简写
+apply plugin: JavaPlugin//使用Class
+</code></pre>
+
+<p>所有插件类都是继承自Plugin接口开发的，如JavaPlugin</p>
+<pre><code class="groovy">class JavaPlugin implements Plugin
+</code></pre>
+
+<p>java项目标准目录结构如下:</p>
+<pre><code>project  
+    +build  
+    +src/main/java  
+    +src/main/resources  
+    +src/test/java  
+    +src/test/resources  
+</code></pre>
+
+<p>Gradle 默认会从 <code>src/main/java</code> 搜寻打包源码，在 <code>src/test/java</code> 下搜寻测试源码。并且 <code>src/main/resources</code> 下的所有文件按都会被打包，所有 <code>src/test/resources</code> 下的文件 都会被添加到类路径用以执行测试。所有文件都输出到 <code>build</code>下，打包的文件输出到 <code>build/libs</code> 下。</p>
+<p>Java插件为项目提供了许多Task，如assemble、check、test、build等。</p>
+<p>外部依赖<br />
+一个 Java 项目拥有许多外部依赖。你需要告诉 Gradle 如何找到并引用这些外部文件。在 Gradle 中通常 Jar 包都存在于仓库中。仓库可以用来搜寻依赖或发布项目产物。<br />
+下面是一个采用 Maven 仓库的例子。</p>
+<pre><code class="gradle">repositories {
+    mavenCentral()
+}
+</code></pre>
+
+<p>添加依赖：  </p>
+<pre><code>dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+</code></pre>
+
+<p>Java 插件为你的项目添加了众多默认配置。这些默认值通常对于一个普通项目来说已经足够了。但如果你觉得不适用修改起来也很简单。看下面的例子，我们为 Java 项目指定了版本号以及所用的 JDK 版本，并且添加一些属性到 mainfest 中。</p>
+<pre><code class="gradle">sourceCompatibility = 1.5
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+</code></pre>
+
+<h3 id="project">Project</h3>
+<h3 id="_3">多项目构建</h3>
+<ol>
+<li>settings.gradle
+定义一个多项目构建工程需要在根目录创建一个setting 配置文件来指明构建包含哪些项目。并且这个文件必需叫 settings.gradle 本例的配置文件如下:</li>
+</ol>
+<pre><code class="gradle">include &quot;shared&quot;, &quot;api&quot;, &quot;services:webservice&quot;, &quot;services:shared&quot;
+</code></pre>
+
+<p>settings中的属性和方法调用都是委托给Settings对象的。</p>
+<pre><code class="groovy">include ':app', ':buildSrc'
+gradle.settingsEvaluated {
+    println &quot;settings.gradle初始化执行结束&quot;
+    println findProject(&quot;:app&quot;).projectDir
+}
+</code></pre>
+
+<ol>
+<li>公共配置build.gradle
+对多项目构建而言，总有一些共同的配置。我们会在根项目上采用配置注入的方式定义一些公共配置。根项目就像一个容器，子项目会迭代访问它的配置并注入到自己的配置中。这样我们就可以简单的为所有子工程定义主配置单了。</li>
+</ol>
+<pre><code>subprojects {
+    //所有子项目共享默认配置
+    apply plugin: 'java'
+    apply plugin: 'eclipse-wtp'
+    repositories {
+       mavenCentral()
+    }
+    dependencies {
+        testCompile 'junit:junit:4.11'
+    }
+    version = '1.0'
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}
+</code></pre>
+
+<ol>
+<li>工程依赖
+同一个构建中可以建立工程依赖，一个工程的 jar 包可以提供给另外一个工程使用。例如我们可以让 api 工程以依赖于 shared 工程的 jar 包。这样 Gradle 在构建 api 之前总是会先构建 shared 工程</li>
+</ol>
+<pre><code class="gradle">dependencies {
+    compile project(':shared')
+}
+</code></pre>
+
+<h3 id="project-api">Project API</h3>
+<p>在构建的每一个项目中，Gradle 创建了一个 Project 类型的实例，并在构建脚本中关联此 Project 对象。当构建脚本执行时，它会配置此 Project 对象。<br />
+* 在构建脚本中，你所调用的任何一个方法，如果在构建脚本中未定义，它将被委托给 Project 对象。
+* 在构建脚本中，你所访问的任何一个属性，如果在构建脚本里未定义，它也会被委托给 Project 对象。</p>
+<pre><code class="groovy">println name//委托给project访问name
+println project.name  
+</code></pre>
+
+<p>标准 project 属性有以下几个</p>
+<pre><code>project
+name
+path
+description
+projectDir
+buildDir
+group
+version
+</code></pre>
+
+<p>额外属性：<br />
+Gradle 的域模型中，所有增强的对象都可以容纳用户定义的额外的属性。这包括但并不限于项目（project）、任务（task）和源码集（source set）。额外的属性可以通过所属对象的 ext 属性进行添加，读取和设置。或者，可以使用 ext 块同时添加多个属性。</p>
+<pre><code class="gradle">ext {
+    springVersion = &quot;3.1.0.RELEASE&quot;
+    emailNotification = &quot;build@master.org&quot;
+}
+sourceSets.all { ext.purpose = null }
+sourceSets {
+    main {
+        purpose = &quot;production&quot;
+    }
+    plugin {
+        purpose = &quot;production&quot;
+    }
+}
+</code></pre>
+
+<p>通过 tasks 集合访问任务，定位任务：</p>
+<pre><code class="groovy">project(':projectA') {
+    task hello
+}
+task hello
+println tasks.getByPath('hello').path
+println tasks.getByPath(':hello').path
+println tasks.getByPath('projectA:hello').path
+println tasks.getByPath(':projectA:hello').path 
+</code></pre>
+
+<p>配置任务:</p>
+<pre><code class="groovy">//创建一个复制任务
+task myCopy(type: Copy)  
+</code></pre>
+
+<p>上面的代码创建了一个什么都没做的复制任务。可以使用它的 API 来配置这个任务。</p>
+<pre><code class="groovy">Copy myCopy = task(myCopy, type: Copy)
+myCopy.from 'resources'
+myCopy.into 'target'
+myCopy.include('**/*.txt', '**/*.xml', '**/*.properties') 
+
+task copy(type: Copy) {
+   from 'resources'
+   into 'target'
+   include('**/*.txt', '**/*.xml', '**/*.properties')
+} 
+</code></pre>
+
+<h2 id="gradle_2">gradle命令</h2>
+<ul>
+<li>gradle projects 查看所有Project</li>
+<li>gradle <project-path>:tasks 查看任务信息</li>
+<li>gradle properites 用来查看所有属性信息</li>
+<li>用选项 -x 来排除执行某些任务：gradle dist -x test</li>
+</ul>
+<h2 id="gradle_3">Gradle工作流程</h2>
+<p>Gradle工作包含三个阶段：
+<img alt="gradle" src="../assets/69.png" /></p>
+<ul>
+<li>首先是初始化阶段。对于多模块build而言，就是执行settings.gradle。  </li>
+<li>下一个阶段是Configration阶段，Configration阶段的目标是解析每个子project中的build.gradle。</li>
+<li>Configuration阶段完了后，整个build的project以及内部的Task关系就确定了。Configuration会建立一个有向图来描述Task之间的依赖关系。</li>
+<li>最后一个阶段就是执行任务了。<br />
+注意每个阶段之后我们都可以有hook去执行自定义函数。</li>
+</ul>
+<p>Gradle基于Groovy，Groovy又基于Java。所以，Gradle执行的时候和Groovy一样，会把脚本转换成Java对象。Gradle主要有三种对象，这三种对象和三种不同的脚本文件对应，在gradle执行的时候，会将脚本转换成对应的对象：<br />
+<em> Gradle对象：当我们执行gradle xxx或者什么的时候，gradle会从默认的配置脚本中构造出一个Gradle对象。在整个执行过程中，只有这么一个对象。Gradle对象的数据类型就是Gradle。我们一般很少去定制这个默认的配置脚本。<br />
+</em> Project对象：每一个build.gradle会转换成一个Project对象。<br />
+    每一个build.gradle文件都会转换成一个Project对象。在Gradle术语中，Project对象对应的是Build Script。Project包含若干Tasks。另外由于Project对应具体的工程，所以需要为Project加载所需要的插件，比如为Java工程加载Java插件。其实一个Project包含多少Task往往是插件决定的。<br />
+* Settings对象：显然一个settings.gradle都会转换成一个Settings对象。  </p>
+<h3 id="_4">加载插件</h3>
+<p>加载插件是调用它的apply函数。apply其实是Project实现的PluginAware接口定义的。</p>
+<pre><code class="gradle">apply plugin: 'com.android.library'
+</code></pre>
+
+<pre><code class="gradle">apply from: &quot;../utils.gradle&quot;
+</code></pre>
+
+<p>The Gradle wrapper
+Gradle Wrapper 允许你在没有安装 Gradle 的机器上执行 Gradle 构建。 这一点是非常有用的。比如，对一些持续集成服务来说。 它对一个开源项目保持低门槛构建也是非常有用的。 Wrapper 对企业来说也很有用，它使得对客户端计算机零配置。 它强制使用指定的版本，以减少兼容支持问题。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

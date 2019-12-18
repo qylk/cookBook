@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>LeakCanary - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "LeakCanary";
+    var mkdocs_page_input_path = "leakCanary.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">LeakCanary</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#leakcanary">LeakCanary</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#activity">如何检测activity内存泄漏</a></li>
+        
+            <li><a class="toctree-l5" href="#_1">使用一个简单例子说明原理</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../transform/">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>框架 &raquo;</li>
+        
+      
+        
+          <li>Android &raquo;</li>
+        
+      
+    
+    <li>LeakCanary</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="leakcanary">LeakCanary</h1>
+<h2 id="activity">如何检测activity内存泄漏</h2>
+<ol>
+<li>
+<p>监听生命周期<br />
+在Android中，当一个Activity走完onDestroy生命周期后，说明该页面已经被销毁了，应该被系统GC回收。通过Application.registerActivityLifecycleCallbacks()方法注册Activity生命周期的监听，每当一个Activity页面销毁时候，获取到这个Activity去检测这个Activity是否真的被系统GC。</p>
+</li>
+<li>
+<p>检测<br />
+当获取了待分析的对象后，需要确定这个对象是否产生了内存泄漏。<br />
+通过WeakReference + ReferenceQueue来判断对象是否被系统GC回收，WeakReference 创建时，可以传入一个 ReferenceQueue 对象。当被 WeakReference 引用的对象的生命周期结束，一旦被 GC 检查到，GC将会把该对象添加到ReferenceQueue中，待ReferenceQueue处理。当 GC 过后对象一直不被加入 ReferenceQueue，它可能存在内存泄漏。<br />
+当我们初步确定待分析对象未被GC回收时候，手动触发GC，再二次确认</p>
+</li>
+<li>
+<p>分析<br />
+如果发生了内存泄漏，分析这块使用了Square的另一个开源库haha，<a href="https://github.com/square/haha">https://github.com/square/haha</a>，利用它获取当前内存中的heap堆信息的快照snapshot，然后通过待分析对象去snapshot里面去查找强引用关系。</p>
+</li>
+</ol>
+<h2 id="_1">使用一个简单例子说明原理</h2>
+<p>写一个activity，在onDestroy回调中检测activity是否泄漏。</p>
+<pre><code class="java">public class MainActivity extends Activity {
+    static final Helper helper = new Helper();
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            //匿名内部类，导致Handler内存泄漏
+            super.handleMessage(msg);
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.sendEmptyMessageDelayed(1, 100000);//this will cause leak
+        helper.track(this);
+    }
+}
+</code></pre>
+
+<p>activity检测辅助类Helper。</p>
+<pre><code class="java">public class Helper {
+    final ReferenceQueue&lt;Object&gt; referenceQueue = new ReferenceQueue&lt;&gt;();
+    final HashSet&lt;String&gt; keys = new HashSet&lt;&gt;();
+
+    public void track(Activity activity) {
+        String key = UUID.randomUUID().toString();//给每一个activty对象取一个key绑定。
+        keys.add(key);
+
+        final WatchReference weakReference = new WatchReference(key, activity, referenceQueue);
+
+        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                removeWeaklyReachableReferences();//移除所有被GC的对象的key
+
+                if (isGone(weakReference)) {//key已被移除
+                    System.out.println(&quot;activity did removed&quot;);
+                } else {     //二次确认
+                    callGC();//手动触发GC
+                    removeWeaklyReachableReferences();//移除所有被GC的对象的key
+                    if (!isGone(weakReference)) {//GC后，key被移除
+                        System.out.println(&quot;activity leaked&quot;);
+                    } else {                     //GC后，key未被移除，发生泄漏
+                        System.out.println(&quot;activity did removed&quot;);
+                        //todo 内存分析
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    boolean isGone(WatchReference reference) {
+        return !keys.contains(reference.key);
+    }
+
+    void callGC() {
+        Runtime.getRuntime().gc();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        }
+        System.runFinalization();
+    }
+
+    void removeWeaklyReachableReferences() {
+        WatchReference ref;
+        while ((ref = (WatchReference) referenceQueue.poll()) != null) {
+            keys.remove(ref.key);
+        }
+    }
+
+    static class WatchReference extends WeakReference&lt;Object&gt; {
+        final String key;
+
+        public WatchReference(String key, Object referent, ReferenceQueue&lt;? super Object&gt; q) {
+            super(referent, q);
+            this.key = key;
+        }
+    }
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../strictMode/" class="btn btn-neutral float-right" title="StrictMode">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../blockCanary/" class="btn btn-neutral" title="BlockCanary"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../blockCanary/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../strictMode/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

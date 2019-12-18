@@ -107,6 +107,14 @@
                     
     <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
+                </li>
     </ul>
                 </li>
                 <li class="">
@@ -152,6 +160,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
                 </li>
     </ul>
                 </li>
@@ -209,6 +221,10 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
+    <a class="" href="../transform/">Transform</a>
+                </li>
+                <li class="toctree-l3">
+                    
     <a class="" href="../classloader/">ClassLoader</a>
                 </li>
                 <li class="toctree-l3">
@@ -220,11 +236,24 @@
     <a class="current" href="./">Robust</a>
     <ul class="subnav">
             
+    <li class="toctree-l4"><a href="#robust">Robust</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_1">修复原理</a></li>
+        
+        </ul>
+    
+
     </ul>
                 </li>
                 <li class="toctree-l3">
                     
     <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
                 </li>
     </ul>
                 </li>
@@ -245,6 +274,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
                 </li>
     </ul>
                 </li>
@@ -292,6 +325,10 @@
                 <li class="">
                     
     <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
                 </li>
                 <li class="">
                     
@@ -379,6 +416,183 @@
             <div class="section">
               
                 <p>//https://www.jianshu.com/p/2d7b42cbfa70</p>
+<h1 id="robust">Robust</h1>
+<h2 id="_1">修复原理</h2>
+<ol>
+<li>在每个类中插入一个静态变量，在每个方法前插入跳转控制逻辑</li>
+</ol>
+<pre><code class="java">public long getIndex() {
+        System.out.println(&quot;patch here&quot;);
+        return 100;
+}
+</code></pre>
+
+<p>以上代码经过Robust框架注入后会被处理成：</p>
+<pre><code class="java">public static ChangeQuickRedirect changeQuickRedirect;
+
+public long getIndex() {
+    PatchProxyResult patchProxyResult = PatchProxy.proxy(new Object[0], this, changeQuickRedirect, false, 32, new Class[0], long.class);
+    if (patchProxyResult.isSupported) {
+        return ((Long) patchProxyResult.result).longValue();
+    }
+
+    System.out.println(&quot;patch here&quot;);
+    return 100L;
+}
+</code></pre>
+
+<p>当有补丁的时候 <code>changeQuickRedirect</code> 的值就不再是空，所以执行到需要热修的方法时就会走到补丁的方法实现而不是原逻辑达到修复目的。该原理同Instant Run类似，都是采用插桩的方式通过运行时跳转来改变代码执行路径达到修复的目的。</p>
+<p>Robust实现原理主要包含三部分：基础包插桩、补丁加载及自动化补丁。</p>
+<h3 id="_2">基础包插桩</h3>
+<p>利用gradle-plugin注册Transform在编译时修改Class文件进行插桩。</p>
+<pre><code class="groovy">class RobustTransform extends Transform implements Plugin&lt;Project&gt; {
+    @Override
+    void apply(Project target) {
+        //注册Transform
+        robust = new XmlSlurper().parse(new File(&quot;${project.projectDir}/${Constants.ROBUST_XML}&quot;))
+        project.android.registerTransform(this)
+    }
+
+    @Override
+    void transform(Context context, Collection&lt;TransformInput&gt; inputs, Collection&lt;TransformInput&gt; referencedInputs, TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException {
+        //...
+        //修改class对象：支持通过 Asm 或者 JavaAssist 操作修改class对象。
+        if(useASM){
+            insertcodeStrategy=new AsmInsertImpl(hotfixPackageList,hotfixMethodList,exceptPackageList,exceptMethodList,isHotfixMethodLevel,isExceptMethodLevel);
+        } else {
+            insertcodeStrategy=new JavaAssistInsertImpl(hotfixPackageList,hotfixMethodList,exceptPackageList,exceptMethodList,isHotfixMethodLevel,isExceptMethodLevel);
+        }
+        //执行代码插入
+        insertcodeStrategy.insertCode(box, jarFile);
+        //...
+    }
+}
+</code></pre>
+
+<p>默认采用Asm，看下AsmInsertImpl的insertCode方法。</p>
+<pre><code class="groovy"> @Override
+    protected void insertCode(List&lt;CtClass&gt; box, File jarFile) throws IOException, CannotCompileException {
+        ZipOutputStream outStream = new JarOutputStream(new FileOutputStream(jarFile));
+        //get every class in the box ,ready to insert code
+        for (CtClass ctClass : box) {
+            //change modifier to public ,so all the class in the apk will be public ,you will be able to access it in the patch
+            ctClass.setModifiers(AccessFlag.setPublic(ctClass.getModifiers()));
+            if (isNeedInsertClass(ctClass.getName()) &amp;&amp; !(ctClass.isInterface() || ctClass.getDeclaredMethods().length &lt; 1)) {
+                //only insert code into specific classes
+                zipFile(transformCode(ctClass.toBytecode(), ctClass.getName().replaceAll(&quot;\\.&quot;, &quot;/&quot;)), outStream, ctClass.getName().replaceAll(&quot;\\.&quot;, &quot;/&quot;) + &quot;.class&quot;);
+            } else {
+                zipFile(ctClass.toBytecode(), outStream, ctClass.getName().replaceAll(&quot;\\.&quot;, &quot;/&quot;) + &quot;.class&quot;);
+            }
+        }
+        outStream.close();
+    }
+</code></pre>
+
+<p>将Class对象修改后打入jar包，可以看到将所有方法都改成了public，isNeedInsertClass()用于判断白名单和黑名单，对于接口类和空类跳过修改。重点看transformCode方法。</p>
+<pre><code class="groovy">public byte[] transformCode(byte[] b1, String className) throws IOException {
+        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+        ClassReader cr = new ClassReader(b1);
+        ClassNode classNode = new ClassNode();
+        Map&lt;String, Boolean&gt; methodInstructionTypeMap = new HashMap&lt;&gt;();
+        cr.accept(classNode, 0);
+        final List&lt;MethodNode&gt; methods = classNode.methods;
+        //收集method
+        for (MethodNode m : methods) {
+            InsnList inList = m.instructions;
+            boolean isMethodInvoke = false;
+            for (int i = 0; i &lt; inList.size(); i++) {
+                if (inList.get(i).getType() == AbstractInsnNode.METHOD_INSN) {
+                    isMethodInvoke = true;
+                }
+            }
+            methodInstructionTypeMap.put(m.name + m.desc, isMethodInvoke);
+        }
+
+        //ASM插桩
+        InsertMethodBodyAdapter insertMethodBodyAdapter = new InsertMethodBodyAdapter(cw, className, methodInstructionTypeMap);
+        cr.accept(insertMethodBodyAdapter, ClassReader.EXPAND_FRAMES);
+        return cw.toByteArray();
+}
+</code></pre>
+
+<p>InsertMethodBodyAdapter 继承自 ClassVisitor ，用于访问class对象，首先在InsertMethodBodyAdapter的构造函数中，使用visitField为类添加了
+静态变量changeQuickRedirect。然后是方法插桩，相关的逻辑在visitMethod回调中。</p>
+<pre><code class="java">public InsertMethodBodyAdapter(ClassWriter cw, String className, Map&lt;String, Boolean&gt; methodInstructionTypeMap) {
+    super(Opcodes.ASM5, cw);
+    this.classWriter = cw;
+    this.className = className;
+    this.methodInstructionTypeMap = methodInstructionTypeMap;
+    //插入静态变量changeQuickRedirect
+    classWriter.visitField(Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC, Constants.INSERT_FIELD_NAME, Type.getDescriptor(ChangeQuickRedirect.class), null, null);
+}
+
+@Override
+public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+    //protedted类改成publish类，否则可能无法访问该类的原始方法
+    if (isProtect(access)) {
+        access = setPublic(access);
+    }
+    MethodVisitor mv = super.visitMethod(access, name,
+            desc, signature, exceptions);
+    //方法过滤，白名单+黑名单
+    if (!isQualifiedMethod(access, name, desc, methodInstructionTypeMap)) {
+        return mv;
+    }
+    //构造方法签名，主要用来从methodMap文件中找到混淆后的方法名
+    StringBuilder parameters = new StringBuilder();
+    Type[] types = Type.getArgumentTypes(desc);
+    for (Type type : types) {
+        parameters.append(type.getClassName()).append(&quot;,&quot;);
+    }
+    //remove the last &quot;,&quot;
+    if (parameters.length() &gt; 0 &amp;&amp; parameters.charAt(parameters.length() - 1) == ',') {
+        parameters.deleteCharAt(parameters.length() - 1);
+    }
+    //record method number
+    methodMap.put(className.replace('/', '.') + &quot;.&quot; + name + &quot;(&quot; + parameters.toString() + &quot;)&quot;, insertMethodCount.incrementAndGet())
+
+    //方法插桩
+    return new MethodBodyInsertor(mv, className, desc, isStatic(access), String.valueOf(insertMethodCount.get()), name, access);
+}
+</code></pre>
+
+<p>MethodBodyInsertor 是一个 MethodVisitor，visitCode是访问方法体内的代码时的回调。</p>
+<pre><code class="java">class MethodBodyInsertor extends GeneratorAdapter {
+    @Override
+    public void visitCode() {
+      //insert code here
+     RobustAsmUtils.createInsertCode(this, className, paramsTypeClass, returnType, isStatic, Integer.valueOf(methodId));
+    }
+}
+</code></pre>
+
+<p>createInsertCode方法是插桩的核心方法。首先是prepareMethodParameters用来准备参数数组。</p>
+<pre><code class="java">public static void createInsertCode(GeneratorAdapter mv, String className, List&lt;Type&gt; args, Type returnType, boolean isStatic, int methodId) {
+        //准备参数
+        prepareMethodParameters(mv, className, args, returnType, isStatic, methodId);
+        //...
+    }
+</code></pre>
+
+<p>参数是指什么呢？再看下插桩的方法</p>
+<pre><code class="java">PatchProxy.proxy(new Object[0], this, changeQuickRedirect, false, 32, new Class[0], long.class);
+</code></pre>
+
+<p>就是指PatchProxy.proxy括号内的参数，一共7个。
+1. paramsArray：Object[]
+    原方法参数列表数组<br />
+2. current：Object
+    this参数
+3. changeQuickRedirect：ChangeQuickRedirect
+    就那个类静态变量
+4. isStatic：boolean
+    是否是static方法  <br />
+5. methodNumber：int
+    methodId
+6. paramsClassTypes：Class[]
+    参数类型数组
+7. returnType：Class
+    返回值类型</p>
               
             </div>
           </div>

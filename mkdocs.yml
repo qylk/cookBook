@@ -16,6 +16,8 @@ nav:
         - OkHttp: okhttp.md
         - OkHttp-Dns: okhttp_dns.md
         - Okhttp重试机制: okhttp_retry.md
+        - BlockCanary: blockCanary.md
+        - LeakCanary: leakCanary.md
       - 系统分析:
         - StrictMode: strictMode.md
         - 触摸事件分发: touchEventDispatch.md
@@ -26,6 +28,7 @@ nav:
         - 优化: webview_optmize.md
       - 代码片段:
         - 微信气泡: code/bubble_view.md
+        - zbar: zbar.md
       - 适配:
         - 系统适配: dev_compat.md
       - 多媒体:
@@ -37,14 +40,17 @@ nav:
         - adb模拟屏幕触摸: adb_input.md
         - tcpdump: tcpdump.md
       - 热修复:
+        - Transform: transform.md
         - ClassLoader: classloader.md  
         - Instant Run: instantRun.md
         - Robust: robust.md
         - 热修复方案: hotFix.md
+        - ASM: asm.md
       - 未分类:
         - 应用保活: keepAlive.md
       - 性能优化:
         - Bitmap: bitmap.md
+        - Anr: anr.md
     - 网络:
       - SNI: sni.md        
     - 工具:
@@ -54,6 +60,7 @@ nav:
       - 内存映射: mmap.md  
       - JavaPoet: java_poet.md
       - Volatile: volatile.md
+      - AspectJ: aspectJ.md
       - Collections: java_collections.md
       - access$xxx: class_access.md
       - Concurrent:

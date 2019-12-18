@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Transform - 小黑屋</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Transform";
+    var mkdocs_page_input_path = "transform.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 小黑屋</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Android</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">编译/脚本</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation/">Annotation注解处理器</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../annotation_debug/">注解处理器调试</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_flavor/">Android渠道写入方式</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">框架</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../glide/">Glide</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../lightKV/">lightKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../mmkv/">MMKV</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../eventbus/">EventBus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp/">OkHttp</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_dns/">OkHttp-Dns</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../okhttp_retry/">Okhttp重试机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../blockCanary/">BlockCanary</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../leakCanary/">LeakCanary</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">系统分析</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../strictMode/">StrictMode</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../touchEventDispatch/">触摸事件分发</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Webview</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_cache/">缓存机制</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_native/">和Native通信</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_bug/">漏洞</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../webview_optmize/">优化</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">代码片段</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../code/bubble_view/">微信气泡</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../zbar/">zbar</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">适配</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev_compat/">系统适配</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">多媒体</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../renderscript/">RenderScript</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">安全</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_safe/">建议</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../android_danger/">风险点</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../adb_input/">adb模拟屏幕触摸</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../tcpdump/">tcpdump</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">热修复</span>
+    <ul class="subnav">
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">Transform</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#transform">Transform</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#_1">介绍</a></li>
+        
+            <li><a class="toctree-l5" href="#_2">初识</a></li>
+        
+            <li><a class="toctree-l5" href="#_3">工作流程</a></li>
+        
+            <li><a class="toctree-l5" href="#transforminput">TransformInput 类</a></li>
+        
+            <li><a class="toctree-l5" href="#transformoutputprovider">TransformOutputProvider 类</a></li>
+        
+            <li><a class="toctree-l5" href="#transform_1">Transform注册</a></li>
+        
+            <li><a class="toctree-l5" href="#transform_2">transform调试设置</a></li>
+        
+            <li><a class="toctree-l5" href="#_4">举例</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../classloader/">ClassLoader</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../instantRun/">Instant Run</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../robust/">Robust</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../hotFix/">热修复方案</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../asm/">ASM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">未分类</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../keepAlive/">应用保活</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">性能优化</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../bitmap/">Bitmap</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../anr/">Anr</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sni/">SNI</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ffmpeg/">FFMPEG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dmg/">DMG</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../mmap/">内存映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_poet/">JavaPoet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../volatile/">Volatile</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../aspectJ/">AspectJ</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_collections/">Collections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../class_access/">access$xxx</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Concurrent</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../volatile/">volatile</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../threadPool/">线程池</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../java_generic/">泛型通配符</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">虚拟机</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../jvm/">内存模型</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bookmark/">收藏</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">小黑屋</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>热修复 &raquo;</li>
+        
+      
+        
+          <li>Android &raquo;</li>
+        
+      
+    
+    <li>Transform</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="transform">Transform</h1>
+<h2 id="_1">介绍</h2>
+<p>gradle从1.5开始，gradle插件包含了一个叫Transform的API，这个API允许第三方插件在class文件转为为dex文件前操作编译好的class文件，这个API的目标是简化自定义类操作，而不必处理Task，并且在操作上提供更大的灵活性。
+官方文档：<a href="http://google.github.io/android-gradle-dsl/javadoc/">http://google.github.io/android-gradle-dsl/javadoc/</a></p>
+<p>从官方的描述中得知：
+* Transform API 是新引进的操作 class 的方式
+* Transform API 在编译之后，生成 dex 之前起作用</p>
+<h2 id="_2">初识</h2>
+<pre><code class="java">public class TestTransform extends Transform {
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public Set&lt;QualifiedContent.ContentType&gt; getInputTypes() {
+        return null;
+    }
+
+    @Override
+    public Set&lt;? super QualifiedContent.Scope&gt; getScopes() {
+        return null;
+    }
+
+    @Override
+    public boolean isIncremental() {
+        return false;
+    }
+
+    @Override
+    public void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
+        super.transform(transformInvocation);
+    }
+}
+</code></pre>
+
+<ul>
+<li>
+<p><code>name</code><br />
+    设置自定义的Transform对应的Task名称，形如：transformClassesWithXXX，可以在gradle任务列表中找到。</p>
+</li>
+<li>
+<p><code>inputTypes</code> <br />
+    用于指明 Transform 的输入类型，可以作为输入过滤的手段。在 TransformManager 类中定义了很多类型：
+    <code>// 代表 javac 编译成的 class 文件，常用，可能是 jar 包也可能是class目录
+    public static final Set&lt;ContentType&gt; CONTENT_CLASS;
+    public static final Set&lt;ContentType&gt; CONTENT_JARS;
+    // 这里的 resources 单指标准的 java 的资源
+    public static final Set&lt;ContentType&gt; CONTENT_RESOURCES;
+    public static final Set&lt;ContentType&gt; CONTENT_NATIVE_LIBS;
+    public static final Set&lt;ContentType&gt; CONTENT_DEX;
+    public static final Set&lt;ContentType&gt; CONTENT_DEX_WITH_RESOURCES;
+    public static final Set&lt;ContentType&gt; DATA_BINDING_BASE_CLASS_LOG_ARTIFACT;</code>
+    其中，很多类型是不允许自定义 Transform 来处理的，我们常使用 CONTENT_CLASS 来操作 Class 文件。</p>
+</li>
+<li>
+<p><code>scopes</code><br />
+    用于指明 Transform 的作用域。
+    type|Des
+    ---|---
+    PROJECT|只处理当前项目
+    SUB_PROJECTS|只处理子项目
+    PROJECT_LOCAL_DEPS|只处理当前项目的本地依赖,例如jar, aar
+    EXTERNAL_LIBRARIES|只处理外部的依赖库
+    PROVIDED_ONLY|只处理本地或远程以provided形式引入的依赖库
+    TESTED_CODE|测试代码
+    &gt; ContentType 和 Scopes 都返回集合，TransformManager 中封装了默认的几种集中类型
+    <code>// 注意，不同版本值不一样
+    public static final Set&lt;Scope&gt; EMPTY_SCOPES = ImmutableSet.of();
+    public static final Set&lt;ScopeType&gt; PROJECT_ONLY;  //当前项目
+    public static final Set&lt;Scope&gt; SCOPE_FULL_PROJECT; //整个项目，常用
+    public static final Set&lt;ScopeType&gt; SCOPE_FULL_WITH_IR_FOR_DEXING;
+    public static final Set&lt;ScopeType&gt; SCOPE_FULL_WITH_FEATURES;
+    public static final Set&lt;ScopeType&gt; SCOPE_FULL_WITH_IR_AND_FEATURES;
+    public static final Set&lt;ScopeType&gt; SCOPE_FEATURES;
+    public static final Set&lt;ScopeType&gt; SCOPE_FULL_LIBRARY_WITH_LOCAL_JARS;
+    public static final Set&lt;ScopeType&gt; SCOPE_IR_FOR_SLICING;</code>
+    常用的是 SCOPE_FULL_PROJECT ，代表所有项目。</p>
+</li>
+<li>
+<p><code>isIncremental</code><br />
+    指明该 Transform 是否支持增量编译。</p>
+</li>
+<li>
+<p><code>transform</code>  </p>
+<ul>
+<li>inputs 是该 Transform 要消费的输入流。有两种格式：jar格式和目录格式；</li>
+<li>referencedInputs 集合仅供参考，不应进行转换，它是受 getReferencedScopes 方法控制的；</li>
+<li>outputProvider 是用来获取输出目录的，我们要将操作后的文件输出到输出目录中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="_3">工作流程</h2>
+<p><img alt="transform" src="../assets/66.png" /></p>
+<p>很明显的一个链式结构。其中，红色的 Transform 代表自定义 Transform ，蓝色的代表系统的 Transform 。<br />
+每个 Transform 其实都是一个 Gradle 的 Task ， Android 编译器中的 TaskManager 会将每个 Transform 串联起来。第一个 Transform 接收来自 javac 编译的结果，以及拉取到本地的第三方依赖和 resource 资源。这些编译的中间产物在 Transform 链上流动，每个 Transform 节点都可以对 class 进行处理再传递到下一个 Transform。</p>
+<h2 id="transforminput">TransformInput 类</h2>
+<pre><code class="java">public interface TransformInput {
+    Collection&lt;JarInput&gt; getJarInputs();
+
+    Collection&lt;DirectoryInput&gt; getDirectoryInputs();
+}
+</code></pre>
+
+<p>所谓 Transform 就是对输入的 class 文件转变成目标字节码文件，TransformInput 就是这些输入文件的抽象。目前它包括两部分：DirectoryInput 集合与 JarInput 集合。
+DirectoryInput 代表以源码方式参与项目编译的所有目录结构及其目录下的源码文件，可以借助于它来修改输出文件的目录结构以及目标字节码文件。
+JarInput 代表以 jar 包方式参与项目编译的所有本地 jar 包或远程 jar 包，可以借助它来动态添加 jar 包。</p>
+<h2 id="transformoutputprovider">TransformOutputProvider 类</h2>
+<pre><code class="java">public interface TransformOutputProvider {
+    void deleteAll() throws IOException;
+
+    File getContentLocation(String var1, Set&lt;ContentType&gt; var2, Set&lt;? super Scope&gt; var3, Format var4);
+}
+</code></pre>
+
+<p>调用 getContentLocation 获取输出目录，例如  </p>
+<pre><code class="java">destDir = transformInvocation.outputProvider.getContentLocation(
+    dirInput.name, 
+    dirInput.contentTypes, 
+    dirInput.scopes, 
+    Format.DIRECTORY)
+</code></pre>
+
+<h2 id="transform_1">Transform注册</h2>
+<pre><code class="java">class TransfromPlugin implements Plugin&lt;Project&gt; {
+
+    @Override
+    public void apply(Project project) {
+        BaseAppModuleExtension android = project.getExtensions().getByType(BaseAppModuleExtension.class);
+        // 注册Transform，其实就是添加了Task
+        android.registerTransform(new TestTransform(project));
+    }
+}
+</code></pre>
+
+<p>实际上每个Transform都会有一个对应的TransformTask，TransformTask本质上就是表示Gradle中的一个Task。<br />
+在build.gradle中apply一个插件后其<code>apply(project)</code>方法就会调用。例如我们在一个app中应用的是apply plugin: 'TransfromPlugin' ，这个实际上引入的就是上面的TransfromPlugin，其apply()方法会被调用，该transformTask就被添加到构建流程中。</p>
+<h2 id="transform_2">transform调试设置</h2>
+<p>参考：<a href="https://www.jianshu.com/p/b86330a877db">https://www.jianshu.com/p/b86330a877db</a></p>
+<h2 id="_4">举例</h2>
+<pre><code class="java">public class AsmTransform extends Transform {
+    private final Logger logger;
+
+    public AsmTransform(Project project) {
+        this.logger = project.getLogger();
+    }
+
+    @Override
+    public String getName() {
+        return &quot;AsmTransform&quot;;
+    }
+
+    @Override
+    public Set&lt;QualifiedContent.ContentType&gt; getInputTypes() {
+        return TransformManager.CONTENT_CLASS;//指定输入的类型
+    }
+
+    @Override
+    public Set&lt;? super QualifiedContent.Scope&gt; getScopes() {
+        return TransformManager.SCOPE_FULL_PROJECT;//指定Transform的作用范围
+    }
+
+    @Override
+    public boolean isIncremental() {
+        return true;//当前Transform是否支持增量编译
+    }
+
+    @Override
+    public boolean isCacheable() {
+        return true;
+    }
+
+    // 核心方法
+    // inputs是传过来的输入流，有两种格式：jar和目录格式
+    // outputProvider 获取输出目录，将修改的文件复制到输出目录，必须执行
+    @Override
+    public void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
+        super.transform(transformInvocation);
+        transformWork(transformInvocation);
+    }
+
+    private void transformWork(TransformInvocation transformInvocation) throws IOException {
+        boolean isIncremental = transformInvocation.isIncremental();
+        Collection&lt;TransformInput&gt; inputs = transformInvocation.getInputs();
+        Collection&lt;TransformInput&gt; referencedInputs = transformInvocation.getReferencedInputs();
+        TransformOutputProvider outputProvider = transformInvocation.getOutputProvider();
+        if (isIncremental) {//增量情况下
+            // Transform的inputs有两种类型，一种是目录，一种是jar包，要分开遍历
+            for (TransformInput input : inputs) {
+                //先遍历jar包
+                for (JarInput jarInput : input.getJarInputs()) {
+                    //文件状态
+                    Status status = jarInput.getStatus();
+                    //输出路径
+                    File dest = outputProvider.getContentLocation(jarInput.getFile().getAbsolutePath(), jarInput.getContentTypes(), jarInput.getScopes(), Format.JAR);
+
+                    switch (status) {
+                        case NOTCHANGED:
+                            break;
+                        case ADDED:
+                        case CHANGED:
+                            transformJar(jarInput.getFile(), dest, status);
+                            break;
+                        case REMOVED:
+                            if (dest.exists()) {
+                                FileUtils.delete(dest);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                //遍历目录
+                for (DirectoryInput directoryInput : input.getDirectoryInputs()) {
+                    //输出目录
+                    File dest = outputProvider.getContentLocation(directoryInput.getFile().getAbsolutePath(), directoryInput.getContentTypes(), directoryInput.getScopes(), Format.DIRECTORY);
+                    FileUtils.mkdirs(dest);
+
+                    //输入目录
+                    String srcDirPath = directoryInput.getFile().getAbsolutePath();
+                    //输出目录
+                    String destDirPath = dest.getAbsolutePath();
+
+                    Map&lt;File, Status&gt; fileStatusMap = directoryInput.getChangedFiles();
+                    //对目录里的文件进行遍历
+                    for (Map.Entry&lt;File, Status&gt; changedFile : fileStatusMap.entrySet()) {
+                        //文件状态
+                        Status status = changedFile.getValue();
+                        File inputFile = changedFile.getKey();
+                        String destFilePath = inputFile.getAbsolutePath().replace(srcDirPath, destDirPath);
+                        File destFile = new File(destFilePath);
+                        switch (status) {
+                            case NOTCHANGED:
+                                break;
+                            case REMOVED:
+                                if (destFile.exists()) {
+                                    destFile.delete();
+                                }
+                                break;
+                            case ADDED:
+                            case CHANGED:
+                                transformSingleFile(inputFile, destFile, srcDirPath);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        } else {//非增量情况下
+            outputProvider.deleteAll();//清空输出目录
+            //遍历jar
+            for (TransformInput input : inputs) {
+                for (JarInput jarInput : input.getJarInputs()) {
+                    Status status = jarInput.getStatus();
+                    File dest = outputProvider.getContentLocation(jarInput.getFile().getAbsolutePath(), jarInput.getContentTypes(), jarInput.getScopes(), Format.JAR);
+                    org.apache.commons.io.FileUtils.touch(dest);
+                    transformJar(jarInput.getFile(), dest, status);
+                }
+                //遍历目录
+                for (DirectoryInput directoryInput : input.getDirectoryInputs()) {
+                    String dirPath = directoryInput.getFile().getAbsolutePath();
+                    File dest = outputProvider.getContentLocation(directoryInput.getFile().getAbsolutePath(), directoryInput.getContentTypes(), directoryInput.getScopes(), Format.DIRECTORY);
+                    System.out.println(dest.getAbsolutePath() + &quot; is exist &quot; + dest.exists());
+                    if (!dest.exists()) {
+                        dest.mkdirs();
+                    }
+                    //遍历目录里的文件
+                    for (File file : FileUtils.getAllFiles(directoryInput.getFile())) {
+                        String filePath = file.getAbsolutePath();
+                        File outputFile = new File(filePath.replace(dirPath, dest.getAbsolutePath()));
+                        org.apache.commons.io.FileUtils.touch(outputFile);
+                        transformSingleFile(file, outputFile, dirPath);
+                    }
+                }
+            }
+        }
+    }
+
+}
+</code></pre>
+
+<p>测试demo代码: <a href="https://github.com/qylk/AsmPluginTest">https://github.com/qylk/AsmPluginTest</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../classloader/" class="btn btn-neutral float-right" title="ClassLoader">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../tcpdump/" class="btn btn-neutral" title="tcpdump"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../tcpdump/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../classloader/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

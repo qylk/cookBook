@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     public void testPrivate() {
         IncrementalChange var1 = $change;
         if (var1 != null) {
-            var1.access$dispatch("testPublic.()V", new Object[]{this});
+            var1.access$dispatch("testPrivate.()V", new Object[]{this});
         } else {
             this.count = 2;
         }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     public void testPublic() {
         IncrementalChange var1 = $change;
         if (var1 != null) {
-            var1.access$dispatch("testPrivate.()V", new Object[]{this});
+            var1.access$dispatch("testPublic.()V", new Object[]{this});
         } else {
             this.count2 = 3;
         }

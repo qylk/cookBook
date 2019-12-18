@@ -37,7 +37,7 @@ public class TestTransform extends Transform {
 }
 ```
 * `name`  
-    设置自定义的Transform对应的Task名称，形如：transformClassesWithPreDexForXXX
+    设置自定义的Transform对应的Task名称，形如：transformClassesWithXXX，可以在gradle任务列表中找到。
 
 * `inputTypes`   
     用于指明 Transform 的输入类型，可以作为输入过滤的手段。在 TransformManager 类中定义了很多类型：
@@ -122,6 +122,23 @@ destDir = transformInvocation.outputProvider.getContentLocation(
     Format.DIRECTORY)
 ```
 
+## Transform注册
+```java
+class TransfromPlugin implements Plugin<Project> {
+
+    @Override
+    public void apply(Project project) {
+        BaseAppModuleExtension android = project.getExtensions().getByType(BaseAppModuleExtension.class);
+        // 注册Transform，其实就是添加了Task
+        android.registerTransform(new TestTransform(project));
+    }
+}
+```
+实际上每个Transform都会有一个对应的TransformTask，TransformTask本质上就是表示Gradle中的一个Task。  
+在build.gradle中apply一个插件后其`apply(project)`方法就会调用。例如我们在一个app中应用的是apply plugin: 'TransfromPlugin' ，这个实际上引入的就是上面的TransfromPlugin，其apply()方法会被调用，该transformTask就被添加到构建流程中。
+
+## transform调试设置
+参考：<https://www.jianshu.com/p/b86330a877db>
 
 ## 举例
 ```java
@@ -263,6 +280,8 @@ public class AsmTransform extends Transform {
             }
         }
     }
-    
+
 }
-```
+``` 
+
+测试demo代码: <https://github.com/qylk/AsmPluginTest>
