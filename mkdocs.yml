@@ -18,9 +18,12 @@ nav:
         - Okhttp重试机制: okhttp_retry.md
         - BlockCanary: blockCanary.md
         - LeakCanary: leakCanary.md
+        - RxJava: rxjava.md
+        - GreenDao: greendao.md
       - 系统分析:
         - StrictMode: strictMode.md
         - 触摸事件分发: touchEventDispatch.md
+        - 动画: android_animation.md
       - Webview:
         - 缓存机制: webview_cache.md
         - 和Native通信: webview_native.md

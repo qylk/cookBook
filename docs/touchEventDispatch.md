@@ -186,3 +186,16 @@ public boolean dispatchTouchEvent(MotionEvent event) {
 
 * 如果返回值是false，则会将ACTION_DOWN传递给其父ViewGroup的onTouchEvent进行处理，直到由哪一层ViewGroup消费了ACTION_DOWN事件为止。
 
+
+5. 新版本ViewGroup的touch事件分发流程  
+![dispatchTouch](./assets/89.svg)
+
+总结：  
+onInterceptTouchEvent是ViewGroup的方法，其执行条件是以下之一：
+* TOUCH_DOWN
+* target != null
+* disallowIntercept == false  
+
+所以说当有子View消费了touch事件，父View仍然可以拦截后续的所有touch事件，如果子View不希望父View拦截后续事件，需要调用requestDisallowInterceptTouchEvent，该方法将层层向上调用，禁止所有父View调用onInterceptTouchEvent方法，比如RecyclerView中就有这样的逻辑，DisallowInterceptTouchEvent有效增加了子View获得后续事件的效率，使交互更流畅。
+
+如果父View拦截了后续的本该属于target的touch事件，则在dispatchTouchEvent中将会向target分发一个CANCEL事件，并且清除掉之前的target，父View拦截事件后将进入到父View的onTouchEvent方法中处理。

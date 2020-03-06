@@ -57,11 +57,14 @@ ClassVisitor，在 ASM3.0 中是一个接口，到了 ASM4.0 与 ClassAdapter �
 7. visitLdcInsn  
 可以在JVM指令表中查到，Ldc表示将int, float或String型常量值从常量池中推送至栈顶
 
-8. visitEnd()  
+8. visitEnd  
 该方法是当扫描器完成扫描时才会调用，如果想在类中追加某些方法。可以在该方法中实现。
 
 9. visitMaxs  
 该方法用于指定本方法执行帧的本地变量区和操作栈大小。当然也可以不用操心最大操作栈大小，可以依靠‘COMPUTE_MAXS’参数，使用该参数后会计算出最佳的操作栈大小，而不是最坏情况的值。
+
+10. visitLabel  
+label是指方法中字节码的一个位置，label用于逻辑跳转、goto、switch、try...catch等场景下，当调用visitLabel后，后面的指令就是当前label下的。
 
 方法签名：
 ```
@@ -163,11 +166,12 @@ You must either return the replacement method/field when you visit the original 
 
 
 ASM  对方法的处理
-Java 代码是在线程内部执行的。每个线程都有自己的执行栈，栈由帧组成。每个帧表示一个方法调用:每次调用一个方法时，会将一个新帧压入当前线程的执行栈。当方法返回时，或者是正常返回，或者是因为异常返回，会将这个帧从执行栈中弹出，执行过程在发出调用的方法中继续进行(这个方法的帧现在位于栈的顶端)。
+Java 代码是在线程内部执行的。每个线程都有自己的执行栈，栈由帧组成。每个帧表示一个方法调用: 每次调用一个方法时，会将一个新帧压入当前线程的执行栈。当方法返回时，或者是正常返回，或者是因为异常返回，会将这个帧从执行栈中弹出，执行过程在发出调用的方法中继续进行(这个方法的帧现在位于栈的顶端)。
 
 每一帧包括两部分:一个局部变量部分和一个操作数栈部分。局部变量部分包含可根据索引以随机顺序访问的变量。由名字可以看出，操作数栈部分是一个栈，其中包含了供字节代码指令用作操作数的值。这意味着这个栈中的值只能按照“后入先出”顺序访问
 
-## ASM常用指令
+
+## JVM常用指令
 1. ALOAD  
 从局部变量表的相应位置装载一个对象引用到操作数栈的栈顶。  
 aload_0把this装载到了操作数栈中，aload_1把第一个局部参数装载到了操作数栈中，aload_0是一组格式为aload_的操作码中的一个，这一组操作码把对象的引用装载到操作数栈中，标志了待处理的局部变量表中的位置，但取值仅可为0、1、2、3
@@ -218,5 +222,104 @@ INVOKEINTERFACE是调用接口方法
 
 、、、、、、https://km.sankuai.com/page/25692230
 
+
+## 实例分析
+1. label的使用
+```java
+public void call(int a) {
+    if (a > 0) {
+       System.out.println("inner");
+       return;
+    }
+    System.out.println("return");
+}
+```
+字节码大致是下面这样：
+```
+public call(I)V
+    ILOAD 1
+    IFLE L1
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "inner"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+    RETURN
+   L1
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "return"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+```
+Asm代码大致是这样：
+```java
+mv.visitVarInsn(ILOAD, 1); //载入参数a
+Label l1 = new Label();//label1
+mv.visitJumpInsn(IFLE, l1);//如果a<=0，goto label1处
+mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+mv.visitLdcInsn("inner");
+mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+mv.visitInsn(RETURN);//return
+
+mv.visitLabel(l1);//label1从这开始
+mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+mv.visitLdcInsn("return");
+mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+mv.visitInsn(RETURN);//return
+```
+
 ## ASM插桩
 参考Robust
+
+
+## 附录
+1. Java中常用的操作码
+```
+aconst_null: 将null推送至栈顶；相当于定义null
+ldc: 将int, float或String型常量值从常量池中推送至栈顶
+iload: 将指定的int型本地变量推送至栈顶；在方法内iload_n就是第几个变量；对应的还有lload、fload、dload、aload
+iload_0: 将第一个int型本地变量推送至栈顶；
+aload0: 将第一个引用类型本地变量推送至栈顶；在类中；aload0通常指向this指针
+astore: 将栈顶引用型数值存入指定本地变量；用于存储变量
+areturn: 从当前方法返回对象引用
+return: 从当前方法返回void
+getstatic: 获取指定类的静态域，并将其值压入栈顶
+putstatic: 为指定的类的静态域赋值
+getfield:  获取指定类的实例域，并将其值压入栈顶
+putfield:  为指定的类的实例域赋值
+invokevirtual:  调用实例方法
+invokespecial:  调用超类构造方法，实例初始化方法，私有方法
+invokestatic:  调用静态方法
+invokeinterface:  调用接口方法
+arraylength:  获得数组的长度值并压入栈顶
+new:  创建一个对象，并将其引用值压入栈顶
+newarray:  创建一个指定原始类型（如int, float, char…）的数组，并将其引用值压入栈顶
+goto:  无条件跳转
+ifeq:  当栈顶int型数值等于0时跳转
+pop:  将栈顶数值弹出 (数值不能是long或double类型的)
+dup:  复制栈顶数值并将复制值压入栈顶
+iadd:  将栈顶两int型数值相加并将结果压入栈顶
+isub:  将栈顶两int型数值相减并将结果压入栈顶
+imul:  将栈顶两int型数值相乘并将结果压入栈顶
+idiv:  将栈顶两int型数值相除并将结果压入栈顶
+if_icmpeq:  比较栈顶两int型数值大小，当结果等于0时跳转
+athrow:  将栈顶的异常抛出
+checkcast:  检验类型转换，检验未通过将抛出ClassCastException
+instanceof:  检验对象是否是指定的类的实例，如果是将1压入栈顶，否则将0压入栈顶
+monitorenter:  获得对象的锁，用于同步方法或同步块
+monitorexit:  释放对象的锁，用于同步方法或同步块
+ifnull:  为null时跳转
+```
+
+2. ASM常操作码
+```
+方法：visitInsn()  可以用于的操作指令：NOP, ACONSTNULL, ICONSTM1, ICONST0, ICONST1, ICONST2, ICONST3, ICONST4, ICONST5, LCONST0, LCONST1, FCONST0, FCONST1, FCONST2, DCONST0, DCONST1,IALOAD, LALOAD, FALOAD, DALOAD, AALOAD, BALOAD, CALOAD, SALOAD, IASTORE, LASTORE, FASTORE, DASTORE, AASTORE, BASTORE, CASTORE, SASTORE, POP, POP2, DUP, DUPX1,DUPX2, DUP2, DUP2X1, DUP2_X2, SWAP, IADD, LADD, FADD, DADD, ISUB, LSUB, FSUB, DSUB, IMUL, LMUL, FMUL, DMUL, IDIV, LDIV, FDIV, DDIV, IREM, LREM, FREM, DREM, INEG,LNEG, FNEG, DNEG, ISHL, LSHL, ISHR, LSHR, IUSHR, LUSHR, IAND, LAND, IOR, LOR, IXOR, LXOR, I2L, I2F, I2D, L2I, L2F, L2D, F2I, F2L, F2D, D2I, D2L, D2F, I2B, I2C, I2S,LCMP, FCMPL, FCMPG, DCMPL, DCMPG, IRETURN, LRETURN, FRETURN, DRETURN, ARETURN, RETURN, ARRAYLENGTH, ATHROW, MONITORENTER, or MONITOREXIT.
+方法：visitFieldInsn()   可以用于的操作指令：GETSTATIC, PUTSTATIC, GETFIELD, or PUTFIELD.
+方法：visitIntInsn()    可以用于的操作指令：BIPUSH, SIPUSH, or NEWARRAY.
+方法：visitJumpInsn()   可以用于的操作指令：IFEQ, IFNE, IFLT, IFGE, IFGT, IFLE, IFICMPEQ, IFICMPNE, IFICMPLT, IFICMPGE, IFICMPGT, IFICMPLE, IFACMPEQ, IFACMPNE, GOTO, JSR, IFNULL, or IFNONNULL.
+方法：visitTypeInsn()  可以用于的操作指令：NEW, ANEWARRAY, CHECKCAST, or INSTANCEOF.
+方法：visitVarInsn()  可以用于的操作指令：ILOAD, LLOAD, FLOAD, DLOAD, ALOAD, ISTORE, LSTORE, FSTORE, DSTORE, ASTORE, or RET.
+方法：visitMethodInsn()  可以用于的操作指令：INVOKEVIRTUAL, INVOKESPECIAL, INVOKESTATIC, or INVOKEINTERFACE.
+方法：visitIincInsn()  自增.
+方法：visitLdcInsn()  定义变量LDC
+方法：visitLabel()  label.用于跳转
+```
+
+参考：<https://segmentfault.com/a/1190000009956534>、<https://www.jianshu.com/p/a2d7565945d8>、<https://blog.csdn.net/saifeng/article/details/46238387>
